@@ -113,3 +113,5 @@ i przeglądać wydatki.
 Dane pozostają dostępne po odświeżeniu strony i ponownym zalogowaniu.
 Zmiany innych uczestników są widoczne po odświeżeniu widoku.
 Osoba nienależąca do wyjazdu nie może przeglądać ani zmieniać jego danych.
+
+3. Ekrany aplikacji
