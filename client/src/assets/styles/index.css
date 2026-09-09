@@ -1,0 +1,56 @@
+:root {
+  --fs--4: clamp(0.4096rem, 0.5065rem + -0.1076vw, 0.4823rem);
+  --fs--3: clamp(0.512rem, 0.6009rem + -0.0988vw, 0.5787rem);
+  --fs--2: clamp(0.64rem, 0.7126rem + -0.0807vw, 0.6944rem);
+  --fs--1: clamp(0.8rem, 0.8444rem + -0.0494vw, 0.8333rem);
+  --fs-0: clamp(1rem, 1rem + 0vw, 1rem);
+  --fs-1: clamp(1.2rem, 1.1833rem + 0.0741vw, 1.25rem);
+  --fs-2: clamp(1.44rem, 1.3992rem + 0.1815vw, 1.5625rem);
+  --fs-3: clamp(1.728rem, 1.653rem + 0.3335vw, 1.9531rem);
+  --fs-4: clamp(2.0736rem, 1.951rem + 0.5449vw, 2.4414rem);
+  --fs-5: clamp(2.4883rem, 2.3005rem + 0.8347vw, 3.0518rem);
+  --fs-6: clamp(2.986rem, 2.7097rem + 1.2277vw, 3.8147rem);
+  --fs-7: clamp(3.5832rem, 3.1881rem + 1.7558vw, 4.7684rem);
+  --fs-8: clamp(4.2998rem, 3.7463rem + 2.4602vw, 5.9605rem);
+
+  --space-3xs: clamp(0.25rem, 0.25rem + 0vw, 0.25rem);
+  --space-2xs: clamp(0.5rem, 0.5rem + 0vw, 0.5rem);
+  --space-xs: clamp(0.75rem, 0.75rem + 0vw, 0.75rem);
+  --space-s: clamp(1rem, 1rem + 0vw, 1rem);
+  --space-m: clamp(1.5rem, 1.5rem + 0vw, 1.5rem);
+  --space-l: clamp(2rem, 2rem + 0vw, 2rem);
+  --space-xl: clamp(3rem, 3rem + 0vw, 3rem);
+  --space-2xl: clamp(4rem, 4rem + 0vw, 4rem);
+  --space-3xl: clamp(6rem, 6rem + 0vw, 6rem);
+
+  --space-3xs-2xs: clamp(0.25rem, 0.1667rem + 0.3704vw, 0.5rem);
+  --space-2xs-xs: clamp(0.5rem, 0.4167rem + 0.3704vw, 0.75rem);
+  --space-xs-s: clamp(0.75rem, 0.6667rem + 0.3704vw, 1rem);
+  --space-s-m: clamp(1rem, 0.8333rem + 0.7407vw, 1.5rem);
+  --space-m-l: clamp(1.5rem, 1.3333rem + 0.7407vw, 2rem);
+  --space-l-xl: clamp(2rem, 1.6667rem + 1.4815vw, 3rem);
+  --space-xl-2xl: clamp(3rem, 2.6667rem + 1.4815vw, 4rem);
+  --space-2xl-3xl: clamp(4rem, 3.3333rem + 2.963vw, 6rem);
+}
+
+body {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+h1 {}
+
+h2 {}
+
+h3 {}
+
+h4 {}
+
+h5 {}
+
+h6 {}
+
+p {}
