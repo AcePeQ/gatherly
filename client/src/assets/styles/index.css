@@ -31,14 +31,81 @@
   --space-l-xl: clamp(2rem, 1.6667rem + 1.4815vw, 3rem);
   --space-xl-2xl: clamp(3rem, 2.6667rem + 1.4815vw, 4rem);
   --space-2xl-3xl: clamp(4rem, 3.3333rem + 2.963vw, 6rem);
+
+  --ld-background: light-dark(#faf8f5, #111820);
+  --ld-surface: light-dark(#ffffff, #1b2633);
+  --ld-surface-hover: light-dark(#f0f4f8, #263446);
+
+  --ld-text: light-dark(#172b40, #eef3f8);
+  --ld-text-muted: light-dark(#536577, #afbdcd);
+
+  --ld-border: light-dark(#dce2e8, #3b4c60);
+  --ld-input-border: light-dark(#7b8998, #7b8fa5);
+
+  --ld-primary: light-dark(#1d4ed8, #93c5fd);
+  --ld-primary-hover: light-dark(#1e40af, #bfdbfe);
+  --ld-on-primary: light-dark(#ffffff, #10243a);
+
+  --ld-secondary: light-dark(#eef2f6, #263446);
+  --ld-secondary-hover: light-dark(#e1e7ef, #33465c);
+  --ld-on-secondary: light-dark(#172b40, #eef3f8);
+
+  --ld-ghost-hover: var(--ld-surface-hover);
+  --ld-on-ghost: var(--ld-text);
+
+  --ld-accent-background: light-dark(#eaf2fa, #172f46);
+  --ld-accent-text: light-dark(#173d67, #bfdbfe);
+
+  --ld-focus: light-dark(#1d4ed8, #93c5fd);
+
+  --ld-error: light-dark(#b42318, #ffb4ab);
+  --ld-error-background: light-dark(#fff0ee, #3b2023);
+
+  --ld-success: light-dark(#166534, #86efac);
+  --ld-success-background: light-dark(#edf9f0, #173326);
+
+  --ld-shadow-soft: light-dark(rgb(23 43 64 / 8%),
+      rgb(0 0 0 / 24%));
+
+  --ld-shadow-medium: light-dark(rgb(23 43 64 / 10%),
+      rgb(0 0 0 / 32%));
+
+  --ld-shadow-strong: light-dark(rgb(23 43 64 / 16%),
+      rgb(0 0 0 / 44%));
+
+  --shadow-sm: 0 1px 3px var(--ld-shadow-soft);
+  --shadow-md: 0 4px 16px var(--ld-shadow-medium);
+  --shadow-lg: 0 12px 40px var(--ld-shadow-strong);
+
+  --ld-highlight: var(--ld-accent-background);
+  --ld-on-highlight: var(--ld-accent-text);
+  --ld-highlight-border: light-dark(#93c5fd, #4a7099);
+
+  --ld-selection: light-dark(#bfdbfe, #254f78);
+  --ld-on-selection: light-dark(#10243a, #eef3f8);
+
+  --ld-overlay: light-dark(rgb(15 23 42 / 48%),
+      rgb(0 0 0 / 64%));
+}
+
+html {
+  color-scheme: light dark;
+}
+
+html:has(.mode-light) {
+  color-scheme: light;
+}
+
+html:has(.mode-dark) {
+  color-scheme: dark;
 }
 
 body {
   font-size: 1rem;
   font-weight: 400;
   font-family: var(--font-family);
-  color: var(--color-text);
-  background-color: var(--color-background);
+  color: var(--ld-text);
+  background-color: var(--ld-background);
 }
 
 h1 {
