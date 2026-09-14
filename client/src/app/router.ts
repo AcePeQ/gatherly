@@ -12,7 +12,8 @@ const router = createBrowserRouter([
       {
         Component: Layout,
         children: [
-          { index: true, Component: Auth }
+          { index: true, Component: Auth },
+          { path: "*", Component: NotFound }
         ]
       },
       {
@@ -21,13 +22,10 @@ const router = createBrowserRouter([
         children: [
           { index: true, Component: Dashboard }
         ]
-      }
+      },
     ]
   },
-  {
-    path: "*",
-    Component: NotFound
-  }
+
 ])
 
 
