@@ -1,0 +1,53 @@
+.btnLink {
+  font-size: var(--fs-0);
+  font-weight: 600;
+  max-inline-size: fit-content;
+
+  text-decoration: none;
+
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
+
+  padding: var(--space-3xs-2xs) var(--space-xs-s);
+  border-radius: 6px;
+
+  transition: all 0.3s;
+}
+
+.btnLink.primary {
+  background-color: var(--ld-primary);
+  color: var(--ld-on-primary);
+  border-color: var(--ld-primary);
+}
+
+.btnLink.primary:hover,
+.btnLink.primary:focus-visible,
+.btnLink.primary:active {
+  background-color: var(--ld-primary-hover);
+  border-color: var(--ld-primary-hover);
+}
+
+.btnLink.secondary {
+  background-color: var(--ld-secondary);
+  color: var(--ld-on-secondary);
+  border-color: var(--ld-secondary);
+}
+
+.btnLink.secondary:hover,
+.btnLink.secondary:focus-visible,
+.btnLink.secondary:active {
+  background-color: var(--ld-secondary-hover);
+  border-color: var(--ld-secondary-hover);
+}
+
+.btnLink.ghost {
+  background-color: transparent;
+  color: var(--ld-on-ghost);
+  border-color: var(--ld-ghost-hover);
+}
+
+.btnLink.ghost:hover,
+.btnLink.ghost:focus-visible,
+.btnLink.ghost:active {
+  background-color: var(--ld-ghost-hover);
+}
