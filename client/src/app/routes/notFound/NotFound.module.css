@@ -16,7 +16,20 @@
   justify-content: center;
 }
 
-.right {}
+.leftWrapper {
+  max-inline-size: 35rem;
+  width: 100%;
+}
+
+.left p {
+  font-size: var(--fs-1);
+
+  margin-block-start: var(--space-m);
+  margin-block-end: var(--space-l);
+  letter-spacing: 0.25px;
+
+  color: var(--ld-text-muted);
+}
 
 .right img {
   inline-size: 100%;
