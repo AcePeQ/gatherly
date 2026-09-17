@@ -44,7 +44,13 @@ function Auth() {
           </ul>
         </menu>
 
-        <p className={styles.additionalAction}>Don't have an account? <Button type='link' onClick={() => changeAuthMode("register")}>Sign up</Button></p>
+        <p className={styles.additionalAction}>
+          {isLoginMode ? <>
+            Don't have an account? <Button type='link' onClick={() => changeAuthMode("register")}>Sign up</Button>
+          </> : <>
+            Already have an account? <Button type='link' onClick={() => changeAuthMode("login")}>Log in</Button>
+          </>}
+        </p>
       </div>
     </section>
   )
