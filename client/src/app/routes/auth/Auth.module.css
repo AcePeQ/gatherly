@@ -1,0 +1,74 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authWrapper {
+  max-inline-size: 22.5rem;
+  inline-size: 100%;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+
+  text-align: center;
+
+  gap: var(--space-xs);
+
+  margin-block-end: var(--space-m);
+}
+
+.title {
+  font-size: var(--fs-2);
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.subTitle {
+  color: var(--ld-text-muted);
+}
+
+.menuList {
+  display: flex;
+  background-color: var(--ld-highlight);
+  color: var(--ld-on-highlight);
+
+  block-size: 2.5rem;
+
+  border: 2px solid var(--ld-selection);
+  border-radius: 6px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.menuItem {
+  flex: 1;
+}
+
+.menuButton {
+  inline-size: 100%;
+  block-size: 100%;
+
+  position: relative;
+  z-index: 1;
+
+  font-weight: 600;
+}
+
+.menuActiveBg {
+  position: absolute;
+
+  inline-size: 50%;
+  block-size: 100%;
+
+  background-color: var(--ld-selection);
+
+
+  pointer-events: none;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+}
