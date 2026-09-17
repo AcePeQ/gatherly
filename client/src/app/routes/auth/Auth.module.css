@@ -72,3 +72,17 @@
   inset-inline-start: 0;
   inset-block-start: 0;
 }
+
+.additionalAction {
+  margin-block-start: var(--space-l);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.additionalAction button {
+  font-weight: 600 !important;
+}

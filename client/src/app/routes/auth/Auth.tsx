@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from "motion/react"
 
 import styles from './Auth.module.css';
+import Button from '../../../components/button/Button';
 
 const menuBgVariants = {
   initial: (isLoginMode: boolean) => ({
@@ -42,6 +43,8 @@ function Auth() {
             <motion.div custom={isLoginMode} variants={menuBgVariants} initial="initial" animate="animate" className={styles.menuActiveBg} aria-hidden="true" />
           </ul>
         </menu>
+
+        <p className={styles.additionalAction}>Don't have an account? <Button type='link' onClick={() => changeAuthMode("register")}>Sign up</Button></p>
       </div>
     </section>
   )

@@ -1,4 +1,6 @@
 .btn {
+  display: inline-block;
+
   font-size: var(--fs-0);
   font-weight: 600;
   max-inline-size: fit-content;
@@ -48,4 +50,26 @@
 .btn.ghost:focus-visible,
 .btn.ghost:active {
   background-color: var(--ld-ghost-hover);
+}
+
+.btn.link {
+  font-size: 1em;
+  font-weight: inherit;
+  max-inline-size: fit-content;
+
+  border: none;
+  box-shadow: none;
+
+  padding: 0;
+  border-radius: 0px;
+
+  transition: all 0.3s;
+
+  color: var(--ld-primary);
+}
+
+.btn.link:hover,
+.btn.link:focus-visible,
+.btn.link:active {
+  color: var(--ld-primary-hover);
 }

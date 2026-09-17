@@ -3,12 +3,13 @@ import styles from './Button.module.css';
 
 type ButtonProps = {
   children: ReactElement | string;
-  type: "primary" | "secondary" | "ghost";
+  clickType?: "submit" | "button" | "reset"
+  type: "primary" | "secondary" | "ghost" | "link";
   onClick: MouseEventHandler;
 }
-function Button({ children, type, onClick }: ButtonProps) {
+function Button({ children, type, clickType = "button", onClick }: ButtonProps) {
   return (
-    <button className={`${styles.btn} ${styles[type]}`} onClick={onClick}>{children}</button>
+    <button type={clickType} className={`${styles.btn} ${styles[type]}`} onClick={onClick}>{children}</button>
   )
 }
 
