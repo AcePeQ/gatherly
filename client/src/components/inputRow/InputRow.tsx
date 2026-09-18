@@ -1,18 +1,19 @@
-import styles from './Input.module.css';
-import { useState, type ComponentPropsWithoutRef, type ReactElement } from 'react';
+import styles from './InputRow.module.css';
+import { type ComponentPropsWithoutRef, type ReactElement } from 'react';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 type InputRowProps = {
   label: string;
-  error: string;
+  error?: string;
   id: string;
-  isPassword: boolean;
+  isPassword?: boolean;
+  showPassword?: boolean;
+  onTogglePassword?: () => void;
   children: ReactElement<ComponentPropsWithoutRef<"input">, "input">
 }
 
-function InputRow({ label, error, id, isPassword, children }: InputRowProps) {
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+function InputRow({ label, error, id, isPassword, showPassword, onTogglePassword, children }: InputRowProps) {
 
   return (
     <div className={styles.row}>
@@ -26,9 +27,7 @@ function InputRow({ label, error, id, isPassword, children }: InputRowProps) {
             type='button'
             aria-label={showPassword ? "Hide password" : "Show password"}
             aria-controls={id}
-            onClick={() => {
-              setShowPassword(prev => !prev)
-            }}
+            onClick={onTogglePassword}
             className={styles.iconWrapper}
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}

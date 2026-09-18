@@ -5,7 +5,7 @@ type ButtonProps = {
   children: ReactElement | string;
   clickType?: "submit" | "button" | "reset"
   type: "primary" | "secondary" | "ghost" | "link";
-  onClick: MouseEventHandler;
+  onClick?: MouseEventHandler;
 }
 function Button({ children, type, clickType = "button", onClick }: ButtonProps) {
   return (
