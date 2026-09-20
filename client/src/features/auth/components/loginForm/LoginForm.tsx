@@ -26,7 +26,7 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <InputRow id='email' label="Email" error={errors.email?.message}>
         <input id='email' type='email' autoComplete='email'
           {...register("email")}

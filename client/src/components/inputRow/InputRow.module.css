@@ -1,0 +1,117 @@
+.row {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-3xs);
+}
+
+.label {
+  color: var(--ld-text);
+  font-size: var(--fs-0);
+  font-weight: 500;
+  letter-spacing: 0.25px;
+}
+
+.inputWrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  color: var(--ld-text);
+
+  position: relative;
+}
+
+.row input {
+  background-color: var(--ld-surface);
+
+  border: 2px solid var(--ld-input-border);
+  border-radius: 6px;
+
+  inline-size: 100%;
+  min-inline-size: 0;
+
+  padding-inline: var(--space-2xs);
+  padding-block: var(--space-3xs);
+
+  position: relative;
+  cursor: text;
+  caret-color: var(--ld-primary);
+
+  box-shadow: var(--shadow-sm);
+
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.row input[autocomplete="current-password"] {
+  padding-inline-end: calc(var(--space-l) + 0.60rem);
+}
+
+.row input:hover,
+.row input:active {
+  border-color: var(--ld-text-muted);
+}
+
+.row input:focus-visible {
+  border-color: var(--ld-focus);
+
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--ld-focus) 22%, transparent),
+    var(--shadow-sm);
+}
+
+.row input::placeholder {
+  font: inherit;
+  color: var(--ld-text-muted);
+
+  position: relative;
+  top: -1px;
+
+  opacity: 1;
+}
+
+.row input:disabled {
+  cursor: not-allowed;
+}
+
+.row input[aria-invalid="true"] {
+  border-color: var(--ld-error);
+  background-color: var(--ld-error-background);
+}
+
+.row input[aria-invalid="true"] {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--ld-error) 20%, transparent),
+    var(--shadow-sm);
+}
+
+.error {
+  color: var(--ld-error);
+  font-size: var(--fs--1);
+  line-height: 1.4;
+}
+
+.iconWrapper {
+  display: grid;
+  place-items: center;
+
+  inline-size: 2.75rem;
+  block-size: 100%;
+
+  color: var(--ld-text-muted);
+
+  transition: color 0.3s ease-in-out;
+
+  position: absolute;
+  right: 0;
+}
+
+.iconWrapper:hover {
+  color: var(--ld-text);
+}
+
+.iconWrapper:focus-visible {
+  color: var(--ld-primary);
+  outline: 2px solid var(--ld-focus);
+  outline-offset: -4px;
+}
