@@ -1,15 +1,21 @@
 import { useState } from 'react';
-import { motion } from "motion/react"
+import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 
 import styles from './Auth.module.css';
 import Button from '../../../components/button/Button';
 import LoginForm from '../../../features/auth/components/loginForm/LoginForm';
 
 import Logo from "../../../assets/images/icons/whiteLogoFull.png"
-import { menuActiveSliderVariants } from '../../../utils/animationVariants';
+import {
+  authContainerVariants,
+  authItemVariants,
+  authPanelVariants,
+  menuActiveSliderVariants,
+} from '../../../utils/animationVariants';
 
 function Auth() {
   const [authMode, setAuthMode] = useState<"login" | "register">("login")
+  const shouldReduceMotion = useReducedMotion();
 
   function changeAuthMode(mode: "login" | "register") {
     setAuthMode(mode);
@@ -18,15 +24,20 @@ function Auth() {
   const isLoginMode = authMode === "login";
   return (
     <section className={styles.wrapper}>
-      <div className={styles.authWrapper}>
-        <img className={styles.logo} src={Logo} alt='' />
+      <motion.div
+        className={styles.authWrapper}
+        variants={authContainerVariants}
+        initial={shouldReduceMotion ? false : "hidden"}
+        animate="visible"
+      >
+        <motion.img variants={authItemVariants} className={styles.logo} src={Logo} alt='' />
 
-        <hgroup className={styles.titleGroup}>
+        <motion.hgroup variants={authItemVariants} className={styles.titleGroup}>
           <h1 className={styles.title}>{isLoginMode ? "Log in to your account" : "Create and account"}</h1>
           <p className={styles.subTitle}>{isLoginMode ? "Welcome back! Please enter your details." : "Start your free planning journey!"}</p>
-        </hgroup>
+        </motion.hgroup>
 
-        <div role='group' aria-label='Choose authentication mode' className={styles.menuList}>
+        <motion.div variants={authItemVariants} role='group' aria-label='Choose authentication mode' className={styles.menuList}>
           <button type='button' aria-pressed={!isLoginMode} onClick={() => changeAuthMode("register")}
             className={`${styles.menuButton} ${!isLoginMode ? styles.active : ""}`}>Sign up</button>
 
@@ -34,20 +45,33 @@ function Auth() {
             className={`${styles.menuButton} ${isLoginMode ? styles.active : ""}`}>Log in</button>
 
           <motion.div custom={isLoginMode} variants={menuActiveSliderVariants} initial="initial" animate="animate"
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: "easeInOut" }}
             className={styles.menuActiveBg} aria-hidden="true" />
-        </div>
+        </motion.div>
 
-        <LoginForm />
+        <motion.div variants={authItemVariants}>
+          <AnimatePresence mode="wait" initial={false} custom={shouldReduceMotion}>
+            <motion.div
+              key={authMode}
+              custom={shouldReduceMotion}
+              variants={authPanelVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+            >
+              <LoginForm />
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
 
-        <p className={styles.additionalAction}>
+        <motion.p variants={authItemVariants} className={styles.additionalAction}>
           {isLoginMode ? <>
             Don't have an account? <Button type='link' onClick={() => changeAuthMode("register")}>Sign up</Button>
           </> : <>
             Already have an account? <Button type='link' onClick={() => changeAuthMode("login")}>Log in</Button>
           </>}
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
     </section>
   )
 }
