@@ -1,3 +1,28 @@
+.link {
+  font-size: 1em;
+  font-weight: inherit;
+  max-inline-size: fit-content;
+
+  text-decoration: none;
+
+  border: none;
+  box-shadow: none;
+
+  padding: 0;
+  border-radius: 0px;
+
+  transition: all 0.3s;
+
+  color: var(--ld-primary);
+}
+
+.link:hover,
+.link:focus-visible,
+.link:active {
+  color: var(--ld-primary-hover);
+}
+
+
 .btnLink {
   font-size: var(--fs-0);
   font-weight: 600;

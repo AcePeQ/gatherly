@@ -5,6 +5,7 @@ import { loginSchema, type LoginFormValues } from '../../schemas/loginSchema';
 import InputRow from '../../../../components/inputRow/InputRow';
 import { useState } from 'react';
 import Button from '../../../../components/button/Button';
+import Link from '../../../../components/link/Link';
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -13,7 +14,8 @@ function LoginForm() {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: ""
+      password: "",
+      remember: false,
     }
   });
 
@@ -45,6 +47,14 @@ function LoginForm() {
         />
       </InputRow>
 
+      <div className={styles.additionalActions}>
+        <label className={styles.checkboxLabel} htmlFor='remember'>
+          <input className={styles.checkbox} id='remember' type='checkbox' {...register("remember")} />
+          Remember for 30 days
+        </label>
+
+        <Link path='/forgot-password'>Forgot password</Link>
+      </div>
 
       <Button clickType='submit' type='primary'>Sign in</Button>
     </form>

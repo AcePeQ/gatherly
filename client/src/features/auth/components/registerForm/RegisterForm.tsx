@@ -15,7 +15,7 @@ function RegisterForm() {
     defaultValues: {
       name: "",
       email: "",
-      password: ""
+      password: "",
     }
   });
 
