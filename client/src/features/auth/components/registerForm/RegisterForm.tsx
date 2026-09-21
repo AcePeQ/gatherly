@@ -56,6 +56,18 @@ function RegisterForm() {
         />
       </InputRow>
 
+      <ul className={styles.passwordTestList}>
+        <li className={styles.passwordTestItem}>
+          <div className={`${styles.passwordTestDot} ${styles.pass}`} />
+          Must be at least 8 characters
+        </li>
+
+        <li className={styles.passwordTestItem}>
+          <div className={styles.passwordTestDot} />
+          Must contain one special character
+        </li>
+      </ul>
+
 
       <Button clickType='submit' type='primary'>Get started</Button>
     </form>

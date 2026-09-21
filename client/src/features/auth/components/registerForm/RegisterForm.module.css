@@ -11,3 +11,61 @@
   inline-size: 100%;
   max-inline-size: unset;
 }
+
+.passwordTestList {
+  font-size: var(--fs-0);
+  font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-xs);
+}
+
+.passwordTestItem {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-2xs);
+}
+
+.passwordTestDot {
+  inline-size: 25px;
+  block-size: 25px;
+
+  border-radius: 50%;
+
+  position: relative;
+
+  background-color: var(--ld-surface);
+}
+
+.passwordTestDot.pass {
+  background-color: var(--ld-primary);
+}
+
+.passwordTestDot::before {
+  content: "";
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 0.75em;
+  height: 0.75em;
+
+  background-color: var(--ld-text-muted);
+
+  clip-path: polygon(9% 38%,
+      34% 63%,
+      91% 7%,
+      100% 18%,
+      34% 85%,
+      0% 50%);
+}
+
+.passwordTestDot.pass::before {
+  background-color: var(--ld-background);
+}
