@@ -2,23 +2,24 @@ import styles from './RegisterForm.module.css';
 
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema, type LoginFormValues } from '../../schemas/loginSchema';
 import InputRow from '../../../../components/inputRow/InputRow';
 import { useState } from 'react';
 import Button from '../../../../components/button/Button';
+import { registerSchema, type RegisterFormValues } from '../../schemas/registerSchema';
 
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: ""
     }
   });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
+  const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
     console.log(data);
   }
 
@@ -28,6 +29,15 @@ function RegisterForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <InputRow id='name' label="Name" error={errors.name?.message}>
+        <input id='name' type='text' autoComplete='name'
+          {...register("name")}
+          placeholder='Enter your name'
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? "name-error" : undefined}
+        />
+      </InputRow>
+
       <InputRow id='email' label="Email" error={errors.email?.message}>
         <input id='email' type='email' autoComplete='email'
           {...register("email")}
@@ -47,7 +57,7 @@ function RegisterForm() {
       </InputRow>
 
 
-      <Button clickType='submit' type='primary'>Sign in</Button>
+      <Button clickType='submit' type='primary'>Get started</Button>
     </form>
   )
 }
