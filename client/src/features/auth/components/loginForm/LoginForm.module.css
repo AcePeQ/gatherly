@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.additionalActions a {
+  font-weight: 500;
+}
+
 .checkboxLabel {
   display: flex;
 
