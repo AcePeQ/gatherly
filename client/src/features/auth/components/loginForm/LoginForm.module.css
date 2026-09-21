@@ -15,8 +15,11 @@
 .additionalActions {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
+  gap: var(--space-2xs);
 }
 
 .additionalActions a {
