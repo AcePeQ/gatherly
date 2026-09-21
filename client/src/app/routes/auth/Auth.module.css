@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: var(--space-m);
 }
 
 .authWrapper {
@@ -39,31 +41,43 @@
 
 .menuList {
   display: flex;
-  background-color: var(--ld-highlight);
-  color: var(--ld-on-highlight);
+  background-color: var(--ld-accent-background);
+  color: var(--ld-accent-text);
 
+  min-block-size: 2.5rem;
   block-size: 2.5rem;
 
-  border: 2px solid var(--ld-selection);
   border-radius: 6px;
 
   position: relative;
-
   overflow: hidden;
-}
-
-.menuItem {
-  flex: 1;
 }
 
 .menuButton {
   inline-size: 100%;
   block-size: 100%;
 
+  flex: 1;
+
   position: relative;
   z-index: 1;
 
   font-weight: 600;
+
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.menuButton.active {
+  color: var(--ld-on-primary);
+}
+
+.menuButton:not(.active):hover {
+  background-color: var(--ld-selection);
+}
+
+.menuButton:focus-visible {
+  outline: 3px solid var(--ld-focus);
+  outline-offset: -3px;
 }
 
 .menuActiveBg {
@@ -72,7 +86,7 @@
   inline-size: 50%;
   block-size: 100%;
 
-  background-color: var(--ld-selection);
+  background-color: var(--ld-primary);
 
 
   pointer-events: none;

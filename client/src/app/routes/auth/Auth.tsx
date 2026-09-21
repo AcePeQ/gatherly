@@ -6,15 +6,7 @@ import Button from '../../../components/button/Button';
 import LoginForm from '../../../features/auth/components/loginForm/LoginForm';
 
 import Logo from "../../../assets/images/icons/whiteLogoFull.png"
-
-const menuBgVariants = {
-  initial: (isLoginMode: boolean) => ({
-    x: isLoginMode ? "100%" : "0%"
-  }),
-  animate: (isLoginMode: boolean) => ({
-    x: isLoginMode ? "100%" : "0%"
-  })
-}
+import { menuActiveSliderVariants } from '../../../utils/animationVariants';
 
 function Auth() {
   const [authMode, setAuthMode] = useState<"login" | "register">("login")
@@ -34,18 +26,17 @@ function Auth() {
           <p className={styles.subTitle}>{isLoginMode ? "Welcome back! Please enter your details." : "Start your free planning journey!"}</p>
         </hgroup>
 
-        <menu className={styles.menu}>
-          <ul className={styles.menuList}>
-            <li className={styles.menuItem}>
-              <button onClick={() => changeAuthMode("register")} className={styles.menuButton}>Sign up</button>
-            </li>
-            <li className={styles.menuItem}>
-              <button onClick={() => changeAuthMode("login")} className={styles.menuButton}>Log in</button>
-            </li>
+        <div role='group' aria-label='Choose authentication mode' className={styles.menuList}>
+          <button type='button' aria-pressed={!isLoginMode} onClick={() => changeAuthMode("register")}
+            className={`${styles.menuButton} ${!isLoginMode ? styles.active : ""}`}>Sign up</button>
 
-            <motion.div custom={isLoginMode} variants={menuBgVariants} initial="initial" animate="animate" className={styles.menuActiveBg} aria-hidden="true" />
-          </ul>
-        </menu>
+          <button type='button' aria-pressed={isLoginMode} onClick={() => changeAuthMode("login")}
+            className={`${styles.menuButton} ${isLoginMode ? styles.active : ""}`}>Log in</button>
+
+          <motion.div custom={isLoginMode} variants={menuActiveSliderVariants} initial="initial" animate="animate"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={styles.menuActiveBg} aria-hidden="true" />
+        </div>
 
         <LoginForm />
 
