@@ -12,6 +12,7 @@ import {
   authPanelVariants,
   menuActiveSliderVariants,
 } from '../../../utils/animationVariants';
+import RegisterForm from '../../../features/auth/components/registerForm/RegisterForm';
 
 function Auth() {
   const [authMode, setAuthMode] = useState<"login" | "register">("login")
@@ -59,7 +60,7 @@ function Auth() {
               animate="center"
               exit="exit"
             >
-              <LoginForm />
+              {isLoginMode ? <LoginForm /> : <RegisterForm />}
             </motion.div>
           </AnimatePresence>
         </motion.div>
