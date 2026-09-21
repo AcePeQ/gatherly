@@ -38,6 +38,8 @@
   position: relative;
 
   background-color: var(--ld-surface);
+
+  transition: background-color 0.3s ease-in-out;
 }
 
 .passwordTestDot.pass {
@@ -64,6 +66,8 @@
       100% 18%,
       34% 85%,
       0% 50%);
+
+  transition: background-color 0.3s ease-in-out;
 }
 
 .passwordTestDot.pass::before {

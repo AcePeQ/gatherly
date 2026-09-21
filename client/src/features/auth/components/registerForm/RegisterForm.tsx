@@ -1,6 +1,6 @@
 import styles from './RegisterForm.module.css';
 
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm, useWatch, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import InputRow from '../../../../components/inputRow/InputRow';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ import { registerSchema, type RegisterFormValues } from '../../schemas/registerS
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
+  const { register, handleSubmit, control, formState: { errors } } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
@@ -19,13 +19,25 @@ function RegisterForm() {
     }
   });
 
+  const password = useWatch({
+    control,
+    name: "password",
+    defaultValue: "",
+  })
+
   const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
     console.log(data);
   }
 
+
   function handleTogglePassword() {
     setShowPassword(prev => !prev);
   }
+
+  const hasMinimumLength = password.length >= 8;
+
+  const hasSpecialCharacter =
+    /[!@#$%^&*(),.?":{}|<>_\-+=/\\[\];'`~]/.test(password);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +60,7 @@ function RegisterForm() {
       </InputRow>
 
       <InputRow id='password' label='Password' error={errors.password?.message} isPassword showPassword={showPassword} onTogglePassword={handleTogglePassword}>
-        <input id='password' type={showPassword ? "text" : "password"} autoComplete='current-password'
+        <input id='password' type={showPassword ? "text" : "password"} autoComplete='new-password'
           {...register("password")}
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
           aria-invalid={Boolean(errors.password)}
@@ -56,14 +68,14 @@ function RegisterForm() {
         />
       </InputRow>
 
-      <ul className={styles.passwordTestList}>
+      <ul aria-hidden="true" className={styles.passwordTestList}>
         <li className={styles.passwordTestItem}>
-          <div className={`${styles.passwordTestDot} ${styles.pass}`} />
+          <div className={`${styles.passwordTestDot} ${hasMinimumLength ? styles.pass : ""}`} />
           Must be at least 8 characters
         </li>
 
         <li className={styles.passwordTestItem}>
-          <div className={styles.passwordTestDot} />
+          <div className={`${styles.passwordTestDot} ${hasSpecialCharacter ? styles.pass : ""}`} />
           Must contain one special character
         </li>
       </ul>

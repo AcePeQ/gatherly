@@ -12,9 +12,11 @@
 }
 
 .logo {
-  max-inline-size: 15rem;
+  max-inline-size: 10rem;
 
   margin-inline: auto;
+  pointer-events: none;
+  user-select: none;
 }
 
 .titleGroup {
