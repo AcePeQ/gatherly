@@ -5,6 +5,8 @@ import styles from './Auth.module.css';
 import Button from '../../../components/button/Button';
 import LoginForm from '../../../features/auth/components/loginForm/LoginForm';
 
+import Logo from "../../../assets/images/icons/whiteLogoFull.png"
+
 const menuBgVariants = {
   initial: (isLoginMode: boolean) => ({
     x: isLoginMode ? "100%" : "0%"
@@ -25,7 +27,7 @@ function Auth() {
   return (
     <section className={styles.wrapper}>
       <div className={styles.authWrapper}>
-        <div>LOGO</div>
+        <img className={styles.logo} src={Logo} alt='' />
 
         <hgroup className={styles.titleGroup}>
           <h1 className={styles.title}>{isLoginMode ? "Log in to your account" : "Create and account"}</h1>

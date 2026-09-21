@@ -9,6 +9,12 @@
   inline-size: 100%;
 }
 
+.logo {
+  max-inline-size: 15rem;
+
+  margin-inline: auto;
+}
+
 .titleGroup {
   display: flex;
   flex-direction: column;
@@ -17,6 +23,7 @@
 
   gap: var(--space-xs);
 
+  margin-block-start: var(--space-s);
   margin-block-end: var(--space-m);
 }
 
