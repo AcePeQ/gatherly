@@ -23,6 +23,8 @@ function Auth() {
   }
 
   const isLoginMode = authMode === "login";
+
+
   return (
     <section className={styles.wrapper}>
       <motion.div
