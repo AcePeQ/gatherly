@@ -1,7 +1,6 @@
-import bcrypt from 'bcrypt';
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { type RegisterDto, registerSchema } from './dto/register.dto';
-import { AuthService } from './auth.service';
+import { type RegisterDto, registerSchema } from './dto/register.dto.js';
+import { AuthService } from './auth.service.js';
 
 @Controller("auth")
 export class AuthController {
