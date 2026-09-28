@@ -8,6 +8,10 @@ export class UsersService {
     return user;
   }
 
+  async findById(id: number) {
+    return db.orm.public.User.first({ id });
+  }
+
   async createUser(name: string, email: string, passwordHash: string) {
     const user = await db.orm.public.User.create({
       name,
