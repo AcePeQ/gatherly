@@ -6,11 +6,16 @@ import InputRow from '../../../../components/inputRow/InputRow';
 import { useState } from 'react';
 import Button from '../../../../components/button/Button';
 import Link from '../../../../components/link/Link';
+import { useLogin } from '../../api/useLogin';
+import { toast } from 'react-toastify';
+import { redirect } from 'react-router';
 
 function LoginForm() {
+  const { loginFn, isPending } = useLogin()
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValues>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -20,7 +25,15 @@ function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
-    console.log(data);
+    loginFn(data, {
+      onSuccess: (data) => {
+        redirect("/dashboard")
+      },
+      onError: (error) => {
+        toast.error(error.message)
+        reset();
+      }
+    })
   }
 
   function handleTogglePassword() {
@@ -35,6 +48,7 @@ function LoginForm() {
           placeholder='Enter your email'
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "email-error" : undefined}
+          disabled={isPending}
         />
       </InputRow>
 
@@ -44,19 +58,20 @@ function LoginForm() {
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
           aria-invalid={Boolean(errors.password)}
           aria-describedby={errors.password ? "password-error" : undefined}
+          disabled={isPending}
         />
       </InputRow>
 
       <div className={styles.additionalActions}>
         <label className={styles.checkboxLabel} htmlFor='remember'>
-          <input className={styles.checkbox} id='remember' type='checkbox' {...register("remember")} />
+          <input disabled={isPending} className={styles.checkbox} id='remember' type='checkbox' {...register("remember")} />
           Remember for 30 days
         </label>
 
         <Link path='/forgot-password'>Forgot password</Link>
       </div>
 
-      <Button clickType='submit' type='primary'>Sign in</Button>
+      <Button isDisabled={isPending} clickType='submit' type='primary'>Sign in</Button>
     </form>
   )
 }

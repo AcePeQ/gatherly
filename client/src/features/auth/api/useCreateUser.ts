@@ -2,10 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import { API_URL } from "../../../config/apiConfig";
 import type { ApiErrorResponse } from "../../../types/api";
 import type { RegisterFormValues } from "../schemas/registerSchema";
+import type { RegisterResponse } from "../../../types/auth";
 
-type RegisterResponse = {
-  message: string
-}
+
 
 export function useCreateUser() {
   const { isPending, isError, error, mutate: createUser } = useMutation({
@@ -31,7 +30,7 @@ async function createUserApi(registerData: RegisterFormValues): Promise<Register
       throw new Error(message ?? "Could not create your account")
     }
 
-    const data: { message: string } = await res.json();
+    const data: RegisterResponse = await res.json();
     return data;
   } catch (error) {
     console.error(error)

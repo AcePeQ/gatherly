@@ -61,7 +61,7 @@ function Auth() {
               animate="center"
               exit="exit"
             >
-              {isLoginMode ? <LoginForm /> : <RegisterForm />}
+              {isLoginMode ? <LoginForm /> : <RegisterForm onRegisterSuccess={() => changeAuthMode("register")} />}
             </motion.div>
           </AnimatePresence>
         </motion.div>

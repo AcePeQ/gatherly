@@ -9,11 +9,15 @@ import { registerSchema, type RegisterFormValues } from '../../schemas/registerS
 import { useCreateUser } from '../../api/useCreateUser';
 import { toast } from 'react-toastify';
 
-function RegisterForm() {
+type RegisterFormProps = {
+  onRegisterSuccess: () => void
+}
+
+function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
   const { isPending, createUser } = useCreateUser()
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { register, handleSubmit, control, formState: { errors } } = useForm<RegisterFormValues>({
+  const { register, handleSubmit, control, reset, formState: { errors } } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
@@ -32,9 +36,12 @@ function RegisterForm() {
     createUser(data, {
       onSuccess: (data) => {
         toast.success(data.message);
+        reset()
+        onRegisterSuccess();
       },
       onError: (error) => {
         toast.error(error.message)
+        reset();
       },
     });
   }
