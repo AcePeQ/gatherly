@@ -76,12 +76,16 @@ function RegisterForm() {
           {...register("password")}
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
           aria-invalid={Boolean(errors.password)}
-          aria-describedby={errors.password ? "password-error" : undefined}
+          aria-describedby={
+            errors.password
+              ? "password-requirements password-error"
+              : "password-requirements"
+          }
           disabled={isPending}
         />
       </InputRow>
 
-      <ul aria-hidden="true" className={styles.passwordTestList}>
+      <ul id="password-requirements" className={styles.passwordTestList}>
         <li className={styles.passwordTestItem}>
           <div className={`${styles.passwordTestDot} ${hasMinimumLength ? styles.pass : ""}`} />
           Must be at least 8 characters
@@ -94,7 +98,7 @@ function RegisterForm() {
       </ul>
 
 
-      <Button isDisabled={isPending} clickType='submit' type='primary'>Get started</Button>
+      <Button isDisabled={isPending} clickType='submit' type='primary'>{isPending ? "Creating account..." : "Get started"}</Button>
     </form>
   )
 }

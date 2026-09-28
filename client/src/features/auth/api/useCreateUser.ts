@@ -3,6 +3,10 @@ import { API_URL } from "../../../config/apiConfig";
 import type { ApiErrorResponse } from "../../../types/api";
 import type { RegisterFormValues } from "../schemas/registerSchema";
 
+type RegisterResponse = {
+  message: string
+}
+
 export function useCreateUser() {
   const { isPending, isError, error, mutate: createUser } = useMutation({
     mutationFn: createUserApi,
@@ -11,7 +15,7 @@ export function useCreateUser() {
   return { isPending, isError, error, createUser }
 }
 
-async function createUserApi(registerData: RegisterFormValues): Promise<{ message: string } | ApiErrorResponse> {
+async function createUserApi(registerData: RegisterFormValues): Promise<RegisterResponse> {
   try {
     const res = await fetch(`${API_URL}/auth/register`, {
       headers: {
