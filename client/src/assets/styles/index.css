@@ -88,6 +88,30 @@
 
   --ld-overlay: light-dark(rgb(15 23 42 / 48%),
       rgb(0 0 0 / 64%));
+
+
+  --ld-info: var(--ld-primary);
+  --ld-warning: light-dark(#92400e, #fcd34d);
+
+  --toastify-color-light: var(--ld-surface);
+  --toastify-color-dark: var(--ld-surface);
+  --toastify-text-color-light: var(--ld-text);
+  --toastify-text-color-dark: var(--ld-text);
+
+  --toastify-color-info: var(--ld-info);
+  --toastify-color-success: var(--ld-success);
+  --toastify-color-warning: var(--ld-warning);
+  --toastify-color-error: var(--ld-error);
+
+  --toastify-color-progress-light: var(--ld-primary);
+  --toastify-color-progress-dark: var(--ld-primary);
+
+  --toastify-spinner-color: var(--ld-primary);
+  --toastify-spinner-color-empty-area: var(--ld-border);
+
+  --toastify-font-family: var(--ff-primary);
+  --toastify-toast-bd-radius: 12px;
+  --toastify-toast-shadow: var(--shadow-md);
 }
 
 html {
@@ -174,4 +198,20 @@ p {
   overflow: hidden;
   clip-path: rect(0, 0, 0, 0);
   border: 0;
+}
+
+.Toastify__toast-container .Toastify__toast {
+  border: 1px solid var(--ld-border);
+  font-size: var(--fs-0);
+  line-height: 1.5;
+}
+
+.Toastify__toast-container .Toastify__close-button {
+  color: var(--ld-text-muted);
+  opacity: 1;
+}
+
+.Toastify__toast-container .Toastify__close-button:focus-visible {
+  outline: 2px solid var(--ld-focus);
+  outline-offset: 3px;
 }
