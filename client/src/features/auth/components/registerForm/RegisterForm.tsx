@@ -6,8 +6,11 @@ import InputRow from '../../../../components/inputRow/InputRow';
 import { useState } from 'react';
 import Button from '../../../../components/button/Button';
 import { registerSchema, type RegisterFormValues } from '../../schemas/registerSchema';
+import { useCreateUser } from '../../api/useCreateUser';
+import { toast } from 'react-toastify';
 
 function RegisterForm() {
+  const { isPending, createUser } = useCreateUser()
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const { register, handleSubmit, control, formState: { errors } } = useForm<RegisterFormValues>({
@@ -26,7 +29,14 @@ function RegisterForm() {
   })
 
   const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
-    console.log(data);
+    createUser(data, {
+      onSuccess: (data) => {
+        toast.success(data.message);
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    });
   }
 
 
@@ -47,6 +57,7 @@ function RegisterForm() {
           placeholder='Enter your name'
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? "name-error" : undefined}
+          disabled={isPending}
         />
       </InputRow>
 
@@ -56,6 +67,7 @@ function RegisterForm() {
           placeholder='Enter your email'
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "email-error" : undefined}
+          disabled={isPending}
         />
       </InputRow>
 
@@ -65,6 +77,7 @@ function RegisterForm() {
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
           aria-invalid={Boolean(errors.password)}
           aria-describedby={errors.password ? "password-error" : undefined}
+          disabled={isPending}
         />
       </InputRow>
 
@@ -81,7 +94,7 @@ function RegisterForm() {
       </ul>
 
 
-      <Button clickType='submit' type='primary'>Get started</Button>
+      <Button isDisabled={isPending} clickType='submit' type='primary'>Get started</Button>
     </form>
   )
 }

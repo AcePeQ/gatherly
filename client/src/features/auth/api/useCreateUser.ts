@@ -11,7 +11,7 @@ export function useCreateUser() {
   return { isPending, isError, error, createUser }
 }
 
-async function createUserApi(registerData: RegisterFormValues) {
+async function createUserApi(registerData: RegisterFormValues): Promise<{ message: string } | ApiErrorResponse> {
   try {
     const res = await fetch(`${API_URL}/auth/register`, {
       headers: {
@@ -27,7 +27,7 @@ async function createUserApi(registerData: RegisterFormValues) {
       throw new Error(message ?? "Could not create your account")
     }
 
-    const data = await res.json();
+    const data: { message: string } = await res.json();
     return data;
   } catch (error) {
     console.error(error)
