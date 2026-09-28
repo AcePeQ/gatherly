@@ -10,7 +10,17 @@ export type User = {
   updatedAt?: string;
 }
 
-export type LoginReponse = {
+export type LoginResponse = {
   user: User,
   message: string
+}
+
+export type LogoutResponse = {
+  message: string;
+}
+
+export type LogoutRequest = {
+  id: number;
+  email: string;
+  name: string;
 }

@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { API_URL } from "../../../config/apiConfig";
 import type { ApiErrorResponse } from "../../../types/api";
 import type { LoginFormValues } from "../schemas/loginSchema";
-import type { LoginReponse } from "../../../types/auth";
+import type { LoginResponse } from "../../../types/auth";
 
 export function useLogin() {
   const { isPending, isError, error, mutate: loginFn } = useMutation({
@@ -12,7 +12,7 @@ export function useLogin() {
   return { isPending, isError, error, loginFn }
 }
 
-async function loginApi(loginData: LoginFormValues): Promise<LoginReponse> {
+async function loginApi(loginData: LoginFormValues): Promise<LoginResponse> {
   try {
     const res = await fetch(`${API_URL}/auth/login`, {
       headers: {
@@ -28,7 +28,7 @@ async function loginApi(loginData: LoginFormValues): Promise<LoginReponse> {
       throw new Error(message ?? "Could not login into the account")
     }
 
-    const data: LoginReponse = await res.json();
+    const data: LoginResponse = await res.json();
     return data;
   } catch (error) {
     console.error(error)
