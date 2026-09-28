@@ -9,9 +9,11 @@ import Link from '../../../../components/link/Link';
 import { useLogin } from '../../api/useLogin';
 import { toast } from 'react-toastify';
 import { redirect } from 'react-router';
+import { useAuthStore } from '../../stores/useAuthStore';
 
 function LoginForm() {
   const { loginFn, isPending } = useLogin()
+  const setUser = useAuthStore((state) => state.setUser);
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -27,6 +29,8 @@ function LoginForm() {
   const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
     loginFn(data, {
       onSuccess: (data) => {
+        toast.success(data.message);
+        setUser(data.user);
         redirect("/dashboard")
       },
       onError: (error) => {
