@@ -4,6 +4,7 @@ import DashboardLayout from "../components/layouts/dashboardLayout/DashboardLayo
 import Auth from "./routes/auth/Auth";
 import Dashboard from "./routes/dashboard/Dashboard";
 import NotFound from "./routes/notFound/NotFound";
+import ResetPassword from "./routes/forgotPassword/ForgotPassword"
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
         Component: Layout,
         children: [
           { index: true, Component: Auth },
+          { path: "/reset-password", Component: ResetPassword },
           { path: "*", Component: NotFound }
         ]
       },
