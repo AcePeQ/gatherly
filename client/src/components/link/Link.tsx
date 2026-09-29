@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 import styles from './Link.module.css';
 
-import { Link as ReactLink } from "react-router";
+import { Link as RouterLink } from "react-router";
 
 type LinkProps = {
   children: ReactElement | string;
@@ -10,7 +10,7 @@ type LinkProps = {
 
 function Link({ children, path }: LinkProps) {
   return (
-    <ReactLink className={styles.link} to={path}>{children}</ReactLink>
+    <RouterLink className={styles.link} to={path}>{children}</RouterLink>
   )
 }
 

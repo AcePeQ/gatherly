@@ -25,7 +25,7 @@ function Auth() {
   const isLoginMode = authMode === "login";
 
   return (
-    <section className={styles.wrapper}>
+    <section className={`${styles.wrapper} wrapper-padding`}>
       <motion.div
         className={styles.authWrapper}
         variants={authContainerVariants}

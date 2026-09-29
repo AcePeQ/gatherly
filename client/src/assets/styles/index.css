@@ -189,6 +189,10 @@ p {
   min-block-size: 100dvb;
 }
 
+.wrapper-padding {
+  padding: var(--space-m-l);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -36,7 +36,6 @@ function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
     createUser(data, {
       onSuccess: (data) => {
         toast.success(data.message);
-        reset()
         onRegisterSuccess();
       },
       onError: (error) => {
