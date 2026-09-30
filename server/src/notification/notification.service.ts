@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Injectable, NotFoundException } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
 import { UsersService } from '../users/users.service.js';
