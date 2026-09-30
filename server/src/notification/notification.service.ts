@@ -1,12 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
-import { ResetPasswordDto } from './dto/resetPassword.dto';
+import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
+import { UsersService } from '../users/users.service.js';
 
 @Injectable()
 export class NotificationService {
-  constructor(private readonly mailerService: MailerService) { }
+  constructor(
+    private readonly mailerService: MailerService,
+    private readonly userService: UsersService
+  ) { }
 
-  async resetPassword({ email }: ResetPasswordDto) {
+  async forgotPassword({ email }: ForgotPasswordDto) {
+    const user = await this.userService.findByEmail(email);
+
+    if (!user) {
+      throw new NotFoundException("User not found!")
+    }
+
     return this.mailerService.sendMail({
       to: email,
       subject: 'Reset password',
