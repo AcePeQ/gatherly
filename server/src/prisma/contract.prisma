@@ -7,5 +7,15 @@ model User {
   passwordHash String
   createdAt TimestamptzString @default(now())
   updatedAt temporal.updatedAtString()
+  passwordResetTokens PasswordResetToken[]
 }
 
+model PasswordResetToken {
+  id Int @id @default(autoincrement())
+  tokenHash String @unique
+  expiresAt TimestamptzString
+  usedAt TimestamptzString?
+  createdAt TimestamptzString @default(now())
+  userId Int 
+  user User @relation(fields: [userId], references: [id])
+}

@@ -1,19 +1,19 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { resetPasswordSchema, type ResetPasswordFormValues } from '../../schemas/resetPasswordSchema';
-import styles from './ResetPasswordForm.module.css';
+import { forgotPasswordSchema, type ForgotPasswordFormValues } from '../../schemas/forgotPasswordSchema';
+import styles from './ForgotPasswordForm.module.css';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import InputRow from '../../../../components/inputRow/InputRow';
 import Button from '../../../../components/button/Button';
 
-function ResetPasswordForm() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ResetPasswordFormValues>({
-    resolver: zodResolver(resetPasswordSchema),
+function ForgotPasswordForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormValues>({
+    resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: "",
     }
   });
 
-  const onSubmit: SubmitHandler<ResetPasswordFormValues> = (data) => {
+  const onSubmit: SubmitHandler<ForgotPasswordFormValues> = (data) => {
     console.log(data)
   }
 
@@ -29,9 +29,9 @@ function ResetPasswordForm() {
         />
       </InputRow>
 
-      <Button clickType='submit' type='primary'>Reset Password</Button>
+      <Button clickType='submit' type='primary'>Send reset instructions</Button>
     </form>
   )
 }
 
-export default ResetPasswordForm
+export default ForgotPasswordForm

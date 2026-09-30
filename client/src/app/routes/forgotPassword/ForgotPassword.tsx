@@ -1,5 +1,5 @@
 import Link from '../../../components/link/Link';
-import ResetPasswordForm from '../../../features/resetPassword/components/resetPasswordForm/ResetPasswordForm';
+import ForgotPasswordForm from '../../../features/passwordRecovery/components/forgotPasswordForm/ForgotPasswordForm';
 import { motion, useReducedMotion } from "motion/react"
 import styles from './ForgotPassword.module.css';
 
@@ -32,7 +32,7 @@ function ForgotPassword() {
         </motion.hgroup>
 
         <motion.div variants={authItemVariants} className={styles.formWrapper}>
-          <ResetPasswordForm />
+          <ForgotPasswordForm />
         </motion.div>
 
         <motion.div variants={authItemVariants}>
