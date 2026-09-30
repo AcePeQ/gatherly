@@ -5,7 +5,7 @@ const templatesDir = fileURLToPath(
   new URL('../notification/templates/', import.meta.url),
 );
 
-export const mailerConfig = {
+export const notificationConfig = {
   transport: {
     host: 'localhost',
     port: 1025,
