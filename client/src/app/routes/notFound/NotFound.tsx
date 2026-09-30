@@ -7,8 +7,8 @@ import AnimatedOrb from '../../../components/animatedOrb/AnimatedOrb';
 
 function NotFound() {
   return (
-    <section className={styles.wrapper}>
-      <div className={styles.left}>
+    <section className={`${styles.wrapper}`}>
+      <div className={`${styles.left} wrapper-padding`}>
         <AnimatedOrb
           position="center-right"
           size="large"

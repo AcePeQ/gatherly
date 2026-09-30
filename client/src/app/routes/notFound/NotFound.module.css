@@ -2,13 +2,12 @@
   display: flex;
   flex-direction: row;
 
-  gap: var(--space-m-l);
-
   overflow: hidden;
 }
 
 .wrapper>* {
   flex: 1;
+  flex-basis: 50%;
 }
 
 .left {
@@ -39,6 +38,7 @@
 .right img {
   inline-size: 100%;
   block-size: 100%;
+  max-block-size: 100dvb;
 
   object-fit: cover;
   object-position: center;
