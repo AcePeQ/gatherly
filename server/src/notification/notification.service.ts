@@ -40,7 +40,11 @@ export class NotificationService {
     return this.mailerService.sendMail({
       to: email,
       subject: 'Reset password',
-      // template/context albo html
+      template: 'reset-password',
+      context: {
+        name: user.name,
+        resetPasswordURL
+      }
     });
   }
 }
