@@ -14,7 +14,7 @@ export function useForgotPassword() {
 
 async function forgotPasswordApi(forgotPasswordData: ForgotPasswordFormValues): Promise<ForgotPasswordResponse> {
   try {
-    const res = await fetch(`${API_URL}/auth/forgot-passowrd`, {
+    const res = await fetch(`${API_URL}/auth/forgot-password`, {
       headers: {
         "Content-Type": "application/json"
       },

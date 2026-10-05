@@ -77,11 +77,11 @@ function ResetPasswordForm() {
         />
       </InputRow>
 
-      <InputRow id='confirmPasssword' label='Confirm Password' error={errors.confirmPassword?.message} isPassword showPassword={showConfirmPassword} onTogglePassword={handleToggleConfirmPassword}>
+      <InputRow id='confirmPassword' label='Confirm Password' error={errors.confirmPassword?.message} isPassword showPassword={showConfirmPassword} onTogglePassword={handleToggleConfirmPassword}>
         <input id='confirmPassword' type={showConfirmPassword ? "text" : "password"} autoComplete='new-password'
           {...register("confirmPassword")}
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
-          aria-invalid={Boolean(errors.password)}
+          aria-invalid={Boolean(errors.confirmPassword)}
           disabled={isPending}
         />
       </InputRow>

@@ -21,9 +21,9 @@ function ForgotPasswordForm() {
   const onSubmit: SubmitHandler<ForgotPasswordFormValues> = (data) => {
     forgotPassword(data,
       {
-        onSettled: (data, error) => {
-          toast.info(error?.message ?? data?.message ?? "Request completed");
-          navigate("/forgot-password/check-email");
+        onSettled: (res, error) => {
+          toast.info(error?.message ?? res?.message ?? "Request completed");
+          navigate(`/forgot-password/check-email?email=${encodeURIComponent(data.email)}`);
         }
       }
     )

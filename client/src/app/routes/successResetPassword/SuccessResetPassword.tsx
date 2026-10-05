@@ -25,7 +25,7 @@ function SuccessResetPassword() {
           variants={authItemVariants}
           className={styles.hgroup}
         >
-          <h1 className={styles.title}>Check your email</h1>
+          <h1 className={styles.title}>Password reset</h1>
           <p className={styles.subTitle}>Your password has been successfully reset.<br />Click below to log in.</p>
         </motion.hgroup>
 
