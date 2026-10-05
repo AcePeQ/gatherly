@@ -9,6 +9,7 @@ import { ConfigService } from '@nestjs/config';
 import { db } from '../prisma/db.js';
 import { NotificationService } from '../notification/notification.service.js';
 import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
+import { ResetPasswordDto } from './dto/reset-password.dto.js';
 
 const PASSWORD_RESET_TOKEN_TTL_MS = 15 * 60 * 1000;
 const FORGOT_PASSWORD_RESPONSE = {
@@ -98,5 +99,9 @@ export class AuthService {
     });
 
     return FORGOT_PASSWORD_RESPONSE;
+  }
+
+  async resetPassword({ password, token }: ResetPasswordDto) {
+
   }
 }

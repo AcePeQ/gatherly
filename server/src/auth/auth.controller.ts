@@ -8,6 +8,7 @@ import {
   type ForgotPasswordDto,
   forgotPasswordSchema,
 } from './dto/forgot-password.dto.js';
+import { type ResetPasswordDto, resetPasswordSchema } from './dto/reset-password.dto.js';
 
 @Controller("auth")
 export class AuthController {
@@ -28,6 +29,11 @@ export class AuthController {
     @Body({ schema: forgotPasswordSchema }) forgotPasswordData: ForgotPasswordDto,
   ) {
     return this.authService.forgotPassword(forgotPasswordData);
+  }
+
+  @Post('reset-password')
+  async resetPassword(@Body({ schema: resetPasswordSchema }) resetPasswordData: ResetPasswordDto) {
+    return this.authService.resetPassword(resetPasswordData);
   }
 
   @UseGuards(AuthGuard)
