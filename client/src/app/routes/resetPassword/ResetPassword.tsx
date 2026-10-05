@@ -8,6 +8,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiLock } from "react-icons/ci";
 import { authContainerVariants, authItemVariants } from '../../../utils/animationVariants';
 
+
 function ResetPassword() {
   const shouldReduceMotion = useReducedMotion();
 

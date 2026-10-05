@@ -4,6 +4,10 @@ import { AuthService } from './auth.service.js';
 import { type LoginDto, loginSchema } from './dto/login.dto.js';
 import { AuthGuard } from './auth.guard.js';
 import { type AuthenticatedRequest } from '../users/dto/user.dto.js';
+import {
+  type ForgotPasswordDto,
+  forgotPasswordSchema,
+} from './dto/forgot-password.dto.js';
 
 @Controller("auth")
 export class AuthController {
@@ -17,6 +21,13 @@ export class AuthController {
   @Post("login")
   async login(@Body({ schema: loginSchema }) loginData: LoginDto) {
     return this.authService.login(loginData)
+  }
+
+  @Post('forgot-password')
+  async forgotPassword(
+    @Body({ schema: forgotPasswordSchema }) forgotPasswordData: ForgotPasswordDto,
+  ) {
+    return this.authService.forgotPassword(forgotPasswordData);
   }
 
   @UseGuards(AuthGuard)

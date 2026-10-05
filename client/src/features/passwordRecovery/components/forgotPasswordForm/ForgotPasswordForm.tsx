@@ -4,8 +4,13 @@ import styles from './ForgotPasswordForm.module.css';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import InputRow from '../../../../components/inputRow/InputRow';
 import Button from '../../../../components/button/Button';
+import { useForgotPassword } from '../../api/useForgotPassword';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 function ForgotPasswordForm() {
+  const navigate = useNavigate();
+  const { isPending, forgotPassword } = useForgotPassword()
   const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -14,9 +19,15 @@ function ForgotPasswordForm() {
   });
 
   const onSubmit: SubmitHandler<ForgotPasswordFormValues> = (data) => {
-    console.log(data)
+    forgotPassword(data,
+      {
+        onSettled: (data, error) => {
+          toast.info(error?.message ?? data?.message ?? "Request completed");
+          navigate("/forgot-password/check-email");
+        }
+      }
+    )
   }
-
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -26,10 +37,11 @@ function ForgotPasswordForm() {
           placeholder='Enter your email'
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? "email-error" : undefined}
+          disabled={isPending}
         />
       </InputRow>
 
-      <Button clickType='submit' type='primary'>Send reset instructions</Button>
+      <Button isDisabled={isPending} clickType='submit' type='primary'>{isPending ? "Sending reset instructions..." : "Send reset instructions"}</Button>
     </form>
   )
 }

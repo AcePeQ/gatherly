@@ -7,7 +7,6 @@ import { authContainerVariants, authItemVariants } from '../../../utils/animatio
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { useNavigate, useSearchParams } from 'react-router';
 import { useEffect } from 'react';
-import Button from '../../../components/button/Button';
 
 function CheckMail() {
   const [searchParams] = useSearchParams()
@@ -41,11 +40,6 @@ function CheckMail() {
           <h1 className={styles.title}>Check your email</h1>
           <p className={styles.subTitle}>We sent a password reset link to {email}</p>
         </motion.hgroup>
-
-        <motion.p className={styles.resendText}>
-          Didn't receive the email?
-          <Button type='link'>Click to resend</Button>
-        </motion.p>
 
         <motion.div variants={authItemVariants}>
           <Link path='/'>

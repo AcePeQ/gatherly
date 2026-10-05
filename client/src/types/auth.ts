@@ -24,3 +24,11 @@ export type LogoutRequest = {
   email: string;
   name: string;
 }
+
+export type ForgotPasswordResponse = {
+  message: string;
+}
+
+export type ResetPasswordResponse = {
+  message: string;
+}

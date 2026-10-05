@@ -5,18 +5,25 @@ import InputRow from '../../../../components/inputRow/InputRow';
 import Button from '../../../../components/button/Button';
 import { resetPasswordSchema, type ResetPasswordFormValues } from '../../schemas/resetPasswordSchema';
 import { useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
+import { useResetPassword } from '../../api/useResetPassword';
+import { toast } from 'react-toastify';
 
 function ResetPasswordForm() {
+  const { resetPassword, isPending } = useResetPassword()
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setConfirmPassword] = useState<boolean>(false);
 
-  const { register, handleSubmit, formState: { errors }, control } = useForm<ResetPasswordFormValues>({
+  const token = searchParams.get("token") ?? "";
+
+  const { register, handleSubmit, formState: { errors }, control, reset } = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      token: token,
     }
   });
 
@@ -27,7 +34,18 @@ function ResetPasswordForm() {
   })
 
   const onSubmit: SubmitHandler<ResetPasswordFormValues> = (data) => {
-    console.log(data)
+    resetPassword(data,
+      {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          navigate("/reset-password/success", { replace: true })
+        },
+        onError: (error) => {
+          toast.error(error.message);
+          reset();
+        }
+      }
+    )
   }
 
   function handleTogglePassword() {
@@ -55,6 +73,7 @@ function ResetPasswordForm() {
               ? "password-requirements password-error"
               : "password-requirements"
           }
+          disabled={isPending}
         />
       </InputRow>
 
@@ -63,6 +82,7 @@ function ResetPasswordForm() {
           {...register("confirmPassword")}
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
           aria-invalid={Boolean(errors.password)}
+          disabled={isPending}
         />
       </InputRow>
 
@@ -78,7 +98,7 @@ function ResetPasswordForm() {
         </li>
       </ul>
 
-      <Button clickType='submit' type='primary'>Reset Password</Button>
+      <Button isDisabled={isPending} clickType='submit' type='primary'>{isPending ? "Reseting Password" : "Reset Password"}</Button>
     </form>
   )
 }
