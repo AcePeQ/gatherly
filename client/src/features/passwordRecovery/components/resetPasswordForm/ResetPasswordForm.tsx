@@ -5,8 +5,10 @@ import InputRow from '../../../../components/inputRow/InputRow';
 import Button from '../../../../components/button/Button';
 import { resetPasswordSchema, type ResetPasswordFormValues } from '../../schemas/resetPasswordSchema';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router';
 
 function ResetPasswordForm() {
+  const [searchParams] = useSearchParams();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setConfirmPassword] = useState<boolean>(false);
 
