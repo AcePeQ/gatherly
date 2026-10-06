@@ -5,6 +5,7 @@ import { UsersModule } from '../users/users.module.js';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { NotificationModule } from '../notification/notification.module.js';
+import { PasswordResetService } from './password-reset/password-reset.service.js';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { NotificationModule } from '../notification/notification.module.js';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, PasswordResetService],
 })
 export class AuthModule { }

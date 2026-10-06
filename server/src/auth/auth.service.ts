@@ -6,10 +6,10 @@ import { LoginDto } from './dto/login.dto.js';
 import { JwtService } from '@nestjs/jwt';
 import { createHash, randomBytes } from 'node:crypto';
 import { ConfigService } from '@nestjs/config';
-import { db } from '../prisma/db.js';
 import { NotificationService } from '../notification/notification.service.js';
 import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
 import { ResetPasswordDto } from './dto/reset-password.dto.js';
+import { PasswordResetService } from './password-reset/password-reset.service.js';
 
 const PASSWORD_RESET_TOKEN_TTL_MS = 15 * 60 * 1000;
 const FORGOT_PASSWORD_RESPONSE = {
@@ -23,6 +23,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly notificationService: NotificationService,
+    private readonly passwordResetService: PasswordResetService,
   ) { }
   async register(data: RegisterDto) {
     const { email, name, password } = data;
@@ -86,7 +87,7 @@ export class AuthService {
 
     resetPasswordUrl.searchParams.set('token', resetToken);
 
-    await db.orm.public.PasswordResetToken.create({
+    await this.passwordResetService.createToken({
       tokenHash,
       expiresAt,
       userId: user.id,
@@ -102,35 +103,23 @@ export class AuthService {
   }
 
   async resetPassword({ password, token }: ResetPasswordDto) {
-    const tokenHash = createHash('sha256').update(token).digest("hex");
+    const tokenHash = createHash('sha256').update(token).digest('hex');
 
     const saltOrRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltOrRounds);
-    const now = new Date().toISOString();
+    const wasPasswordUpdated =
+      await this.passwordResetService.consumeTokenAndUpdatePassword({
+        tokenHash,
+        passwordHash,
+        usedAt: new Date().toISOString(),
+      });
 
-    await db.transaction(async tx => {
-      const consumedToken = await tx.orm.public.PasswordResetToken
-        .where(resetToken => resetToken.tokenHash.eq(tokenHash))
-        .where(resetToken => resetToken.usedAt.isNull())
-        .where(resetToken => resetToken.expiresAt.gt(now))
-        .select('id', 'userId')
-        .update({ usedAt: now })
-
-      if (!consumedToken) {
-        throw new BadRequestException('Link is invalid or expired');
-      }
-
-      const updatedUser = await tx.orm.public.User
-        .where({ id: consumedToken.userId })
-        .update({ passwordHash })
-
-      if (!updatedUser) {
-        throw new BadRequestException("link is invalid or expired")
-      }
-    })
+    if (!wasPasswordUpdated) {
+      throw new BadRequestException('Link is invalid or expired');
+    }
 
     return {
-      message: "Passwrod successfully changed."
-    }
+      message: 'Password successfully changed.',
+    };
   }
 }

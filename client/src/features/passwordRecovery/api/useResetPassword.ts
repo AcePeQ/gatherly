@@ -13,13 +13,15 @@ export function useResetPassword() {
 }
 
 async function resetPasswordApi(resetPasswordData: ResetPasswordFormValues): Promise<ResetPasswordResponse> {
+  const { password, token } = resetPasswordData;
+
   try {
     const res = await fetch(`${API_URL}/auth/reset-password`, {
       headers: {
         "Content-Type": "application/json"
       },
       method: "POST",
-      body: JSON.stringify(resetPasswordData),
+      body: JSON.stringify({ password, token }),
     })
 
     if (!res.ok) {
