@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { ConflictException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { RegisterDto } from "./dto/register.dto.js";
 import { UsersService } from '../users/users.service.js';
 import { LoginDto } from './dto/login.dto.js';
@@ -102,6 +102,35 @@ export class AuthService {
   }
 
   async resetPassword({ password, token }: ResetPasswordDto) {
+    const tokenHash = createHash('sha256').update(token).digest("hex");
 
+    const saltOrRounds = 10;
+    const passwordHash = await bcrypt.hash(password, saltOrRounds);
+    const now = new Date().toISOString();
+
+    await db.transaction(async tx => {
+      const consumedToken = await tx.orm.public.PasswordResetToken
+        .where(resetToken => resetToken.tokenHash.eq(tokenHash))
+        .where(resetToken => resetToken.usedAt.isNull())
+        .where(resetToken => resetToken.expiresAt.gt(now))
+        .select('id', 'userId')
+        .update({ usedAt: now })
+
+      if (!consumedToken) {
+        throw new BadRequestException('Link is invalid or expired');
+      }
+
+      const updatedUser = await tx.orm.public.User
+        .where({ id: consumedToken.userId })
+        .update({ passwordHash })
+
+      if (!updatedUser) {
+        throw new BadRequestException("link is invalid or expired")
+      }
+    })
+
+    return {
+      message: "Passwrod successfully changed."
+    }
   }
 }

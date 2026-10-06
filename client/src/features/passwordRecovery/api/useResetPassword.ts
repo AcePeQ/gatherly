@@ -14,7 +14,7 @@ export function useResetPassword() {
 
 async function resetPasswordApi(resetPasswordData: ResetPasswordFormValues): Promise<ResetPasswordResponse> {
   try {
-    const res = await fetch(`${API_URL}/auth/forgot-password`, {
+    const res = await fetch(`${API_URL}/auth/reset-password`, {
       headers: {
         "Content-Type": "application/json"
       },
