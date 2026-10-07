@@ -3,7 +3,7 @@ import type { User } from "../../../types/auth"
 
 type AuthStore = {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
   clearUser: () => void;
 }
 
