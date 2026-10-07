@@ -15,14 +15,21 @@ export type LoginResponse = {
   message: string
 }
 
-export type LogoutResponse = {
-  message: string;
+export type AuthSessionResponse = {
+  user: User | null;
+  isAuthorized: boolean;
 }
 
-export type LogoutRequest = {
-  id: number;
-  email: string;
-  name: string;
+export type AuthRedirectState = {
+  from?: {
+    pathname: string;
+    search?: string;
+    hash?: string;
+  };
+}
+
+export type LogoutResponse = {
+  message: string;
 }
 
 export type ForgotPasswordResponse = {

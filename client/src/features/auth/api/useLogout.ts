@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { API_URL } from "../../../config/apiConfig";
 import type { ApiErrorResponse } from "../../../types/api";
-import type { LogoutRequest, LogoutResponse } from "../../../types/auth";
+import type { LogoutResponse } from "../../../types/auth";
 
-export function useLogin() {
+export function useLogout() {
   const { isPending, isError, error, mutate: logoutFn } = useMutation({
     mutationFn: logoutApi,
   })
@@ -11,14 +11,11 @@ export function useLogin() {
   return { isPending, isError, error, logoutFn }
 }
 
-async function logoutApi(logoutData: LogoutRequest): Promise<LogoutResponse> {
+async function logoutApi(): Promise<LogoutResponse> {
   try {
     const res = await fetch(`${API_URL}/auth/logout`, {
-      headers: {
-        "Content-Type": "application/json"
-      },
       method: "POST",
-      body: JSON.stringify(logoutData),
+      credentials: "include"
     })
 
     if (!res.ok) {

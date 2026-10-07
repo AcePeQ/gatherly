@@ -20,6 +20,7 @@ async function loginApi(loginData: LoginFormValues): Promise<LoginResponse> {
       },
       method: "POST",
       body: JSON.stringify(loginData),
+      credentials: "include"
     })
 
     if (!res.ok) {

@@ -70,7 +70,7 @@ export class AuthService {
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },
-      message: "Successfully logged on."
+      message: "Successfully logged in."
     }
   }
 

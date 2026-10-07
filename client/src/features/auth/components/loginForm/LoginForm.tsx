@@ -8,12 +8,14 @@ import Button from '../../../../components/button/Button';
 import Link from '../../../../components/link/Link';
 import { useLogin } from '../../api/useLogin';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useQueryClient } from '@tanstack/react-query';
-import type { AuthorizeResponse } from '../../api/useAuthorized';
+import { AUTH_SESSION_QUERY_KEY } from '../../constants/authQueryKeys';
+import type { AuthRedirectState, AuthSessionResponse } from '../../../../types/auth';
 
 function LoginForm() {
   const queryClient = useQueryClient();
+  const location = useLocation();
   const navigate = useNavigate()
   const { loginFn, isPending } = useLogin()
 
@@ -33,12 +35,18 @@ function LoginForm() {
       onSuccess: (data) => {
         toast.success(data.message);
 
-        queryClient.setQueryData<AuthorizeResponse>(["auth", "session"], {
+        queryClient.setQueryData<AuthSessionResponse>(AUTH_SESSION_QUERY_KEY, {
           user: data.user,
           isAuthorized: true,
         });
 
-        navigate("/dashboard", { replace: true });
+        const redirectState = location.state as AuthRedirectState | null;
+        const previousLocation = redirectState?.from;
+        const redirectTo = previousLocation
+          ? `${previousLocation.pathname}${previousLocation.search ?? ''}${previousLocation.hash ?? ''}`
+          : "/dashboard";
+
+        navigate(redirectTo, { replace: true });
       },
       onError: (error) => {
         toast.error(error.message)

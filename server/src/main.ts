@@ -12,7 +12,8 @@ async function bootstrap() {
   const PORT = Number(config.getOrThrow<string>(`${isDevelopment ? "DEV_PORT" : "PROD_PORT"}`));
 
   app.enableCors({
-    origin: CORS_ORIGIN
+    origin: CORS_ORIGIN,
+    credentials: true,
   })
 
   app.useGlobalPipes(new StandardSchemaValidationPipe());

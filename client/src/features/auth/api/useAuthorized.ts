@@ -1,27 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../config/apiConfig";
-import type { User } from "../../../types/auth";
-
-export type AuthorizeResponse = {
-  user: User | null,
-  isAuthorized: boolean;
-}
+import type { AuthSessionResponse, User } from "../../../types/auth";
+import { AUTH_SESSION_QUERY_KEY } from "../constants/authQueryKeys";
 
 
 export function useAuthorized() {
   const { isPending, data, isError } = useQuery({
-    queryKey: ['auth', "session"],
+    queryKey: AUTH_SESSION_QUERY_KEY,
     queryFn: getAuthorizeApi,
   });
 
   return { isPending, data, isError }
 }
 
-async function getAuthorizeApi(): Promise<AuthorizeResponse> {
+async function getAuthorizeApi(): Promise<AuthSessionResponse> {
   const res = await fetch(`${API_URL}/auth/profile`, {
-    headers: {
-      "Content-Type": "application/json"
-    },
     method: "GET",
     credentials: "include"
   })
