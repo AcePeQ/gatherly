@@ -8,12 +8,14 @@ import Button from '../../../../components/button/Button';
 import Link from '../../../../components/link/Link';
 import { useLogin } from '../../api/useLogin';
 import { toast } from 'react-toastify';
-import { redirect } from 'react-router';
-import { useAuthStore } from '../../stores/useAuthStore';
+import { useNavigate } from 'react-router';
+import { useQueryClient } from '@tanstack/react-query';
+import type { AuthorizeResponse } from '../../api/useAuthorized';
 
 function LoginForm() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate()
   const { loginFn, isPending } = useLogin()
-  const setUser = useAuthStore((state) => state.setUser);
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -30,8 +32,13 @@ function LoginForm() {
     loginFn(data, {
       onSuccess: (data) => {
         toast.success(data.message);
-        setUser(data.user);
-        redirect("/dashboard")
+
+        queryClient.setQueryData<AuthorizeResponse>(["auth", "session"], {
+          user: data.user,
+          isAuthorized: true,
+        });
+
+        navigate("/dashboard", { replace: true });
       },
       onError: (error) => {
         toast.error(error.message)

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../config/apiConfig";
 import type { User } from "../../../types/auth";
 
-type AuthorizeResponse = {
+export type AuthorizeResponse = {
   user: User | null,
   isAuthorized: boolean;
 }
@@ -10,7 +10,7 @@ type AuthorizeResponse = {
 
 export function useAuthorized() {
   const { isPending, data, isError } = useQuery({
-    queryKey: ['authorize'],
+    queryKey: ['auth', "session"],
     queryFn: getAuthorizeApi,
   });
 

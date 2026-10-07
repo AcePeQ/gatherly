@@ -1,14 +1,11 @@
 import { Navigate, Outlet } from 'react-router'
-import { useAuthStore } from '../../../features/auth/stores/useAuthStore';
 import { useAuthorized } from '../../../features/auth/api/useAuthorized';
 import FullLoader from '../../../components/loaders/fullLoader/FullLoader';
 
 function RequireAuth() {
   const { data, isPending, isError } = useAuthorized()
 
-  const user = useAuthStore(state => state.user);
-
-  if (isPending && !user) {
+  if (isPending) {
     return <FullLoader />
   }
 

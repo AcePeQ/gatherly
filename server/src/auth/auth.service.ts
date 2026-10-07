@@ -63,9 +63,14 @@ export class AuthService {
     const expiresIn = remember ? "30d" : "1h";
 
     return {
-      access_token: await this.jwtService.signAsync(payload, {
-        expiresIn
-      })
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      message: "Successfully logged on."
     }
   }
 

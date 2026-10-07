@@ -13,7 +13,6 @@ function AuthSync({ children }: AuthSyncProps) {
   useEffect(() => {
     if (data === undefined) return;
 
-
     setUser(data.user);
   }, [data, setUser]);
 
