@@ -8,6 +8,8 @@ import ForgotPassword from "./routes/forgotPassword/ForgotPassword"
 import ResetPassword from "./routes/resetPassword/ResetPassword";
 import CheckMail from "./routes/checkMail/CheckMail";
 import SuccessResetPassword from "./routes/successResetPassword/SuccessResetPassword";
+import GuestOnly from "./routes/guestOnly/GuestOnly";
+import RequireAuth from "./routes/requireAuth/RequireAuth";
 
 const router = createBrowserRouter([
   {
@@ -16,24 +18,38 @@ const router = createBrowserRouter([
       {
         Component: Layout,
         children: [
-          { index: true, Component: Auth },
-          { path: "/forgot-password", Component: ForgotPassword },
-          { path: "/forgot-password/check-email", Component: CheckMail },
-          { path: "/reset-password", Component: ResetPassword },
-          { path: "/reset-password/success", Component: SuccessResetPassword },
-          { path: "*", Component: NotFound }
+          {
+            Component: GuestOnly,
+            children: [
+              { index: true, Component: Auth }
+            ]
+          },
+          {
+            children: [
+              { path: "/forgot-password", Component: ForgotPassword },
+              { path: "/forgot-password/check-email", Component: CheckMail },
+              { path: "/reset-password", Component: ResetPassword },
+              { path: "/reset-password/success", Component: SuccessResetPassword },
+              { path: "*", Component: NotFound }
+            ]
+          }
         ]
       },
+
       {
-        path: "/dashboard",
-        Component: DashboardLayout,
+        Component: RequireAuth,
         children: [
-          { index: true, Component: Dashboard }
+          {
+            path: "/dashboard",
+            Component: DashboardLayout,
+            children: [
+              { index: true, Component: Dashboard }
+            ]
+          },
         ]
-      },
+      }
     ]
   },
-
 ])
 
 
