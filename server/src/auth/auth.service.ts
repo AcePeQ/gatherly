@@ -64,12 +64,11 @@ export class AuthService {
     const payload = { sub: user.id, email: user.email, username: user.name }
     const expiresIn = remember ? "30d" : "1h";
 
-    const token = await this.jwtService.sign(payload, {
-      secret: this.configService.getOrThrow("JWT_SECRET"),
+    const token = this.jwtService.sign(payload, {
       expiresIn
     })
 
-    res.cookie('accessToken', token, {
+    res.cookie('token', token, {
       httpOnly: true,
       secure: this.configService.get('NODE_ENV') === 'production',
       sameSite: 'lax',

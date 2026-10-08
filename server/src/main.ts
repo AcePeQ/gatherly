@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
 import { ConfigService } from '@nestjs/config';
 import { StandardSchemaValidationPipe } from '@nestjs/common';
+import cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { abortOnError: false });
@@ -17,6 +18,7 @@ async function bootstrap() {
   })
 
   app.useGlobalPipes(new StandardSchemaValidationPipe());
+  app.use(cookieParser(config.get("JWT_SECRET")))
 
   await app.listen(PORT);
 }
