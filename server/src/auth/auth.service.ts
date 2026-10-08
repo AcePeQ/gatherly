@@ -10,6 +10,7 @@ import { NotificationService } from '../notification/notification.service.js';
 import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
 import { ResetPasswordDto } from './dto/reset-password.dto.js';
 import { PasswordResetService } from './password-reset/password-reset.service.js';
+import { Response } from 'express';
 
 const PASSWORD_RESET_TOKEN_TTL_MS = 15 * 60 * 1000;
 const FORGOT_PASSWORD_RESPONSE = {
@@ -44,7 +45,7 @@ export class AuthService {
     }
   }
 
-  async login(data: LoginDto) {
+  async login(data: LoginDto, res: Response) {
     const { email, password, remember } = data;
 
     const user = await this.userService.findByEmail(email);
@@ -59,8 +60,23 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
+
     const payload = { sub: user.id, email: user.email, username: user.name }
     const expiresIn = remember ? "30d" : "1h";
+
+    const token = await this.jwtService.sign(payload, {
+      secret: this.configService.getOrThrow("JWT_SECRET"),
+      expiresIn
+    })
+
+    res.cookie('accessToken', token, {
+      httpOnly: true,
+      secure: this.configService.get('NODE_ENV') === 'production',
+      sameSite: 'lax',
+      maxAge: remember
+        ? 30 * 24 * 60 * 60 * 1000
+        : 60 * 60 * 1000,
+    });
 
     return {
       user: {

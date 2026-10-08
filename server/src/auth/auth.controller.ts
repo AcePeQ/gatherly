@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Req, Res } from '@nestjs/common';
 import { type RegisterDto, registerSchema } from './dto/register.dto.js';
 import { AuthService } from './auth.service.js';
 import { type LoginDto, loginSchema } from './dto/login.dto.js';
@@ -9,6 +9,7 @@ import {
   forgotPasswordSchema,
 } from './dto/forgot-password.dto.js';
 import { type ResetPasswordDto, resetPasswordSchema } from './dto/reset-password.dto.js';
+import { type Response } from 'express';
 
 @Controller("auth")
 export class AuthController {
@@ -20,8 +21,8 @@ export class AuthController {
   }
 
   @Post("login")
-  async login(@Body({ schema: loginSchema }) loginData: LoginDto) {
-    return this.authService.login(loginData)
+  async login(@Body({ schema: loginSchema }) loginData: LoginDto, @Res({ passthrough: true }) res: Response) {
+    return this.authService.login(loginData, res);
   }
 
   @Post('forgot-password')
