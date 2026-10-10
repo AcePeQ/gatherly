@@ -1,5 +1,9 @@
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
 
   font-size: var(--fs-0);
   font-weight: 600;
@@ -17,6 +21,28 @@
     color 300ms ease-in-out,
     box-shadow 300ms ease-in-out,
     transform 300ms ease-in-out;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentLoading {
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: inherit;
+  pointer-events: none;
 }
 
 .btn.primary {

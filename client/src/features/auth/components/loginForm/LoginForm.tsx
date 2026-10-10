@@ -90,7 +90,7 @@ function LoginForm() {
         <Link path='/forgot-password'>Forgot password</Link>
       </div>
 
-      <Button isDisabled={isPending} clickType='submit' type='primary'>Sign in</Button>
+      <Button isLoading={isPending} clickType='submit' type='primary'>Sign in</Button>
     </form>
   )
 }

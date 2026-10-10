@@ -4,4 +4,6 @@
   justify-content: center;
 
   position: relative;
+
+  color: var(--ld-primary);
 }

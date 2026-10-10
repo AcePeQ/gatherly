@@ -98,7 +98,7 @@ function ResetPasswordForm() {
         </li>
       </ul>
 
-      <Button isDisabled={isPending} clickType='submit' type='primary'>{isPending ? "Reseting Password" : "Reset Password"}</Button>
+      <Button isLoading={isPending} clickType='submit' type='primary'>Reset Password</Button>
     </form>
   )
 }

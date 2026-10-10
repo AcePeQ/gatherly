@@ -1,6 +1,6 @@
 import AnimatedOrb from '../../animatedOrb/AnimatedOrb';
 import styles from './FullLoader.module.css';
-import { ClipLoader } from "react-spinners";
+import ContainerLoader from '../containerLoader/ContainerLoader';
 
 function FullLoader() {
   return (
@@ -51,7 +51,7 @@ function FullLoader() {
         scaleRate={0.20}
       />
 
-      <ClipLoader color="#36d7b7" aria-label='Loading Spinner' size={100} speedMultiplier={0.5} />
+      <ContainerLoader label="Loading page" size="clamp(3rem, 8vw, 6.25rem)" />
     </div>
   )
 }

@@ -104,7 +104,7 @@ function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
       </ul>
 
 
-      <Button isDisabled={isPending} clickType='submit' type='primary'>{isPending ? "Creating account..." : "Get started"}</Button>
+      <Button isLoading={isPending} clickType='submit' type='primary'>Get started</Button>
     </form>
   )
 }

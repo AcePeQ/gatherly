@@ -41,7 +41,7 @@ function ForgotPasswordForm() {
         />
       </InputRow>
 
-      <Button isDisabled={isPending} clickType='submit' type='primary'>{isPending ? "Sending reset instructions..." : "Send reset instructions"}</Button>
+      <Button isLoading={isPending} clickType='submit' type='primary'>Send reset instructions</Button>
     </form>
   )
 }
