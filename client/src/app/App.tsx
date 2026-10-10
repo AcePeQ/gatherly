@@ -4,6 +4,7 @@ import { queryClient } from "./provider"
 import router from "./router"
 import { Flip, ToastContainer } from "react-toastify"
 import AuthSync from "../features/auth/components/authSync/AuthSync"
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           transition={Flip}
         />
       </AuthSync>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }

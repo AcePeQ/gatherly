@@ -134,6 +134,10 @@ body {
   background-color: var(--ld-background);
 }
 
+body:has(.no-scroll) {
+  overflow: hidden;
+}
+
 h1 {
   font-size: var(--fs-5);
   font-weight: 700;
