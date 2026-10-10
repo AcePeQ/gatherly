@@ -1,8 +1,12 @@
+import styles from './DashboardLayout.module.css';
 import { Outlet } from 'react-router'
 
 function DashboardLayout() {
   return (
-    <Outlet />
+    <div className={styles.wrapper}>
+
+      <Outlet />
+    </div>
   )
 }
 

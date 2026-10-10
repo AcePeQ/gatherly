@@ -1,0 +1,38 @@
+.linkItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.link:link,
+.link:visited {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  gap: var(--space-3xs);
+  padding: var(--space-2xs);
+
+  color: var(--ld-text);
+  background-color: transparent;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.link:focus-visible,
+.link:active {}
+
+
+.iconWrapper {
+  display: inline-flex;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    inline-size: 16px;
+    block-size: 16px;
+
+    stroke-width: 1.5;
+  }
+}
