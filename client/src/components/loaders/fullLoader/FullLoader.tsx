@@ -51,7 +51,7 @@ function FullLoader() {
         scaleRate={0.20}
       />
 
-      <ContainerLoader label="Loading page" size="clamp(3rem, 8vw, 6.25rem)" />
+      <ContainerLoader label="Loading page" size={150} />
     </div>
   )
 }
