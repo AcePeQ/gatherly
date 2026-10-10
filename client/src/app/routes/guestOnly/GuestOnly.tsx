@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 import { useAuthorized } from '../../../features/auth/api/useAuthorized';
 import FullLoader from '../../../components/loaders/fullLoader/FullLoader';
+import ErrorPage from '../errorPage/ErrorPage';
 
 function GuestOnly() {
   const { data, isPending, isError } = useAuthorized()
@@ -10,7 +11,7 @@ function GuestOnly() {
   }
 
   if (isError) {
-    return <p>Error</p>
+    return <ErrorPage />
   }
 
   if (data?.isAuthorized) {

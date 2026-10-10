@@ -10,10 +10,12 @@ import CheckMail from "./routes/checkMail/CheckMail";
 import SuccessResetPassword from "./routes/successResetPassword/SuccessResetPassword";
 import GuestOnly from "./routes/guestOnly/GuestOnly";
 import RequireAuth from "./routes/requireAuth/RequireAuth";
+import ErrorPage from "./routes/errorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    ErrorBoundary: ErrorPage,
     children: [
       {
         Component: Layout,

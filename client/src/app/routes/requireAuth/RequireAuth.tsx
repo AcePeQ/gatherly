@@ -2,6 +2,7 @@ import { Navigate, Outlet, useLocation } from 'react-router'
 import { useAuthorized } from '../../../features/auth/api/useAuthorized';
 import FullLoader from '../../../components/loaders/fullLoader/FullLoader';
 import type { AuthRedirectState } from '../../../types/auth';
+import ErrorPage from '../errorPage/ErrorPage';
 
 function RequireAuth() {
   const location = useLocation();
@@ -12,7 +13,7 @@ function RequireAuth() {
   }
 
   if (isError) {
-    return <p>Error</p>
+    return <ErrorPage />
   }
 
   if (!data?.isAuthorized) {
