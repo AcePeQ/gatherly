@@ -4,7 +4,7 @@ import { Outlet } from 'react-router'
 
 function DashboardLayout() {
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} container`}>
       <Sidebar />
       <Outlet />
     </div>

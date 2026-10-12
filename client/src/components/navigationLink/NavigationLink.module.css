@@ -1,38 +1,48 @@
 .linkItem {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  font-size: var(--fs-1);
 }
 
+.settingsLink {
+  margin-block-start: auto;
+}
 
 .link:link,
 .link:visited {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
 
-  gap: var(--space-3xs);
+  inline-size: 100%;
+
+  gap: var(--space-xs);
   padding: var(--space-2xs);
+  border-radius: 6px;
 
   color: var(--ld-text);
   background-color: transparent;
+  text-decoration: none;
 
   transition: all 0.3s ease-in-out;
 }
 
+.link:hover,
 .link:focus-visible,
-.link:active {}
+.link:active {
+  background-color: var(--ld-surface);
+}
 
 
 .iconWrapper {
   display: inline-flex;
 
   svg {
-    width: 16px;
-    height: 16px;
-    inline-size: 16px;
-    block-size: 16px;
-
-    stroke-width: 1.5;
+    width: 20px;
+    height: 20px;
+    inline-size: 20px;
+    block-size: 20px;
   }
 }
