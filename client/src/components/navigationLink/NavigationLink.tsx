@@ -4,18 +4,11 @@ import type { ReactElement } from 'react';
 
 type NavigationLinkProps = {
   icon?: ReactElement | null;
-  isDropdown?: boolean;
-  count?: number | null;
   path: string;
   children: ReactElement | string;
 }
 
-function NavigationLink({ icon = null, isDropdown = false, count = null, path, children }: NavigationLinkProps) {
-  if (isDropdown) {
-    return (
-      <div>Dropdown</div>
-    )
-  }
+function NavigationLink({ icon = null, path, children }: NavigationLinkProps) {
 
   return (
     <li className={styles.linkItem}>
@@ -24,9 +17,6 @@ function NavigationLink({ icon = null, isDropdown = false, count = null, path, c
           <span className={styles.iconWrapper}>{icon}</span>
         }
         {children}
-        {count &&
-          <span className={styles.count}>{count}</span>
-        }
       </NavLink>
     </li>
   )
