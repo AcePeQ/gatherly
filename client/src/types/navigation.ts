@@ -8,6 +8,7 @@ type NavigationItemBase = {
 export type NavigationLinkItem = NavigationItemBase & {
   type: "link";
   path: string;
+  end?: boolean;
 }
 
 export type NavigationDropdownItem = NavigationItemBase & {

@@ -6,11 +6,11 @@ import NavigationLink from "../navigationLink/NavigationLink"
 
 function MainNavigation() {
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} aria-label='Main'>
       <ul className={styles.list}>
         {mainNavigation.map(navigationItem => navigationItem.type === "link"
-          ? <NavigationLink type={navigationItem.type} label={navigationItem.label} path={navigationItem.path} icon={navigationItem.icon} />
-          : <NavigationDropdown type={navigationItem.type} label={navigationItem.label} children={navigationItem.children} icon={navigationItem.icon} />)}
+          ? <NavigationLink key={navigationItem.path} type={navigationItem.type} label={navigationItem.label} path={navigationItem.path} icon={navigationItem.icon} />
+          : <NavigationDropdown key={navigationItem.label} type={navigationItem.type} label={navigationItem.label} children={navigationItem.children} icon={navigationItem.icon} />)}
       </ul>
     </nav>
   )

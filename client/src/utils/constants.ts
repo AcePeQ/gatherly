@@ -11,7 +11,7 @@ export const mainNavigation: MainNavigation = [
   { type: "link", path: "/dashboard", label: "Dashboard", icon: RxDashboard },
   {
     type: "dropdown", label: "Trips", children: [
-      { type: "link", path: "/trips", label: "All Trips", icon: FaList },
+      { type: "link", path: "/trips", end: true, label: "All Trips", icon: FaList },
       { type: "link", path: "/trips/create", label: "Create a trip", icon: IoMdCreate }
     ],
     icon: GiJourney

@@ -22,19 +22,28 @@
   padding: var(--space-2xs);
   border-radius: 6px;
 
-  color: var(--ld-text);
+  color: var(--ld-text-muted);
   background-color: transparent;
+
   text-decoration: none;
 
   transition: all 0.3s ease-in-out;
 }
 
-.link:hover,
-.link:focus-visible,
-.link:active {
-  background-color: var(--ld-surface);
+.link:hover {
+  color: var(--ld-text);
+  background-color: var(--ld-ghost-hover);
 }
 
+.link:active {
+  color: var(--ld-on-selection);
+  background-color: var(--ld-selection);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--ld-focus);
+  outline-offset: 2px;
+}
 
 .iconWrapper {
   display: inline-flex;
@@ -45,4 +54,11 @@
     inline-size: 20px;
     block-size: 20px;
   }
+}
+
+.link.activeLink,
+.link.activeLink:hover {
+  color: var(--ld-on-highlight);
+  background-color: var(--ld-highlight);
+  font-weight: 600;
 }

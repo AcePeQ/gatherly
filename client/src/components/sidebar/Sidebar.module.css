@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: var(--space-s);
 
-  border-inline-end: 2px solid var(--ld-surface);
+  border-inline-end: 1px solid var(--ld-border);
 }
 
 .logo {
