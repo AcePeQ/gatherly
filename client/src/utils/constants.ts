@@ -1,5 +1,19 @@
-export const mainNavigation = [
+import type { MainNavigation } from "../types/navigation";
+
+import { RxDashboard } from "react-icons/rx";
+import { GiJourney } from "react-icons/gi";
+import { FaTasks } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+
+export const mainNavigation: MainNavigation = [
+  { type: "link", path: "/dashboard", label: "Dashboard", icon: RxDashboard },
   {
-    type: "link"
-  }
+    type: "dropdown", label: "Trips", children: [
+      { type: "link", path: "/trips", label: "All Trips" },
+      { type: "link", path: "/trips/create", label: "Create a trip" }
+    ],
+    icon: GiJourney
+  },
+  { type: "link", path: "/tasks", label: "Tasks", icon: FaTasks },
+  { type: "link", path: "/settings", label: "Settings", icon: IoMdSettings }
 ]

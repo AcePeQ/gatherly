@@ -1,16 +1,16 @@
-import type { ReactElement } from "react";
+import type { IconType } from "react-icons/lib";
 
 type NavigationItemBase = {
   label: string;
-  icon?: ReactElement
+  icon?: IconType
 }
 
-type NavigationLinkItem = NavigationItemBase & {
+export type NavigationLinkItem = NavigationItemBase & {
   type: "link";
   path: string;
 }
 
-type NavigationDropdownItem = NavigationItemBase & {
+export type NavigationDropdownItem = NavigationItemBase & {
   type: "dropdown";
   children: NavigationLinkItem[];
 }
