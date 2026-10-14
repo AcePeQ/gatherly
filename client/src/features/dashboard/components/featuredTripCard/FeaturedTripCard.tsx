@@ -21,9 +21,8 @@ function FeaturedTripCard() {
             <p className={styles.date}>23-25 Oct 2026</p>
             <p className={styles.persons}>4 travelers</p>
           </div>
-
-          <ButtonLink type='primary' path='/trips/current-trip'>View trip</ButtonLink>
         </div>
+        <ButtonLink type='primary' path='/trips/current-trip'>View trip</ButtonLink>
       </div>
 
     </article>

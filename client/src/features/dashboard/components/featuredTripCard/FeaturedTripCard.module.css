@@ -17,10 +17,12 @@
 .status {
   font-size: var(--fs-1);
   font-weight: 600;
+
+  margin-inline-start: var(--space-2xs);
 }
 
 .previewImageWrapper {
-  block-size: 20rem;
+  block-size: 15rem;
 
   position: relative;
 }
@@ -52,4 +54,37 @@
   font-weight: 700;
 
   text-transform: uppercase;
+}
+
+.informationWrapper {
+  margin-inline-start: var(--space-2xs);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.informationLeft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.moreInfo {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-l);
+}
+
+.cardTitle {
+  font-size: var(--fs-3);
+}
+
+.date,
+.persons {
+  font-size: var(--fs-0);
+  font-weight: 600;
+
+  color: var(--ld-text-muted);
 }
