@@ -8,6 +8,9 @@
 
 .settingsLink {
   margin-block-start: auto;
+
+  padding-block-start: var(--space-2xs);
+  border-block-start: 1px solid var(--ld-border);
 }
 
 .link:link,
@@ -20,6 +23,7 @@
 
   gap: var(--space-xs);
   padding: var(--space-2xs);
+  padding-inline-start: var(--space-m);
   border-radius: 6px;
 
   color: var(--ld-text-muted);
@@ -61,4 +65,22 @@
   color: var(--ld-on-highlight);
   background-color: var(--ld-highlight);
   font-weight: 600;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.link.activeLink::after {
+  position: absolute;
+  content: "";
+
+  display: block;
+
+  left: 0;
+  top: 0;
+
+  block-size: 100%;
+  inline-size: 4px;
+
+  background-color: var(--ld-on-highlight);
 }
