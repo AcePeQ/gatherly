@@ -1,13 +1,15 @@
 import ButtonLink from '../../../../components/link/ButtonLink';
 import styles from './FeaturedTripCard.module.css';
 
+import PlaceholderImg from "../../../../assets/images/featureCardPlaceholder.jpg"
+
 function FeaturedTripCard() {
   return (
     <article className={styles.card}>
-      <p>Upcoming trip</p>
+      <p className={styles.status}>Upcoming trip</p>
 
       <div className={styles.previewImageWrapper}>
-        <img className={styles.previewImage} src='' alt='' />
+        <img className={styles.previewImage} src={PlaceholderImg} alt='' />
         <span className={styles.previewImageBadge}>In 9 days</span>
       </div>
 
