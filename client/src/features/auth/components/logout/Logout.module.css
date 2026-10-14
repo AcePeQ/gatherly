@@ -1,0 +1,88 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-inline: var(--space-m);
+  padding-block: var(--space-xs);
+  gap: var(--space-xs);
+
+  color: var(--ld-text);
+  background-color: var(--ld-surface);
+
+  border: 1.5px solid var(--ld-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.infoWrapper {
+  min-inline-size: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.infoWrapper .name {
+  font-size: var(--fs-1);
+  font-weight: 600;
+
+  color: var(--ld-text);
+}
+
+.infoWrapper .email {
+  font-size: var(--fs-0);
+  font-weight: 500;
+
+  color: var(--ld-text-muted);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  inline-size: 44px;
+  block-size: 44px;
+
+  border-radius: 6px;
+
+  color: var(--ld-text-muted);
+
+
+  transition:
+    color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+
+
+  svg {
+    width: 32px;
+    height: 32px;
+    inline-size: 32px;
+    block-size: 32px;
+  }
+}
+
+.logoutButton:not(:disabled):hover {
+  color: var(--ld-error);
+}
+
+.logoutButton:not(:disabled):active {
+  color: var(--ld-surface);
+}
+
+.logoutButton:focus-visible {
+  outline: 2px solid var(--ld-focus);
+  outline-offset: 2px;
+}
+
+.logoutButton:disabled {
+  color: var(--ld-text-muted);
+
+  cursor: wait;
+  opacity: 0.65;
+}
