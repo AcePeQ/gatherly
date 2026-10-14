@@ -1,6 +1,10 @@
+import DashboardHeader from "../../../features/dashboard/components/dashboardHeader/DashboardHeader"
+
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <section className="wrapper-padding">
+      <DashboardHeader />
+    </section>
   )
 }
 

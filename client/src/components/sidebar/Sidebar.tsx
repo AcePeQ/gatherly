@@ -7,13 +7,13 @@ import { Link } from 'react-router';
 
 function Sidebar() {
   return (
-    <div className={styles.wrapper}>
+    <header className={styles.wrapper}>
       <Link to="/dashboard">
         <img className={styles.logo} src={Logo} alt='Gatherly' />
       </Link>
       <MainNavigation />
       <Logout />
-    </div>
+    </header>
   )
 }
 
