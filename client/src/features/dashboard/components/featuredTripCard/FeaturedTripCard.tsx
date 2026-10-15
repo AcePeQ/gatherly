@@ -1,30 +1,70 @@
+import { Link } from 'react-router';
 import ButtonLink from '../../../../components/link/ButtonLink';
+import type { FeaturedTripCardProps } from '../../../../utils/featuredTripCardMock';
 import styles from './FeaturedTripCard.module.css';
 
-import PlaceholderImg from "../../../../assets/images/featureCardPlaceholder.jpg"
 
-function FeaturedTripCard() {
+function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isButton, path }: FeaturedTripCardProps) {
+  if (!isButton && path) {
+    return (
+      <article>
+        <Link className={styles.card} to={path}>
+          {title &&
+            <h2 className={styles.title}>{title}</h2>
+          }
+
+          <div className={styles.previewImageWrapper}>
+            <img className={styles.previewImage} src={image} alt='' />
+            {badge &&
+              <span className={styles.previewImageBadge}>{badge}</span>
+            }
+          </div>
+
+          <div className={styles.informationWrapper}>
+            <div className={styles.informationLeft}>
+              <h3 className={styles.cardTitle}>{cardTitle}</h3>
+
+              <div className={styles.moreInfo}>
+                <p className={styles.date}>{date}</p>
+                <p className={styles.persons}>{persons}</p>
+              </div>
+            </div>
+            {isButton && path &&
+              <ButtonLink type='primary' path={path}>View trip</ButtonLink>
+            }
+          </div>
+        </Link>
+      </article>
+    )
+  }
+
+
   return (
     <article className={styles.card}>
-      <h2 className={styles.title}>Upcoming trip</h2>
+      {title &&
+        <h2 className={styles.title}>{title}</h2>
+      }
 
       <div className={styles.previewImageWrapper}>
-        <img className={styles.previewImage} src={PlaceholderImg} alt='' />
-        <span className={styles.previewImageBadge}>In 9 days</span>
+        <img className={styles.previewImage} src={image} alt='' />
+        {badge &&
+          <span className={styles.previewImageBadge}>{badge}</span>
+        }
       </div>
 
       <div className={styles.informationWrapper}>
         <div className={styles.informationLeft}>
-          <h3 className={styles.cardTitle}>Weekend in Gdansk</h3>
+          <h3 className={styles.cardTitle}>{cardTitle}</h3>
 
           <div className={styles.moreInfo}>
-            <p className={styles.date}>23-25 Oct 2026</p>
-            <p className={styles.persons}>4 travelers</p>
+            <p className={styles.date}>{date}</p>
+            <p className={styles.persons}>{persons}</p>
           </div>
         </div>
-        <ButtonLink type='primary' path='/trips/current-trip'>View trip</ButtonLink>
+        {isButton && path &&
+          <ButtonLink type='primary' path={path}>View trip</ButtonLink>
+        }
       </div>
-
     </article>
   )
 }

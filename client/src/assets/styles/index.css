@@ -180,6 +180,11 @@ p {
   line-height: 1.5;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .container {
   max-inline-size: 120rem;
   inline-size: 100%;
