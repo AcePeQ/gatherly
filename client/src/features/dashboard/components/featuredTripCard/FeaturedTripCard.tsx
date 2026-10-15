@@ -6,7 +6,7 @@ import PlaceholderImg from "../../../../assets/images/featureCardPlaceholder.jpg
 function FeaturedTripCard() {
   return (
     <article className={styles.card}>
-      <p className={styles.status}>Upcoming trip</p>
+      <h2 className={styles.title}>Upcoming trip</h2>
 
       <div className={styles.previewImageWrapper}>
         <img className={styles.previewImage} src={PlaceholderImg} alt='' />
@@ -15,7 +15,7 @@ function FeaturedTripCard() {
 
       <div className={styles.informationWrapper}>
         <div className={styles.informationLeft}>
-          <h2 className={styles.cardTitle}>Weekend in Gdansk</h2>
+          <h3 className={styles.cardTitle}>Weekend in Gdansk</h3>
 
           <div className={styles.moreInfo}>
             <p className={styles.date}>23-25 Oct 2026</p>
