@@ -6,7 +6,6 @@ function MyTasksPreview() {
     <div className={styles.wrapper}>
       <h2 className={styles.title}>My tasks</h2>
 
-
       <div className={styles.link}>
         <Link path='/tasks'>View all tasks</Link>
       </div>

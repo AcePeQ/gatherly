@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-s);
+
+  grid-area: header;
 }
 
 .text {

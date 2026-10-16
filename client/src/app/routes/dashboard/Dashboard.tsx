@@ -3,10 +3,11 @@ import FeaturedTripCard from "../../../features/dashboard/components/featuredTri
 import MyTasksPreview from "../../../features/dashboard/components/myTasksPreview/MyTasksPreview"
 import UpcomingTrips from "../../../features/dashboard/components/upcomingTrips/UpcomingTrips"
 import { PlaceholderCard1 } from "../../../utils/featuredTripCardMock"
+import styles from './Dashboard.module.css';
 
 function Dashboard() {
   return (
-    <section className="wrapper-padding">
+    <section className={`${styles.section} wrapper-padding`}>
       <DashboardHeader />
 
       <FeaturedTripCard {...PlaceholderCard1} />

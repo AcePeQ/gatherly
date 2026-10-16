@@ -1,0 +1,13 @@
+.section {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-areas:
+    "header header header header header"
+    "featureCard featureCard featureCard tasks tasks"
+    "upcomingTrips upcomingTrips upcomingTrips upcomingTrips upcomingTrips"
+  ;
+
+  gap: var(--space-s);
+
+  align-content: start;
+}

@@ -1,3 +1,7 @@
+.wrapper {
+  grid-area: upcomingTrips;
+}
+
 .header {
   display: flex;
   align-items: center;
