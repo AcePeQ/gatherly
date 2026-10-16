@@ -27,3 +27,19 @@
 
   border-top: 2px solid var(--ld-border);
 }
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  padding-inline: var(--space-m);
+}
+
+.listItem {
+  border-top: 2px solid var(--ld-border);
+  padding-block: var(--space-xs);
+}
+
+.listItem:first-child {
+  border-top: none;
+}
