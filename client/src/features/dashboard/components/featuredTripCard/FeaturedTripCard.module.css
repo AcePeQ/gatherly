@@ -87,4 +87,10 @@
   font-weight: 600;
 
   color: var(--ld-text-muted);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--space-2xs);
 }

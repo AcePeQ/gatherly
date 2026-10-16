@@ -2,6 +2,9 @@ import { Link } from 'react-router';
 import ButtonLink from '../../../../components/link/ButtonLink';
 import type { FeaturedTripCardProps } from '../../../../utils/featuredTripCardMock';
 import styles from './FeaturedTripCard.module.css';
+import { CiCalendar } from "react-icons/ci";
+import { FiUsers } from "react-icons/fi";
+
 
 
 function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isButton, path }: FeaturedTripCardProps) {
@@ -25,8 +28,14 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
               <h3 className={styles.cardTitle}>{cardTitle}</h3>
 
               <div className={styles.moreInfo}>
-                <p className={styles.date}>{date}</p>
-                <p className={styles.persons}>{persons}</p>
+                <p className={styles.date}>
+                  <CiCalendar />
+                  {date}
+                </p>
+                <p className={styles.persons}>
+                  <FiUsers />
+                  {persons}
+                </p>
               </div>
             </div>
             {isButton && path &&
@@ -57,8 +66,14 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
           <h3 className={styles.cardTitle}>{cardTitle}</h3>
 
           <div className={styles.moreInfo}>
-            <p className={styles.date}>{date}</p>
-            <p className={styles.persons}>{persons}</p>
+            <p className={styles.date}>
+              <CiCalendar />
+              {date}
+            </p>
+            <p className={styles.persons}>
+              <FiUsers />
+              {persons}
+            </p>
           </div>
         </div>
         {isButton && path &&
