@@ -7,16 +7,20 @@ import { useState } from 'react';
 function Task() {
   const [isDone, setIsDone] = useState(false)
 
-  const handleChange = () => {
-    setIsDone(prev => !prev)
+  const handleChange = (isChecked: boolean) => {
+    setIsDone(isChecked)
   }
 
   return (
     <article className={styles.task}>
-      <Checkbox isChecked={isDone} onChange={handleChange} />
+      <Checkbox
+        ariaLabel='Mark "Book the apartment" as done'
+        isChecked={isDone}
+        onChange={handleChange}
+      />
 
       <div className={styles.infoWrapper}>
-        <h3 className={styles.title}>Book the appartment</h3>
+        <h3 className={styles.title}>Book the apartment</h3>
         <p className={styles.tripName}>
           <IoBriefcaseOutline />
           Weekend in Gdansk

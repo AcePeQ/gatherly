@@ -2,15 +2,23 @@ import styles from './Checkbox.module.css';
 
 type CheckboxProps = {
   label?: string;
-  isChecked?: boolean;
+  ariaLabel?: string;
+  isChecked: boolean;
   isDisabled?: boolean;
-  onChange?: () => void;
+  onChange: (isChecked: boolean) => void;
 }
 
-function Checkbox({ label, isChecked = false, isDisabled = false, onChange }: CheckboxProps) {
+function Checkbox({ label, ariaLabel, isChecked, isDisabled = false, onChange }: CheckboxProps) {
   return (
     <label className={styles.checkboxContainer}>
-      <input disabled={isDisabled} checked={isChecked} onChange={onChange} className={styles.checkboxInput} type="checkbox" />
+      <input
+        aria-label={ariaLabel}
+        disabled={isDisabled}
+        checked={isChecked}
+        onChange={(event) => onChange(event.currentTarget.checked)}
+        className={styles.checkboxInput}
+        type="checkbox"
+      />
       {label && label}
     </label>
   )
