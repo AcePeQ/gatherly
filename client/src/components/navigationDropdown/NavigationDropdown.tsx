@@ -2,12 +2,13 @@ import type { NavigationDropdownItem } from '../../types/navigation';
 import { IoIosArrowDown } from "react-icons/io";
 import NavigationLink from '../navigationLink/NavigationLink';
 import styles from './NavigationDropdown.module.css';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useId, useState } from 'react';
 import { useLocation } from 'react-router';
 
 function NavigationDropdown({ label, icon, children }: NavigationDropdownItem) {
   const location = useLocation();
+  const shouldReduceMotion = useReducedMotion();
 
   const hasActiveChild = children.some(
     (link) =>
@@ -19,6 +20,10 @@ function NavigationDropdown({ label, icon, children }: NavigationDropdownItem) {
 
   const Icon = icon;
   const dropdownId = useId();
+  const motionTransition = {
+    duration: shouldReduceMotion ? 0 : 0.2,
+    ease: "easeInOut" as const,
+  };
 
   function toggleDropdown() {
     setIsOpen(prev => !prev)
@@ -37,8 +42,8 @@ function NavigationDropdown({ label, icon, children }: NavigationDropdownItem) {
         {label}
 
 
-        <motion.span aria-hidden="true" initial={{ rotate: isOpen ? "180deg" : "0deg" }}
-          animate={{ rotate: isOpen ? "180deg" : "0deg" }} className={styles.closeIconWrapper}>
+        <motion.span aria-hidden="true" initial={false}
+          animate={{ rotate: isOpen ? 180 : 0 }} transition={motionTransition} className={styles.closeIconWrapper}>
           <IoIosArrowDown />
         </motion.span>
       </button>
@@ -49,6 +54,7 @@ function NavigationDropdown({ label, icon, children }: NavigationDropdownItem) {
         aria-hidden={!isOpen}
         initial={false}
         animate={{ height: isOpen ? "auto" : 0 }}
+        transition={motionTransition}
         style={{ overflow: "hidden" }}>
         <ul className={styles.dropdownItems} >
           {children.map(navigationLink => <NavigationLink key={navigationLink.path} type={navigationLink.type}

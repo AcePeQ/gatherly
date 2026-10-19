@@ -55,8 +55,8 @@
 
 
   transition:
-    color 200ms ease-in-out,
-    opacity 200ms ease-in-out;
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    opacity var(--motion-duration-fast) var(--motion-ease-standard);
 
 
   svg {

@@ -31,7 +31,9 @@
 
   text-decoration: none;
 
-  transition: all 200ms ease-in-out;
+  transition:
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    background-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .link:hover {

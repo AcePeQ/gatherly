@@ -11,7 +11,7 @@
   padding: 0;
   border-radius: 0px;
 
-  transition: all 200ms ease-in-out;
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
 
   color: var(--ld-primary);
 }
@@ -45,7 +45,10 @@
   padding: var(--space-3xs-2xs) var(--space-xs-s);
   border-radius: 6px;
 
-  transition: all 200ms ease-in-out;
+  transition:
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    border-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .btnLink.primary {

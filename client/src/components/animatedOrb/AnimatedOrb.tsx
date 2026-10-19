@@ -1,5 +1,5 @@
 import styles from './AnimatedOrb.module.css';
-import { useTime, useTransform, motion } from "motion/react"
+import { useReducedMotion, useTime, useTransform, motion } from "motion/react"
 
 
 type AnimatedOrbProps = {
@@ -14,7 +14,22 @@ type AnimatedOrbProps = {
   size: "small" | "medium" | "large"
 }
 
-function AnimatedOrb({ rotateSpeed, speedX, xMove, speedY, yMove, scaleSpeed, scaleRate, position, size }: AnimatedOrbProps) {
+function AnimatedOrb(props: AnimatedOrbProps) {
+  const shouldReduceMotion = useReducedMotion();
+  const className = `${styles.orb} ${styles[props.position]} ${styles[props.size]}`;
+
+  if (shouldReduceMotion) {
+    return <div aria-hidden="true" className={className} />
+  }
+
+  return <MovingOrb {...props} className={className} />
+}
+
+type MovingOrbProps = AnimatedOrbProps & {
+  className: string;
+}
+
+function MovingOrb({ rotateSpeed, speedX, xMove, speedY, yMove, scaleSpeed, scaleRate, className }: MovingOrbProps) {
   const time = useTime();
 
   const rotate = useTransform(time, (latest) => {
@@ -34,7 +49,7 @@ function AnimatedOrb({ rotateSpeed, speedX, xMove, speedY, yMove, scaleSpeed, sc
   })
 
   return (
-    <motion.div aria-hidden="true" className={`${styles.orb} ${styles[position]} ${styles[size]}`} style={{
+    <motion.div aria-hidden="true" className={className} style={{
       x,
       y,
       scale,

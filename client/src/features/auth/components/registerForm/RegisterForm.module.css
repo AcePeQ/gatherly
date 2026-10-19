@@ -39,7 +39,7 @@
 
   background-color: var(--ld-surface);
 
-  transition: background-color 200ms ease-in-out;
+  transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .passwordTestDot.pass {
@@ -67,7 +67,7 @@
       34% 85%,
       0% 50%);
 
-  transition: background-color 200ms ease-in-out;
+  transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .passwordTestDot.pass::before {

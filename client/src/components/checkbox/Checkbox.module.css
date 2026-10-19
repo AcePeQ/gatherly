@@ -34,8 +34,8 @@
 
   cursor: pointer;
   transition:
-    background-color 200ms ease-in-out,
-    border-color 200ms ease-in-out;
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    border-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .checkboxContainer+.checkboxContainer {
@@ -59,7 +59,7 @@
       transparent 58%);
 
   transform: scale(0);
-  transition: 200ms transform ease-in-out;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .checkboxInput:hover:not(:disabled) {

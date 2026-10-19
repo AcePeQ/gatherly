@@ -6,8 +6,6 @@
 
   flex: 1;
 
-  opacity: 1;
-  transition: opacity 200ms ease-in-out;
 }
 
 
@@ -23,7 +21,7 @@
   font-size: var(--fs-1);
   font-weight: 500;
 
-  transition: text-decoration 200ms ease-in-out, color 200ms ease-in-out;
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .task.isDone .title {

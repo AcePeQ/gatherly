@@ -40,7 +40,9 @@
   box-shadow: var(--shadow-sm);
 
   outline: none;
-  transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .row input[autocomplete="current-password"] {
@@ -100,7 +102,7 @@
 
   color: var(--ld-text-muted);
 
-  transition: color 200ms ease-in-out;
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
 
   position: absolute;
   right: 0;

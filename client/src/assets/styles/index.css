@@ -34,6 +34,9 @@
   --space-xl-2xl: clamp(3rem, 2.6667rem + 1.4815vw, 4rem);
   --space-2xl-3xl: clamp(4rem, 3.3333rem + 2.963vw, 6rem);
 
+  --motion-duration-fast: 200ms;
+  --motion-ease-standard: ease-in-out;
+
   --ld-background: light-dark(#faf8f5, #111820);
   --ld-surface: light-dark(#ffffff, #1b2633);
   --ld-surface-hover: light-dark(#f0f4f8, #263446);
@@ -112,6 +115,12 @@
   --toastify-font-family: var(--ff-primary);
   --toastify-toast-bd-radius: 12px;
   --toastify-toast-shadow: var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-fast: 0ms;
+  }
 }
 
 *:focus-visible {
