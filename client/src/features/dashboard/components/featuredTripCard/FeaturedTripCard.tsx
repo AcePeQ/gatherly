@@ -4,6 +4,7 @@ import type { FeaturedTripCardProps } from '../../../../utils/featuredTripCardMo
 import styles from './FeaturedTripCard.module.css';
 import { CiCalendar } from "react-icons/ci";
 import { FiUsers } from "react-icons/fi";
+import { FiChevronRight } from "react-icons/fi";
 
 
 
@@ -38,9 +39,9 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
                 </p>
               </div>
             </div>
-            {isButton && path &&
-              <ButtonLink type='primary' path={path}>View trip</ButtonLink>
-            }
+            <span className={styles.chevronRight}>
+              <FiChevronRight />
+            </span>
           </div>
         </Link>
       </article>

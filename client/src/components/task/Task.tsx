@@ -12,7 +12,7 @@ function Task() {
   }
 
   return (
-    <article className={styles.task}>
+    <article className={`${styles.task} ${isDone ? styles.isDone : ""}`}>
       <Checkbox
         ariaLabel='Mark "Book the apartment" as done'
         isChecked={isDone}

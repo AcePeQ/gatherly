@@ -5,6 +5,13 @@
   gap: var(--space-m);
 
   flex: 1;
+
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.task.isDone {
+  opacity: 0.6;
 }
 
 .infoWrapper {

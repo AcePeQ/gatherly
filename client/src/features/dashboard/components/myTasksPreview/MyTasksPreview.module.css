@@ -1,5 +1,5 @@
 .wrapper {
-  border: 2px solid var(--ld-border);
+  border: 1.5px solid var(--ld-border);
   border-radius: 6px;
 
   background-color: var(--ld-surface);
@@ -18,14 +18,14 @@
   padding-block: var(--space-xs);
   padding-inline: var(--space-m);
 
-  border-bottom: 2px solid var(--ld-border);
+  border-bottom: 1.5px solid var(--ld-border);
 }
 
 .link {
   padding-block: var(--space-xs);
   padding-inline: var(--space-m);
 
-  border-top: 2px solid var(--ld-border);
+  border-top: 1.5px solid var(--ld-border);
 }
 
 .list {
@@ -36,7 +36,7 @@
 }
 
 .listItem {
-  border-top: 2px solid var(--ld-border);
+  border-top: 1.5px solid var(--ld-border);
   padding-block: var(--space-xs);
 }
 
