@@ -17,7 +17,7 @@
 }
 
 .title {
-  font-size: var(--fs-1);
+  font-size: var(--fs-2);
   font-weight: 600;
 
   margin-inline-start: var(--space-2xs);
@@ -80,7 +80,7 @@
 }
 
 .cardTitle {
-  font-size: var(--fs-2);
+  font-size: var(--fs-1);
 }
 
 .date,

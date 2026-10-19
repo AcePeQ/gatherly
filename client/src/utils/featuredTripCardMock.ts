@@ -5,7 +5,8 @@ export type FeaturedTripCardProps = {
   image: string;
   badge?: string;
   cardTitle: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   persons: string;
   isButton?: boolean;
   path: string;
@@ -16,7 +17,8 @@ export const PlaceholderCard1 = {
   image: PlaceholderImg,
   badge: "In 9 days",
   cardTitle: "Weekend in Gdansk",
-  date: "23-25 Oct 2026",
+  startDate: "2026-10-23",
+  endDate: "2026-10-25",
   persons: "4 travelers",
   isButton: true,
   path: "/test/test"
@@ -27,7 +29,8 @@ export const PlaceholderCard2 = {
   image: PlaceholderImg,
   badge: "",
   cardTitle: "Weekend in Gdansk",
-  date: "23-25 Oct 2026",
+  startDate: "2026-10-23",
+  endDate: "2026-10-25",
   persons: "4 travelers",
   isButton: false,
   path: "/test/test"

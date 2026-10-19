@@ -35,6 +35,7 @@
   --space-2xl-3xl: clamp(4rem, 3.3333rem + 2.963vw, 6rem);
 
   --motion-duration-fast: 200ms;
+  --motion-duration-normal: 300ms;
   --motion-ease-standard: ease-in-out;
 
   --ld-background: light-dark(#faf8f5, #111820);

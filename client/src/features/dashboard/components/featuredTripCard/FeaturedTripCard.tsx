@@ -5,10 +5,28 @@ import styles from './FeaturedTripCard.module.css';
 import { CiCalendar } from "react-icons/ci";
 import { FiUsers } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
+import { formatDate, formatDateRange } from '../../../../utils/dateFormatters';
 
+type TripDateRangeProps = {
+  startDate: string;
+  endDate: string;
+}
 
+function TripDateRange({ startDate, endDate }: TripDateRangeProps) {
+  return (
+    <p className={styles.date}>
+      <CiCalendar aria-hidden="true" focusable="false" />
+      <span aria-hidden="true">{formatDateRange(startDate, endDate)}</span>
+      <span className="sr-only">
+        <time dateTime={startDate}>{formatDate(startDate)}</time>
+        {' to '}
+        <time dateTime={endDate}>{formatDate(endDate)}</time>
+      </span>
+    </p>
+  )
+}
 
-function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isButton, path }: FeaturedTripCardProps) {
+function FeaturedTripCard({ title, image, badge, cardTitle, startDate, endDate, persons, isButton, path }: FeaturedTripCardProps) {
   if (!isButton && path) {
     return (
       <article>
@@ -29,18 +47,15 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
               <h3 className={styles.cardTitle}>{cardTitle}</h3>
 
               <div className={styles.moreInfo}>
-                <p className={styles.date}>
-                  <CiCalendar />
-                  {date}
-                </p>
+                <TripDateRange startDate={startDate} endDate={endDate} />
                 <p className={styles.persons}>
-                  <FiUsers />
+                  <FiUsers aria-hidden="true" focusable="false" />
                   {persons}
                 </p>
               </div>
             </div>
             <span className={styles.chevronRight}>
-              <FiChevronRight />
+              <FiChevronRight aria-hidden="true" focusable="false" />
             </span>
           </div>
         </Link>
@@ -67,12 +82,9 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
           <h3 className={styles.cardTitle}>{cardTitle}</h3>
 
           <div className={styles.moreInfo}>
-            <time className={styles.date}>
-              <CiCalendar />
-              {date}
-            </time>
+            <TripDateRange startDate={startDate} endDate={endDate} />
             <p className={styles.persons}>
-              <FiUsers />
+              <FiUsers aria-hidden="true" focusable="false" />
               {persons}
             </p>
           </div>
