@@ -72,7 +72,7 @@
 }
 
 .logoutButton:not(:disabled):active {
-  color: var(--ld-surface);
+  color: var(--ld-error);
 }
 
 .logoutButton:focus-visible {

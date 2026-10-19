@@ -27,10 +27,10 @@ function Task() {
         </p>
       </div>
 
-      <p className={styles.deadline}>
+      <time className={styles.deadline}>
         <CiCalendar />
         Due tomorrow
-      </p>
+      </time>
     </article>
   )
 }

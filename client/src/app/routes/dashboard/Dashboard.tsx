@@ -7,13 +7,13 @@ import styles from './Dashboard.module.css';
 
 function Dashboard() {
   return (
-    <section className={`${styles.section} wrapper-padding`}>
+    <main id="main-content" className={`${styles.section} wrapper-padding`}>
       <DashboardHeader />
 
       <FeaturedTripCard {...PlaceholderCard1} />
       <MyTasksPreview />
       <UpcomingTrips />
-    </section>
+    </main>
   )
 }
 

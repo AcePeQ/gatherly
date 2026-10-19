@@ -26,7 +26,7 @@
   color: var(--ld-text);
   background-color: var(--ld-surface);
 
-  border: 0.12em solid var(--ld-border);
+  border: 0.12em solid var(--ld-input-border);
   border-radius: 6px;
 
   display: grid;
@@ -34,8 +34,8 @@
 
   cursor: pointer;
   transition:
-    background-color 120ms ease-in-out,
-    border-color 120ms ease-in-out;
+    background-color 200ms ease-in-out,
+    border-color 200ms ease-in-out;
 }
 
 .checkboxContainer+.checkboxContainer {
@@ -59,7 +59,7 @@
       transparent 58%);
 
   transform: scale(0);
-  transition: 120ms transform ease-in-out;
+  transition: 200ms transform ease-in-out;
 }
 
 .checkboxInput:hover:not(:disabled) {

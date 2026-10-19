@@ -12,7 +12,7 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
   if (!isButton && path) {
     return (
       <article>
-        <Link className={styles.card} to={path}>
+        <Link className={`${styles.card} ${styles.cardLink}`} to={path}>
           {title &&
             <h2 className={styles.title}>{title}</h2>
           }
@@ -67,10 +67,10 @@ function FeaturedTripCard({ title, image, badge, cardTitle, date, persons, isBut
           <h3 className={styles.cardTitle}>{cardTitle}</h3>
 
           <div className={styles.moreInfo}>
-            <p className={styles.date}>
+            <time className={styles.date}>
               <CiCalendar />
               {date}
-            </p>
+            </time>
             <p className={styles.persons}>
               <FiUsers />
               {persons}

@@ -12,6 +12,8 @@
   gap: var(--space-2xs);
 
   grid-area: featureCard;
+
+  transition: border-color 200ms ease-in-out;
 }
 
 .title {
@@ -108,6 +110,18 @@
   }
 }
 
-.card:hover .chevronRight {
+.cardLink:hover {
+  border-color: var(--ld-primary);
+}
+
+.cardLink:focus-visible {
+  border-color: var(--ld-focus);
+}
+
+.cardLink:hover .chevronRight {
   color: var(--ld-primary);
+}
+
+.cardLink:focus-visible .chevronRight {
+  color: var(--ld-focus);
 }

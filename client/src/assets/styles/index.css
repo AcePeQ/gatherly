@@ -114,6 +114,11 @@
   --toastify-toast-shadow: var(--shadow-md);
 }
 
+*:focus-visible {
+  outline: 2px solid var(--ld-focus);
+  outline-offset: 3px;
+}
+
 html {
   color-scheme: light dark;
 }

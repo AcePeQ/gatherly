@@ -17,3 +17,8 @@
   display: inline-flex;
   inline-size: fit-content;
 }
+
+.logoLink:focus-visible {
+  outline: 2px solid var(--ld-focus);
+  outline-offset: 3px;
+}
