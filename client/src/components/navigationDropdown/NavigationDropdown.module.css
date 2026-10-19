@@ -18,7 +18,7 @@
   background-color: transparent;
   text-decoration: none;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .navButton:hover,

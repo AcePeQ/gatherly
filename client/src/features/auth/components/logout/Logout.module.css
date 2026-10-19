@@ -55,8 +55,8 @@
 
 
   transition:
-    color 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
+    color 200ms ease-in-out,
+    opacity 200ms ease-in-out;
 
 
   svg {
