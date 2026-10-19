@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 function Sidebar() {
   return (
     <header className={styles.wrapper}>
-      <Link to="/dashboard">
+      <Link className={styles.logoLink} to="/dashboard">
         <img className={styles.logo} src={Logo} alt='Gatherly' />
       </Link>
       <MainNavigation />

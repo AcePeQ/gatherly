@@ -10,4 +10,10 @@
 
 .logo {
   max-inline-size: 12rem;
+
+}
+
+.logoLink {
+  display: inline-flex;
+  inline-size: fit-content;
 }
