@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Req, Res, HttpCode, HttpStatus } from '@nestjs/common';
 import { type RegisterDto, registerSchema } from './dto/register.dto.js';
 import { AuthService } from './auth.service.js';
 import { type LoginDto, loginSchema } from './dto/login.dto.js';
@@ -23,6 +23,12 @@ export class AuthController {
   @Post("login")
   async login(@Body({ schema: loginSchema }) loginData: LoginDto, @Res({ passthrough: true }) res: Response) {
     return this.authService.login(loginData, res);
+  }
+
+  @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  async logout(@Res({ passthrough: true }) response: Response) {
+    return this.authService.logout(response);
   }
 
   @Post('forgot-password')

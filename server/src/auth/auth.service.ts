@@ -89,6 +89,18 @@ export class AuthService {
     }
   }
 
+  async logout(res: Response) {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: this.configService.get('NODE_ENV') === 'production',
+      sameSite: 'lax',
+    });
+
+    return {
+      message: "Logout successful"
+    }
+  }
+
   async forgotPassword({ email }: ForgotPasswordDto) {
     const user = await this.userService.findByEmail(email);
 
