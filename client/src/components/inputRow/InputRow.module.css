@@ -23,15 +23,15 @@
 
 .row input {
   background-color: var(--ld-surface);
-
+  color: var(--ld-text);
   border: 2px solid var(--ld-input-border);
-  border-radius: 6px;
+  border-radius: 8px;
 
   inline-size: 100%;
   min-inline-size: 0;
 
-  padding-inline: var(--space-2xs);
-  padding-block: var(--space-3xs);
+  padding-inline: var(--space-s);
+  padding-block: var(--space-xs);
 
   position: relative;
   cursor: text;
@@ -49,9 +49,8 @@
   padding-inline-end: calc(var(--space-l) + 0.60rem);
 }
 
-.row input:hover,
-.row input:active {
-  border-color: var(--ld-text-muted);
+.row input:hover {
+  border-color: var(--ld-primary-hover);
 }
 
 .row input:focus-visible {
@@ -109,11 +108,11 @@
 }
 
 .iconWrapper:hover {
-  color: var(--ld-text);
+  color: var(--ld-primary-hover);
 }
 
 .iconWrapper:focus-visible {
-  color: var(--ld-primary);
+  color: var(--ld-primary-hover);
   outline: 2px solid var(--ld-focus);
   outline-offset: -4px;
 }
