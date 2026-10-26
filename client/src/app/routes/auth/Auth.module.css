@@ -5,44 +5,42 @@
 }
 
 .authWrapper {
-  max-inline-size: 22.5rem;
+  max-inline-size: 26.25rem;
   inline-size: 100%;
 }
 
 .logo {
   max-inline-size: 10rem;
 
-  margin-inline: auto;
   pointer-events: none;
   user-select: none;
+
+  margin-block-end: var(--space-xl);
 }
 
 .titleGroup {
   display: flex;
   flex-direction: column;
 
-  text-align: center;
-
   gap: var(--space-xs);
-
-  margin-block-start: var(--space-s);
   margin-block-end: var(--space-m);
 }
 
 .title {
-  font-size: var(--fs-2);
+  font-size: var(--fs-3);
   font-weight: 600;
   line-height: 32px;
 }
 
 .subTitle {
+  font-size: var(--fs-0);
   color: var(--ld-text-muted);
 }
 
 .menuList {
   display: flex;
-  background-color: var(--ld-accent-background);
-  color: var(--ld-accent-text);
+  background-color: var(--ld-secondary);
+  color: var(--ld-text);
 
   min-block-size: 2.5rem;
   block-size: 2.5rem;
@@ -62,7 +60,7 @@
   position: relative;
   z-index: 1;
 
-  font-weight: 600;
+  font-weight: 500;
 
   transition:
     background-color var(--motion-duration-fast) var(--motion-ease-standard),
@@ -74,7 +72,8 @@
 }
 
 .menuButton:not(.active):hover {
-  background-color: var(--ld-selection);
+  background-color: var(--ld-primary-hover);
+  color: var(--ld-on-primary);
 }
 
 .menuButton:focus-visible {
@@ -94,18 +93,4 @@
   pointer-events: none;
   inset-inline-start: 0;
   inset-block-start: 0;
-}
-
-.additionalAction {
-  margin-block-start: var(--space-l);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 4px;
-}
-
-.additionalAction button {
-  font-weight: 600 !important;
 }

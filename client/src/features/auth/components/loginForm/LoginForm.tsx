@@ -87,10 +87,10 @@ function LoginForm() {
           Remember for 30 days
         </label>
 
-        <Link path='/forgot-password'>Forgot password</Link>
+        <Link path='/forgot-password'>Forgot password?</Link>
       </div>
 
-      <Button isLoading={isPending} clickType='submit' type='primary'>Sign in</Button>
+      <Button isLoading={isPending} clickType='submit' type='primary'>Log in</Button>
     </form>
   )
 }

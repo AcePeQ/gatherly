@@ -2,10 +2,10 @@ import type { Variants } from "motion/react";
 
 export const menuActiveSliderVariants = {
   initial: (isLoginMode: boolean) => ({
-    x: isLoginMode ? "100%" : "0%"
+    x: isLoginMode ? "0%" : "100%"
   }),
   animate: (isLoginMode: boolean) => ({
-    x: isLoginMode ? "100%" : "0%"
+    x: isLoginMode ? "0%" : "100%"
   })
 }
 

@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 
 import styles from './Auth.module.css';
-import Button from '../../../components/button/Button';
 import LoginForm from '../../../features/auth/components/loginForm/LoginForm';
 
-import Logo from "../../../assets/images/icons/whiteLogoFull.png"
+import Logo from "../../../assets/images/icons/logo.png"
 import {
   authContainerVariants,
   authItemVariants,
@@ -40,11 +39,11 @@ function Auth() {
         </motion.hgroup>
 
         <motion.div variants={authItemVariants} role='group' aria-label='Choose authentication mode' className={styles.menuList}>
-          <button type='button' aria-pressed={!isLoginMode} onClick={() => changeAuthMode("register")}
-            className={`${styles.menuButton} ${!isLoginMode ? styles.active : ""}`}>Sign up</button>
-
           <button type='button' aria-pressed={isLoginMode} onClick={() => changeAuthMode("login")}
             className={`${styles.menuButton} ${isLoginMode ? styles.active : ""}`}>Log in</button>
+
+          <button type='button' aria-pressed={!isLoginMode} onClick={() => changeAuthMode("register")}
+            className={`${styles.menuButton} ${!isLoginMode ? styles.active : ""}`}>Sign up</button>
 
           <motion.div custom={isLoginMode} variants={menuActiveSliderVariants} initial="initial" animate="animate"
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: "easeInOut" }}
@@ -65,14 +64,6 @@ function Auth() {
             </motion.div>
           </AnimatePresence>
         </motion.div>
-
-        <motion.p variants={authItemVariants} className={styles.additionalAction}>
-          {isLoginMode ? <>
-            Don't have an account? <Button type='link' onClick={() => changeAuthMode("register")}>Sign up</Button>
-          </> : <>
-            Already have an account? <Button type='link' onClick={() => changeAuthMode("login")}>Log in</Button>
-          </>}
-        </motion.p>
       </motion.div>
     </section>
   )
