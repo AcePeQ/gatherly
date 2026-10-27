@@ -49,7 +49,9 @@ function ErrorPage() {
           </p>
 
           <div className={styles.actions}>
-            <Button type="ghost" onClick={handleRetry}>Try again</Button>
+            <Button variant="ghost" onClick={handleRetry}>
+              Try again
+            </Button>
             <ButtonLink type="primary" path="/">Take me home</ButtonLink>
           </div>
         </div>

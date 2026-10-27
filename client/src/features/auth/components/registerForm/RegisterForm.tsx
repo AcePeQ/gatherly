@@ -104,7 +104,9 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
       </ul>
 
 
-      <Button isLoading={isPending} clickType='submit' type='primary'>Get started</Button>
+      <Button isLoading={isPending} type="submit" variant="primary">
+        Get started
+      </Button>
     </form>
   )
 }

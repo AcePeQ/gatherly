@@ -1,21 +1,31 @@
-import type { MouseEventHandler, ReactElement } from 'react';
-import styles from './Button.module.css';
-import ContainerLoader from '../loaders/containerLoader/ContainerLoader';
+import type { MouseEventHandler, ReactElement } from "react";
+
+import ContainerLoader from "../loaders/containerLoader/ContainerLoader";
+
+import styles from "./Button.module.css";
 
 type ButtonProps = {
   children: ReactElement | string;
-  clickType?: "submit" | "button" | "reset"
+  type?: "submit" | "button" | "reset";
   isDisabled?: boolean;
   isLoading?: boolean;
-  type: "primary" | "secondary" | "ghost" | "link";
+  variant: "primary" | "secondary" | "ghost" | "link";
   onClick?: MouseEventHandler;
-}
-function Button({ children, type, clickType = "button", isDisabled = false, isLoading = false, onClick }: ButtonProps) {
+};
+
+function Button({
+  children,
+  variant,
+  type = "button",
+  isDisabled = false,
+  isLoading = false,
+  onClick,
+}: ButtonProps) {
   return (
     <button
       disabled={isDisabled || isLoading}
-      type={clickType}
-      className={`${styles.btn} ${styles[type]}`}
+      type={type}
+      className={`${styles.btn} ${styles[variant]}`}
       onClick={onClick}
       aria-busy={isLoading}
     >
@@ -29,7 +39,7 @@ function Button({ children, type, clickType = "button", isDisabled = false, isLo
         </span>
       )}
     </button>
-  )
+  );
 }
 
-export default Button
+export default Button;

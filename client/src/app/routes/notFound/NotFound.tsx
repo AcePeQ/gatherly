@@ -1,13 +1,17 @@
-import styles from './NotFound.module.css';
+import { useNavigate } from "react-router";
 
-import background404 from "../../../assets/images/backgrounds/background404.png"
-import Button from '../../../components/button/Button';
-import ButtonLink from '../../../components/link/ButtonLink';
-import AnimatedOrb from '../../../components/animatedOrb/AnimatedOrb';
+import background404 from "../../../assets/images/backgrounds/background404.png";
+import AnimatedOrb from "../../../components/animatedOrb/AnimatedOrb";
+import Button from "../../../components/button/Button";
+import ButtonLink from "../../../components/link/ButtonLink";
+
+import styles from "./NotFound.module.css";
 
 function NotFound() {
+  const navigate = useNavigate();
+
   return (
-    <section className={`${styles.wrapper}`}>
+    <section className={styles.wrapper}>
       <div className={`${styles.left} wrapper-padding`}>
         <AnimatedOrb
           position="center-right"
@@ -47,16 +51,18 @@ function NotFound() {
           <p>Sorry, the page you are looking for doesn't exist or has been moved. Here are some helpful links:</p>
 
           <div className={styles.btnWrapper}>
-            <Button type='ghost' onClick={() => { }}>Go back</Button>
-            <ButtonLink type='primary' path='/dashboard'>Take me home</ButtonLink>
+            <Button variant="ghost" onClick={() => navigate(-1)}>
+              Go back
+            </Button>
+            <ButtonLink type="primary" path="/dashboard">Take me home</ButtonLink>
           </div>
         </div>
       </div>
       <div className={styles.right}>
-        <img src={background404} alt='' />
+        <img src={background404} alt="" />
       </div>
     </section>
-  )
+  );
 }
 
-export default NotFound
+export default NotFound;

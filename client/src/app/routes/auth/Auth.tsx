@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-
-import styles from "./Auth.module.css";
-import LoginForm from "../../../features/auth/components/loginForm/LoginForm";
-
 import logo from "../../../assets/images/icons/logo.png"
 import homepageBackground from "../../../assets/images/backgrounds/homepageBg.png"
+import LoginForm from "../../../features/auth/components/loginForm/LoginForm";
+import RegisterForm from "../../../features/auth/components/registerForm/RegisterForm";
 import {
   authContainerVariants,
   authItemVariants,
   authPanelVariants,
   menuActiveSliderVariants,
 } from "../../../utils/animationVariants";
-import RegisterForm from "../../../features/auth/components/registerForm/RegisterForm";
+import styles from "./Auth.module.css";
 
 type AuthMode = "login" | "register"
 
