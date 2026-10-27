@@ -82,6 +82,7 @@ function ResetPasswordForm() {
           {...register("confirmPassword")}
           placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
           aria-invalid={Boolean(errors.confirmPassword)}
+          aria-describedby='confirmPassword-error'
           disabled={isPending}
         />
       </InputRow>

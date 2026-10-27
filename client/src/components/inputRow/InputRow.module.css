@@ -46,7 +46,7 @@
 }
 
 .row input[autocomplete="current-password"] {
-  padding-inline-end: calc(var(--space-l) + 0.60rem);
+  padding-inline-end: calc(var(--space-l) + 0.6rem);
 }
 
 .row input:hover {
@@ -78,9 +78,6 @@
 .row input[aria-invalid="true"] {
   border-color: var(--ld-error);
   background-color: var(--ld-error-background);
-}
-
-.row input[aria-invalid="true"] {
   box-shadow:
     0 0 0 3px color-mix(in srgb, var(--ld-error) 20%, transparent),
     var(--shadow-sm);

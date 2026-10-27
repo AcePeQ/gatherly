@@ -15,7 +15,7 @@ type RegisterFormProps = {
 
 function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
   const { isPending, createUser } = useCreateUser()
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -32,10 +32,10 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
     defaultValue: "",
   })
 
-  const onSubmit: SubmitHandler<RegisterFormValues> = (data) => {
-    createUser(data, {
-      onSuccess: (data) => {
-        toast.success(data.message);
+  const handleRegisterRequest: SubmitHandler<RegisterFormValues> = (registerData) => {
+    createUser(registerData, {
+      onSuccess: (response) => {
+        toast.success(response.message);
         onRegistrationSuccess();
       },
       onError: (error) => {
@@ -50,13 +50,13 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
     setShowPassword(prev => !prev);
   }
 
-  const hasMinimumLength = password.length >= 8;
+  const hasPasswordMinimumLength = password.length >= 8;
 
   const hasSpecialCharacter =
     /[!@#$%^&*(),.?":{}|<>_\-+=/\\[\];'`~]/.test(password);
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(handleRegisterRequest)}>
       <InputRow id='name' label="Name" error={errors.name?.message}>
         <input id='name' type='text' autoComplete='name'
           {...register("name")}
@@ -80,7 +80,7 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
       <InputRow id='password' label='Password' error={errors.password?.message} isPassword showPassword={showPassword} onTogglePassword={handleTogglePassword}>
         <input id='password' type={showPassword ? "text" : "password"} autoComplete='new-password'
           {...register("password")}
-          placeholder='&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;'
+          placeholder='Enter your password'
           aria-invalid={Boolean(errors.password)}
           aria-describedby={
             errors.password
@@ -93,7 +93,7 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
 
       <ul id="password-requirements" className={styles.passwordTestList}>
         <li className={styles.passwordTestItem}>
-          <div className={`${styles.passwordTestDot} ${hasMinimumLength ? styles.pass : ""}`} />
+          <div className={`${styles.passwordTestDot} ${hasPasswordMinimumLength ? styles.pass : ""}`} />
           Must be at least 8 characters
         </li>
 
