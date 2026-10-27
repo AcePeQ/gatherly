@@ -19,3 +19,6 @@ export const mainNavigation: MainNavigation = [
   { type: "link", path: "/tasks", label: "Tasks", icon: FaTasks },
   { type: "link", path: "/settings", label: "Settings", icon: IoMdSettings }
 ]
+
+export const PASSWORD_MIN_LENGTH = 8;
+export const PASSWORD_SPECIAL_CHARACTER_PATTERN = /[!@#$%^&*(),.?":{}|<>_\-+=/\\[\];'`~]/;

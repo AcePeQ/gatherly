@@ -7,12 +7,12 @@
   gap: var(--space-m);
 }
 
-.form>button {
+.form > button {
   inline-size: 100%;
   max-inline-size: unset;
 }
 
-.passwordTestList {
+.passwordRequirements {
   font-size: var(--fs-0);
   font-weight: 500;
 
@@ -22,14 +22,14 @@
   gap: var(--space-xs);
 }
 
-.passwordTestItem {
+.passwordRequirement {
   display: flex;
   align-items: center;
 
   gap: var(--space-2xs);
 }
 
-.passwordTestDot {
+.requirementIndicator {
   inline-size: 25px;
   block-size: 25px;
 
@@ -39,14 +39,15 @@
 
   background-color: var(--ld-surface);
 
-  transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
+  transition: background-color var(--motion-duration-fast)
+    var(--motion-ease-standard);
 }
 
-.passwordTestDot.pass {
+.requirementIndicator.requirementIndicatorPass {
   background-color: var(--ld-primary);
 }
 
-.passwordTestDot::before {
+.requirementIndicator::before {
   content: "";
   position: absolute;
 
@@ -60,16 +61,19 @@
 
   background-color: var(--ld-text-muted);
 
-  clip-path: polygon(9% 38%,
-      34% 63%,
-      91% 7%,
-      100% 18%,
-      34% 85%,
-      0% 50%);
+  clip-path: polygon(
+    9% 38%,
+    34% 63%,
+    91% 7%,
+    100% 18%,
+    34% 85%,
+    0% 50%
+  );
 
-  transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
+  transition: background-color var(--motion-duration-fast)
+    var(--motion-ease-standard);
 }
 
-.passwordTestDot.pass::before {
+.requirementIndicator.requirementIndicatorPass::before {
   background-color: var(--ld-background);
 }

@@ -1,39 +1,43 @@
 import { useMutation } from "@tanstack/react-query";
+
 import { API_URL } from "../../../config/apiConfig";
 import type { ApiErrorResponse } from "../../../types/api";
-import type { RegisterFormValues } from "../schemas/registerSchema";
 import type { RegisterResponse } from "../../../types/auth";
+import type { RegisterFormValues } from "../schemas/registerSchema";
 
+export function useRegister() {
+  const { isPending, isError, error, mutate: registerUser } = useMutation({
+    mutationFn: registerUserApi,
+  });
 
-
-export function useCreateUser() {
-  const { isPending, isError, error, mutate: createUser } = useMutation({
-    mutationFn: createUserApi,
-  })
-
-  return { isPending, isError, error, createUser }
+  return { isPending, isError, error, registerUser };
 }
 
-async function createUserApi(registerData: RegisterFormValues): Promise<RegisterResponse> {
+async function registerUserApi(
+  registrationData: RegisterFormValues,
+): Promise<RegisterResponse> {
   try {
     const res = await fetch(`${API_URL}/auth/register`, {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify(registerData),
-    })
+      body: JSON.stringify(registrationData),
+    });
 
     if (!res.ok) {
       const error: ApiErrorResponse = await res.json();
-      const message = Array.isArray(error.message) ? error.message.join(" ") : error.message;
-      throw new Error(message ?? "Could not create your account")
+      const message = Array.isArray(error.message)
+        ? error.message.join(" ")
+        : error.message;
+
+      throw new Error(message ?? "Could not create your account");
     }
 
     const data: RegisterResponse = await res.json();
     return data;
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error(error);
+    throw error;
   }
 }
