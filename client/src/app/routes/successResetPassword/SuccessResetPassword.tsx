@@ -1,4 +1,4 @@
-import Link from '../../../components/link/Link';
+import AppLink from '../../../components/link/AppLink';
 import { motion, useReducedMotion } from "motion/react"
 import styles from './SuccessResetPassword.module.css';
 
@@ -30,11 +30,11 @@ function SuccessResetPassword() {
         </motion.hgroup>
 
         <motion.div variants={authItemVariants}>
-          <Link path='/'>
+          <AppLink to="/">
             <>
               <FaArrowLeftLong /> Back to log in
             </>
-          </Link>
+          </AppLink>
         </motion.div>
       </motion.div>
     </section>

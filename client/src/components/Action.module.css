@@ -1,0 +1,81 @@
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  max-inline-size: fit-content;
+
+  color: inherit;
+  font-size: var(--fs-0);
+  font-weight: 600;
+  text-decoration: none;
+
+  border: 2px solid transparent;
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+
+  padding: var(--space-3xs-2xs) var(--space-xs-s);
+
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-ease-standard),
+    border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard),
+    transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.primary {
+  background-color: var(--ld-primary);
+  color: var(--ld-on-primary);
+  border-color: var(--ld-primary);
+}
+
+.primary:not(:disabled):hover {
+  background-color: var(--ld-primary-hover);
+  color: var(--ld-on-primary);
+  border-color: var(--ld-primary-hover);
+}
+
+.primary:focus-visible {
+  background-color: var(--ld-primary);
+  color: var(--ld-on-primary);
+  border-color: var(--ld-focus);
+}
+
+.secondary {
+  background-color: var(--ld-secondary);
+  color: var(--ld-text);
+  border-color: var(--ld-secondary);
+}
+
+.secondary:not(:disabled):hover {
+  background-color: var(--ld-secondary-hover);
+  color: var(--ld-text);
+  border-color: var(--ld-secondary-hover);
+}
+
+.secondary:focus-visible {
+  background-color: var(--ld-secondary);
+  color: var(--ld-text);
+  border-color: var(--ld-focus);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--ld-text);
+  border-color: transparent;
+}
+
+.ghost:not(:disabled):hover {
+  background-color: var(--ld-ghost-hover);
+  color: var(--ld-text);
+  border-color: var(--ld-ghost-hover);
+}
+
+.ghost:focus-visible {
+  background-color: transparent;
+  color: var(--ld-text);
+  border-color: var(--ld-focus);
+}

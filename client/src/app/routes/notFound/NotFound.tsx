@@ -54,7 +54,9 @@ function NotFound() {
             <Button variant="ghost" onClick={() => navigate(-1)}>
               Go back
             </Button>
-            <ButtonLink type="primary" path="/dashboard">Take me home</ButtonLink>
+            <ButtonLink variant="primary" to="/dashboard">
+              Take me home
+            </ButtonLink>
           </div>
         </div>
       </div>

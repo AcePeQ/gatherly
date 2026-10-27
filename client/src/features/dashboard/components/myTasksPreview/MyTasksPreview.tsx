@@ -1,4 +1,4 @@
-import Link from '../../../../components/link/Link';
+import AppLink from '../../../../components/link/AppLink';
 import Task from '../../../../components/task/Task';
 import styles from './MyTasksPreview.module.css';
 
@@ -14,7 +14,7 @@ function MyTasksPreview() {
       </ul>
 
       <div className={styles.link}>
-        <Link path='/tasks'>View all tasks</Link>
+        <AppLink to="/tasks">View all tasks</AppLink>
       </div>
     </div>
   )

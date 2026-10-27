@@ -52,7 +52,9 @@ function ErrorPage() {
             <Button variant="ghost" onClick={handleRetry}>
               Try again
             </Button>
-            <ButtonLink type="primary" path="/">Take me home</ButtonLink>
+            <ButtonLink variant="primary" to="/">
+              Take me home
+            </ButtonLink>
           </div>
         </div>
       </section>

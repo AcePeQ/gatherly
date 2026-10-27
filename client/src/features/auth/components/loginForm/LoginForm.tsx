@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router";
 
 import Button from "../../../../components/button/Button";
 import InputRow from "../../../../components/inputRow/InputRow";
-import Link from "../../../../components/link/Link";
+import AppLink from "../../../../components/link/AppLink";
 import type { AuthRedirectState } from "../../../../types/auth";
 import { useLogin } from "../../api/useLogin";
 import { loginSchema, type LoginFormValues } from "../../schemas/loginSchema";
@@ -112,7 +112,7 @@ function LoginForm() {
           Remember for 30 days
         </label>
 
-        <Link path="/forgot-password">Forgot password?</Link>
+        <AppLink to="/forgot-password">Forgot password?</AppLink>
       </div>
 
       <Button isLoading={isPending} type="submit" variant="primary">

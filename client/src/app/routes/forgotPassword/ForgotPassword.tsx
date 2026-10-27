@@ -1,4 +1,4 @@
-import Link from '../../../components/link/Link';
+import AppLink from '../../../components/link/AppLink';
 import ForgotPasswordForm from '../../../features/passwordRecovery/components/forgotPasswordForm/ForgotPasswordForm';
 import { motion, useReducedMotion } from "motion/react"
 import styles from './ForgotPassword.module.css';
@@ -36,11 +36,11 @@ function ForgotPassword() {
         </motion.div>
 
         <motion.div variants={authItemVariants}>
-          <Link path='/'>
+          <AppLink to="/">
             <>
               <FaArrowLeftLong /> Back to log in
             </>
-          </Link>
+          </AppLink>
         </motion.div>
       </motion.div>
     </section>

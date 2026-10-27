@@ -90,7 +90,9 @@ function FeaturedTripCard({ title, image, badge, cardTitle, startDate, endDate, 
           </div>
         </div>
         {isButton && path &&
-          <ButtonLink type='primary' path={path}>View trip</ButtonLink>
+          <ButtonLink variant="primary" to={path}>
+            View trip
+          </ButtonLink>
         }
       </div>
     </article>

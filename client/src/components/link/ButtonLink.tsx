@@ -1,17 +1,26 @@
-import { Link } from 'react-router';
-import styles from './Link.module.css';
-import type { ReactElement } from 'react';
+import {
+  Link as RouterLink,
+  type LinkProps as RouterLinkProps,
+} from "react-router";
 
-type ButtonLinkProps = {
-  children: ReactElement | string;
-  type: "primary" | "secondary" | "ghost";
-  path: string;
+import actionStyles from "../Action.module.css";
+
+type ButtonLinkVariant = "primary" | "secondary" | "ghost";
+
+type ButtonLinkProps = RouterLinkProps & {
+  variant: ButtonLinkVariant;
+};
+
+function ButtonLink({ variant, className, ...linkProps }: ButtonLinkProps) {
+  const linkClassName = [
+    actionStyles.action,
+    actionStyles[variant],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return <RouterLink {...linkProps} className={linkClassName} />;
 }
 
-function ButtonLink({ children, type, path }: ButtonLinkProps) {
-  return (
-    <Link className={`${styles.btnLink} ${styles[type]}`} to={path}>{children}</Link>
-  )
-}
-
-export default ButtonLink
+export default ButtonLink;

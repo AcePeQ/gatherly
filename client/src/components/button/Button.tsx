@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import ContainerLoader from "../loaders/containerLoader/ContainerLoader";
 
+import actionStyles from "../Action.module.css";
 import styles from "./Button.module.css";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "link";
@@ -20,7 +21,14 @@ function Button({
   ...buttonProps
 }: ButtonProps) {
   const isButtonDisabled = disabled || isLoading;
-  const buttonClassName = [styles.button, styles[variant], className]
+  const variantClassName =
+    variant === "link" ? styles.link : actionStyles[variant];
+  const buttonClassName = [
+    actionStyles.action,
+    styles.button,
+    variantClassName,
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 

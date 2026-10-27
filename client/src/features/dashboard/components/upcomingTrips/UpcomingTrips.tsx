@@ -1,4 +1,4 @@
-import Link from '../../../../components/link/Link';
+import AppLink from '../../../../components/link/AppLink';
 import { PlaceholderCard2 } from '../../../../utils/featuredTripCardMock';
 import FeaturedTripCard from '../featuredTripCard/FeaturedTripCard';
 import styles from './UpcomingTrips.module.css';
@@ -8,7 +8,7 @@ function UpcomingTrips() {
     <section className={styles.wrapper}>
       <header className={styles.header}>
         <h2 className={styles.title}>More upcoming trips</h2>
-        <Link path='/trips'>View all trips</Link>
+        <AppLink to="/trips">View all trips</AppLink>
       </header>
 
       <ul className={styles.list}>
