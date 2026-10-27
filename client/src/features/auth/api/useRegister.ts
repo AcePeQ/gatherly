@@ -16,28 +16,23 @@ export function useRegister() {
 async function registerUserApi(
   registrationData: RegisterFormValues,
 ): Promise<RegisterResponse> {
-  try {
-    const res = await fetch(`${API_URL}/auth/register`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(registrationData),
-    });
+  const res = await fetch(`${API_URL}/auth/register`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(registrationData),
+  });
 
-    if (!res.ok) {
-      const error: ApiErrorResponse = await res.json();
-      const message = Array.isArray(error.message)
-        ? error.message.join(" ")
-        : error.message;
+  if (!res.ok) {
+    const error: ApiErrorResponse = await res.json();
+    const message = Array.isArray(error.message)
+      ? error.message.join(" ")
+      : error.message;
 
-      throw new Error(message ?? "Could not create your account");
-    }
-
-    const data: RegisterResponse = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
+    throw new Error(message ?? "Could not create your account");
   }
+
+  const data: RegisterResponse = await res.json();
+  return data;
 }
