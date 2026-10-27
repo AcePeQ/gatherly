@@ -1,13 +1,13 @@
-.wrapper {
+.authPage {
   display: flex;
 }
 
-.wrapperLeft,
-.wrapperRight {
+.brandPanel,
+.formPanel {
   flex: 1;
 }
 
-.wrapperLeft {
+.brandPanel {
   background-color: var(--ld-accent-background);
 
   display: flex;
@@ -38,7 +38,7 @@
   color: var(--ld-accent-text);
 }
 
-.bgImage {
+.heroIllustration {
   margin-block-end: var(--space-m)
 }
 
@@ -51,13 +51,13 @@
   text-transform: uppercase;
 }
 
-.wrapperRight {
+.formPanel {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.authWrapper {
+.authContent {
   max-inline-size: 26.25rem;
   inline-size: 100%;
 }
@@ -90,7 +90,7 @@
   color: var(--ld-text-muted);
 }
 
-.menuList {
+.modeSwitcher {
   display: flex;
   background-color: var(--ld-secondary);
   color: var(--ld-text);
@@ -104,7 +104,7 @@
   overflow: hidden;
 }
 
-.menuButton {
+.modeButton {
   inline-size: 100%;
   block-size: 100%;
 
@@ -120,21 +120,21 @@
     color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
-.menuButton.active {
+.modeButton.active {
   color: var(--ld-on-primary);
 }
 
-.menuButton:not(.active):hover {
+.modeButton:not(.active):hover {
   background-color: var(--ld-primary-hover);
   color: var(--ld-on-primary);
 }
 
-.menuButton:focus-visible {
+.modeButton:focus-visible {
   outline: 3px solid var(--ld-focus);
   outline-offset: -3px;
 }
 
-.menuActiveBg {
+.activeIndicator {
   position: absolute;
 
   inline-size: 50%;

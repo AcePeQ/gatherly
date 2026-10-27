@@ -10,10 +10,10 @@ import { useCreateUser } from '../../api/useCreateUser';
 import { toast } from 'react-toastify';
 
 type RegisterFormProps = {
-  onRegisterSuccess: () => void
+  onRegistrationSuccess: () => void
 }
 
-function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
+function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
   const { isPending, createUser } = useCreateUser()
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -36,7 +36,7 @@ function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
     createUser(data, {
       onSuccess: (data) => {
         toast.success(data.message);
-        onRegisterSuccess();
+        onRegistrationSuccess();
       },
       onError: (error) => {
         toast.error(error.message)

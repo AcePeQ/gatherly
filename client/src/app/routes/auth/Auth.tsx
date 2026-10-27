@@ -1,33 +1,39 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 
-import styles from './Auth.module.css';
-import LoginForm from '../../../features/auth/components/loginForm/LoginForm';
+import styles from "./Auth.module.css";
+import LoginForm from "../../../features/auth/components/loginForm/LoginForm";
 
-import Logo from "../../../assets/images/icons/logo.png"
-import HomepageBg from "../../../assets/images/backgrounds/homepageBg.png"
+import logo from "../../../assets/images/icons/logo.png"
+import homepageBackground from "../../../assets/images/backgrounds/homepageBg.png"
 import {
   authContainerVariants,
   authItemVariants,
   authPanelVariants,
   menuActiveSliderVariants,
-} from '../../../utils/animationVariants';
-import RegisterForm from '../../../features/auth/components/registerForm/RegisterForm';
+} from "../../../utils/animationVariants";
+import RegisterForm from "../../../features/auth/components/registerForm/RegisterForm";
+
+type AuthMode = "login" | "register"
 
 function Auth() {
-  const [authMode, setAuthMode] = useState<"login" | "register">("login")
+  const [authMode, setAuthMode] = useState<AuthMode>("login")
   const shouldReduceMotion = useReducedMotion();
 
-  function changeAuthMode(mode: "login" | "register") {
+  function handleAuthModeChange(mode: AuthMode) {
     setAuthMode(mode);
+  }
+
+  function handleRegistrationSuccess() {
+    setAuthMode("login");
   }
 
   const isLoginMode = authMode === "login";
 
   return (
-    <div className={`${styles.wrapper}`}>
-      <section className={`${styles.wrapperLeft} wrapper-padding`}>
-        <img className={styles.logo} src={Logo} alt='' />
+    <div className={styles.authPage}>
+      <section className={`${styles.brandPanel} wrapper-padding`}>
+        <img className={styles.logo} src={logo} alt="" />
 
         <hgroup className={styles.leftTitleGroup}>
           <h1>
@@ -38,34 +44,34 @@ function Auth() {
           <p>All together in one place.</p>
         </hgroup>
 
-        <img className={styles.bgImage} src={HomepageBg} alt='' />
+        <img className={styles.heroIllustration} src={homepageBackground} alt="" />
 
         <p className={styles.captionText}>Gatherly / Your next chapter</p>
       </section>
-      <section className={`${styles.wrapperRight} wrapper-padding`}>
+      <section className={`${styles.formPanel} wrapper-padding`}>
         <motion.div
-          className={styles.authWrapper}
+          className={styles.authContent}
           variants={authContainerVariants}
           initial={shouldReduceMotion ? false : "hidden"}
           animate="visible"
         >
-          <motion.img variants={authItemVariants} className={styles.logo} src={Logo} alt='' />
+          <motion.img variants={authItemVariants} className={styles.logo} src={logo} alt="" />
 
           <motion.hgroup variants={authItemVariants} className={styles.titleGroup}>
-            <h1 className={styles.title}>{isLoginMode ? "Log in to your account" : "Create and account"}</h1>
+            <h2 className={styles.title}>{isLoginMode ? "Log in to your account" : "Create an account"}</h2>
             <p className={styles.subTitle}>{isLoginMode ? "Welcome back! Please enter your details." : "Start your free planning journey!"}</p>
           </motion.hgroup>
 
-          <motion.div variants={authItemVariants} role='group' aria-label='Choose authentication mode' className={styles.menuList}>
-            <button type='button' aria-pressed={isLoginMode} onClick={() => changeAuthMode("login")}
-              className={`${styles.menuButton} ${isLoginMode ? styles.active : ""}`}>Log in</button>
+          <motion.div variants={authItemVariants} role="group" aria-label="Choose authentication mode" className={styles.modeSwitcher}>
+            <button type="button" aria-pressed={isLoginMode} onClick={() => handleAuthModeChange("login")}
+              className={`${styles.modeButton} ${isLoginMode ? styles.active : ""}`}>Log in</button>
 
-            <button type='button' aria-pressed={!isLoginMode} onClick={() => changeAuthMode("register")}
-              className={`${styles.menuButton} ${!isLoginMode ? styles.active : ""}`}>Sign up</button>
+            <button type="button" aria-pressed={!isLoginMode} onClick={() => handleAuthModeChange("register")}
+              className={`${styles.modeButton} ${!isLoginMode ? styles.active : ""}`}>Sign up</button>
 
             <motion.div custom={isLoginMode} variants={menuActiveSliderVariants} initial="initial" animate="animate"
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.3, ease: "easeInOut" }}
-              className={styles.menuActiveBg} aria-hidden="true" />
+              className={styles.activeIndicator} aria-hidden="true" />
           </motion.div>
 
           <motion.div variants={authItemVariants}>
@@ -78,7 +84,7 @@ function Auth() {
                 animate="center"
                 exit="exit"
               >
-                {isLoginMode ? <LoginForm /> : <RegisterForm onRegisterSuccess={() => changeAuthMode("login")} />}
+                {isLoginMode ? <LoginForm /> : <RegisterForm onRegistrationSuccess={handleRegistrationSuccess} />}
               </motion.div>
             </AnimatePresence>
           </motion.div>
