@@ -1,11 +1,10 @@
-import { useState } from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch, type SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import Button from "../../../../components/button/Button";
-import InputRow from "../../../../components/inputRow/InputRow";
+import InputField from "../../../../components/inputField/InputField";
+import PasswordField from "../../../../components/passwordField/PasswordField";
 import {
   PASSWORD_MIN_LENGTH,
   PASSWORD_SPECIAL_CHARACTER_PATTERN,
@@ -24,7 +23,6 @@ type RegisterFormProps = {
 
 function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
   const { isPending, registerUser } = useRegister();
-  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -60,10 +58,6 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
     });
   };
 
-  function handleTogglePassword() {
-    setShowPassword((previousValue) => !previousValue);
-  }
-
   const meetsMinimumLength = password.length >= PASSWORD_MIN_LENGTH;
   const containsSpecialCharacter =
     PASSWORD_SPECIAL_CHARACTER_PATTERN.test(password);
@@ -74,55 +68,38 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
       className={styles.form}
       onSubmit={handleSubmit(handleRegistrationSubmit)}
     >
-      <InputRow id="name" label="Name" error={errors.name?.message}>
-        <input
-          id="name"
-          type="text"
-          autoComplete="name"
-          {...register("name")}
-          placeholder="Enter your name"
-          aria-invalid={Boolean(errors.name)}
-          aria-describedby={errors.name ? "name-error" : undefined}
-          disabled={isPending}
-        />
-      </InputRow>
+      <InputField
+        id="name"
+        label="Name"
+        error={errors.name?.message}
+        type="text"
+        autoComplete="name"
+        placeholder="Enter your name"
+        disabled={isPending}
+        {...register("name")}
+      />
 
-      <InputRow id="email" label="Email" error={errors.email?.message}>
-        <input
-          id="email"
-          type="email"
-          autoComplete="email"
-          {...register("email")}
-          placeholder="Enter your email"
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "email-error" : undefined}
-          disabled={isPending}
-        />
-      </InputRow>
+      <InputField
+        id="email"
+        label="Email"
+        error={errors.email?.message}
+        type="email"
+        autoComplete="email"
+        placeholder="Enter your email"
+        disabled={isPending}
+        {...register("email")}
+      />
 
-      <InputRow
+      <PasswordField
         id="password"
         label="Password"
         error={errors.password?.message}
-        isPassword
-        showPassword={showPassword}
-        onTogglePassword={handleTogglePassword}
-      >
-        <input
-          id="password"
-          type={showPassword ? "text" : "password"}
-          autoComplete="new-password"
-          {...register("password")}
-          placeholder="Enter your password"
-          aria-invalid={Boolean(errors.password)}
-          aria-describedby={
-            errors.password
-              ? "password-requirements password-error"
-              : "password-requirements"
-          }
-          disabled={isPending}
-        />
-      </InputRow>
+        autoComplete="new-password"
+        placeholder="Enter your password"
+        aria-describedby="password-requirements"
+        disabled={isPending}
+        {...register("password")}
+      />
 
       <ul id="password-requirements" className={styles.passwordRequirements}>
         <li className={styles.passwordRequirement}>

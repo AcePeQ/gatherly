@@ -10,6 +10,13 @@ type InputFieldProps = ComponentPropsWithRef<"input"> & {
 function InputField({ label, error, ...props }: InputFieldProps) {
   const generatedId = useId();
   const inputId = props.id ?? generatedId;
+  const errorId = `${inputId}-error`;
+  const describedBy = [
+    props["aria-describedby"],
+    error ? errorId : undefined,
+  ]
+    .filter(Boolean)
+    .join(" ") || undefined;
 
   return (
     <div className={styles.row}>
@@ -21,11 +28,11 @@ function InputField({ label, error, ...props }: InputFieldProps) {
         {...props}
         id={inputId}
         aria-invalid={Boolean(error)}
-        aria-describedby={error ? `${inputId}-error` : undefined}
+        aria-describedby={describedBy}
       />
 
       {error && (
-        <p className={styles.error} id={`${inputId}-error`} role="alert">
+        <p className={styles.error} id={errorId} role="alert">
           {error}
         </p>
       )}

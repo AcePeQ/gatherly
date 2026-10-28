@@ -1,51 +1,63 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { forgotPasswordSchema, type ForgotPasswordFormValues } from '../../schemas/forgotPasswordSchema';
-import styles from './ForgotPasswordForm.module.css';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import InputRow from '../../../../components/inputRow/InputRow';
-import Button from '../../../../components/button/Button';
-import { useForgotPassword } from '../../api/useForgotPassword';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+
+import Button from "../../../../components/button/Button";
+import InputField from "../../../../components/inputField/InputField";
+import { useForgotPassword } from "../../api/useForgotPassword";
+import {
+  forgotPasswordSchema,
+  type ForgotPasswordFormValues,
+} from "../../schemas/forgotPasswordSchema";
+
+import styles from "./ForgotPasswordForm.module.css";
 
 function ForgotPasswordForm() {
   const navigate = useNavigate();
-  const { isPending, forgotPassword } = useForgotPassword()
-  const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormValues>({
+  const { isPending, forgotPassword } = useForgotPassword();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: "",
-    }
+    },
   });
 
   const onSubmit: SubmitHandler<ForgotPasswordFormValues> = (data) => {
-    forgotPassword(data,
-      {
-        onSettled: (res, error) => {
-          toast.info(error?.message ?? res?.message ?? "Request completed");
-          navigate(`/forgot-password/check-email?email=${encodeURIComponent(data.email)}`);
-        }
-      }
-    )
-  }
+    forgotPassword(data, {
+      onSettled: (response, error) => {
+        toast.info(
+          error?.message ?? response?.message ?? "Request completed",
+        );
+        navigate(
+          `/forgot-password/check-email?email=${encodeURIComponent(data.email)}`,
+        );
+      },
+    });
+  };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <InputRow id='email' label="Email" error={errors.email?.message}>
-        <input id='email' type='email' autoComplete='email'
-          {...register("email")}
-          placeholder='Enter your email'
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "email-error" : undefined}
-          disabled={isPending}
-        />
-      </InputRow>
+    <form noValidate className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <InputField
+        id="email"
+        label="Email"
+        error={errors.email?.message}
+        type="email"
+        autoComplete="email"
+        placeholder="Enter your email"
+        disabled={isPending}
+        {...register("email")}
+      />
 
       <Button isLoading={isPending} type="submit" variant="primary">
         Send reset instructions
       </Button>
     </form>
-  )
+  );
 }
 
-export default ForgotPasswordForm
+export default ForgotPasswordForm;

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -7,8 +5,8 @@ import { useLocation, useNavigate } from "react-router";
 
 import Button from "../../../../components/button/Button";
 import InputField from "../../../../components/inputField/InputField";
-import InputRow from "../../../../components/inputRow/InputRow";
 import AppLink from "../../../../components/link/AppLink";
+import PasswordField from "../../../../components/passwordField/PasswordField";
 import type { AuthRedirectState } from "../../../../types/auth";
 import { useLogin } from "../../api/useLogin";
 import { loginSchema, type LoginFormValues } from "../../schemas/loginSchema";
@@ -19,8 +17,6 @@ function LoginForm() {
   const location = useLocation();
   const navigate = useNavigate();
   const { login, isPending } = useLogin();
-
-  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -58,10 +54,6 @@ function LoginForm() {
     });
   };
 
-  function handleTogglePassword() {
-    setShowPassword((previousValue) => !previousValue);
-  }
-
   return (
     <form
       noValidate
@@ -69,9 +61,9 @@ function LoginForm() {
       onSubmit={handleSubmit(handleLoginSubmit)}
     >
       <InputField
+        id="email"
         label="Email"
         error={errors.email?.message}
-        id="email"
         type="email"
         autoComplete="email"
         placeholder="Enter your email"
@@ -79,25 +71,15 @@ function LoginForm() {
         {...register("email")}
       />
 
-      <InputRow
+      <PasswordField
         id="password"
         label="Password"
         error={errors.password?.message}
-        isPassword
-        showPassword={showPassword}
-        onTogglePassword={handleTogglePassword}
-      >
-        <input
-          id="password"
-          type={showPassword ? "text" : "password"}
-          autoComplete="current-password"
-          {...register("password")}
-          placeholder="Enter your password"
-          aria-invalid={Boolean(errors.password)}
-          aria-describedby={errors.password ? "password-error" : undefined}
-          disabled={isPending}
-        />
-      </InputRow>
+        autoComplete="current-password"
+        placeholder="Enter your password"
+        disabled={isPending}
+        {...register("password")}
+      />
 
       <div className={styles.additionalActions}>
         <label className={styles.checkboxLabel} htmlFor="remember">
