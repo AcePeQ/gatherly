@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
 
 import Button from "../../../../components/button/Button";
+import InputField from "../../../../components/inputField/InputField";
 import InputRow from "../../../../components/inputRow/InputRow";
 import AppLink from "../../../../components/link/AppLink";
 import type { AuthRedirectState } from "../../../../types/auth";
@@ -67,18 +68,16 @@ function LoginForm() {
       className={styles.form}
       onSubmit={handleSubmit(handleLoginSubmit)}
     >
-      <InputRow id="email" label="Email" error={errors.email?.message}>
-        <input
-          id="email"
-          type="email"
-          autoComplete="email"
-          {...register("email")}
-          placeholder="Enter your email"
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "email-error" : undefined}
-          disabled={isPending}
-        />
-      </InputRow>
+      <InputField
+        label="Email"
+        error={errors.email?.message}
+        id="email"
+        type="email"
+        autoComplete="email"
+        placeholder="Enter your email"
+        disabled={isPending}
+        {...register("email")}
+      />
 
       <InputRow
         id="password"
