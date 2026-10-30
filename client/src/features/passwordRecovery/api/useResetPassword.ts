@@ -12,7 +12,7 @@ export function useResetPassword() {
   return { isPending, isError, error, resetPassword }
 }
 
-async function resetPasswordApi(resetPasswordData: ResetPasswordFormValues): Promise<ResetPasswordResponse> {
+async function resetPasswordApi(resetPasswordData: ResetPasswordFormValues & { token: string }): Promise<ResetPasswordResponse> {
   const { password, token } = resetPasswordData;
 
   try {

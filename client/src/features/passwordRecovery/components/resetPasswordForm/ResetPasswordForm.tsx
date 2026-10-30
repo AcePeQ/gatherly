@@ -1,10 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch, type SubmitHandler } from "react-hook-form";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 import Button from "../../../../components/button/Button";
 import PasswordField from "../../../../components/passwordField/PasswordField";
+import {
+  PASSWORD_MIN_LENGTH,
+  PASSWORD_SPECIAL_CHARACTER_PATTERN,
+} from "../../../../utils/constants";
 import { useResetPassword } from "../../api/useResetPassword";
 import {
   resetPasswordSchema,
@@ -13,12 +17,9 @@ import {
 
 import styles from "./ResetPasswordForm.module.css";
 
-function ResetPasswordForm() {
+function ResetPasswordForm({ token }: { token: string }) {
   const { resetPassword, isPending } = useResetPassword();
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
-  const token = searchParams.get("token") ?? "";
 
   const {
     register,
@@ -31,7 +32,6 @@ function ResetPasswordForm() {
     defaultValues: {
       password: "",
       confirmPassword: "",
-      token,
     },
   });
 
@@ -41,26 +41,35 @@ function ResetPasswordForm() {
     defaultValue: "",
   });
 
-  const onSubmit: SubmitHandler<ResetPasswordFormValues> = (data) => {
-    resetPassword(data, {
-      onSuccess: (response) => {
-        toast.success(response.message);
-        navigate("/reset-password/success", { replace: true });
+  const handlePasswordReset: SubmitHandler<ResetPasswordFormValues> = (
+    formValues,
+  ) => {
+    resetPassword(
+      { ...formValues, token },
+      {
+        onSuccess: (response) => {
+          toast.success(response.message);
+          navigate("/reset-password/success", { replace: true });
+        },
+        onError: (error) => {
+          toast.error(error.message);
+          reset();
+        },
       },
-      onError: (error) => {
-        toast.error(error.message);
-        reset();
-      },
-    });
+    );
   };
 
-  const hasMinimumLength = password.length >= 8;
+  const hasMinimumLength = password.length >= PASSWORD_MIN_LENGTH;
 
   const hasSpecialCharacter =
-    /[!@#$%^&*(),.?":{}|<>_\-+=/\\[\];'`~]/.test(password);
+    PASSWORD_SPECIAL_CHARACTER_PATTERN.test(password);
 
   return (
-    <form noValidate className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      noValidate
+      className={styles.form}
+      onSubmit={handleSubmit(handlePasswordReset)}
+    >
       <PasswordField
         id="password"
         label="Password"
@@ -84,26 +93,43 @@ function ResetPasswordForm() {
 
       <ul id="password-requirements" className={styles.passwordTestList}>
         <li className={styles.passwordTestItem}>
-          <div
+          <span
             className={`${styles.passwordTestDot} ${
               hasMinimumLength ? styles.pass : ""
             }`}
+            aria-hidden="true"
           />
+          <span className="sr-only">
+            {hasMinimumLength
+              ? "Requirement met: "
+              : "Requirement not met: "}
+          </span>
           Must be at least 8 characters
         </li>
 
         <li className={styles.passwordTestItem}>
-          <div
+          <span
             className={`${styles.passwordTestDot} ${
               hasSpecialCharacter ? styles.pass : ""
             }`}
+            aria-hidden="true"
           />
+          <span className="sr-only">
+            {hasSpecialCharacter
+              ? "Requirement met: "
+              : "Requirement not met: "}
+          </span>
           Must contain one special character
         </li>
       </ul>
 
-      <Button isLoading={isPending} type="submit" variant="primary">
-        Reset Password
+      <Button
+        className={styles.submitButton}
+        isLoading={isPending}
+        type="submit"
+        variant="primary"
+      >
+        Update password
       </Button>
     </form>
   );
