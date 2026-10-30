@@ -1,20 +1,22 @@
-import styles from './Sidebar.module.css';
+import { Link } from "react-router";
 
-import Logo from "../../assets/images/icons/whiteLogoFull.png"
-import MainNavigation from '../mainNavigation/MainNavigation';
-import Logout from '../../features/auth/components/logout/Logout';
-import { Link } from 'react-router';
+import Logout from "../../features/auth/components/logout/Logout";
+import Logo from "../logo/Logo";
+import MainNavigation from "../mainNavigation/MainNavigation";
+
+import styles from "./Sidebar.module.css";
 
 function Sidebar() {
   return (
     <aside className={styles.wrapper}>
       <Link className={styles.logoLink} to="/dashboard">
-        <img className={styles.logo} src={Logo} alt='Gatherly' />
+        <Logo variant="light" />
       </Link>
+
       <MainNavigation />
       <Logout />
     </aside>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

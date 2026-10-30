@@ -1,13 +1,15 @@
-import AppLink from '../../../components/link/AppLink';
-import ForgotPasswordForm from '../../../features/passwordRecovery/components/forgotPasswordForm/ForgotPasswordForm';
-import { motion, useReducedMotion } from "motion/react"
-import styles from './ForgotPassword.module.css';
-
+import { motion, useReducedMotion } from "motion/react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import logo from "../../../assets/images/icons/logo.png"
 
-import { authContainerVariants, authItemVariants } from '../../../utils/animationVariants';
+import AppLink from "../../../components/link/AppLink";
+import Logo from "../../../components/logo/Logo";
+import ForgotPasswordForm from "../../../features/passwordRecovery/components/forgotPasswordForm/ForgotPasswordForm";
+import {
+  authContainerVariants,
+  authItemVariants,
+} from "../../../utils/animationVariants";
 
+import styles from "./ForgotPassword.module.css";
 
 function ForgotPassword() {
   const shouldReduceMotion = useReducedMotion();
@@ -15,19 +17,23 @@ function ForgotPassword() {
   return (
     <section className={styles.formPanel}>
       <motion.div
-        className={styles.resetWrapper}
+        className={styles.content}
         variants={authContainerVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         animate="visible"
       >
-        <motion.img variants={authItemVariants} className={styles.logo} src={logo} alt="" />
-
-        <motion.hgroup
+        <motion.div
+          className={styles.logoWrapper}
           variants={authItemVariants}
-          className={styles.hgroup}
         >
+          <Logo />
+        </motion.div>
+
+        <motion.hgroup variants={authItemVariants} className={styles.hgroup}>
           <h1 className={styles.title}>Forgot your password?</h1>
-          <p className={styles.subTitle}>Enter your email and we'll send you a reset link.</p>
+          <p className={styles.subTitle}>
+            Enter your email and we'll send you a reset link.
+          </p>
         </motion.hgroup>
 
         <motion.div variants={authItemVariants} className={styles.formWrapper}>
@@ -36,14 +42,12 @@ function ForgotPassword() {
 
         <motion.div variants={authItemVariants}>
           <AppLink to="/">
-            <>
-              <FaArrowLeftLong aria-hidden /> Back to log in
-            </>
+            <FaArrowLeftLong aria-hidden="true" /> Back to log in
           </AppLink>
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }
 
-export default ForgotPassword
+export default ForgotPassword;

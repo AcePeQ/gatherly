@@ -1,0 +1,8 @@
+.logo {
+  display: block;
+
+  max-inline-size: 100%;
+  block-size: auto;
+
+  user-select: none;
+}

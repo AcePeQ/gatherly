@@ -7,31 +7,36 @@ import type { ForgotPasswordFormValues } from "../schemas/forgotPasswordSchema";
 export function useForgotPassword() {
   const { isPending, isError, error, mutate: forgotPassword } = useMutation({
     mutationFn: forgotPasswordApi,
-  })
+  });
 
-  return { isPending, isError, error, forgotPassword }
+  return { isPending, isError, error, forgotPassword };
 }
 
-async function forgotPasswordApi(forgotPasswordData: ForgotPasswordFormValues): Promise<ForgotPasswordResponse> {
+async function forgotPasswordApi(
+  forgotPasswordData: ForgotPasswordFormValues,
+): Promise<ForgotPasswordResponse> {
   try {
-    const res = await fetch(`${API_URL}/auth/forgot-password`, {
+    const response = await fetch(`${API_URL}/auth/forgot-password`, {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(forgotPasswordData),
-    })
+    });
 
-    if (!res.ok) {
-      const error: ApiErrorResponse = await res.json();
-      const message = Array.isArray(error.message) ? error.message.join(" ") : error.message;
-      throw new Error(message ?? "Could not send a password reset link!")
+    if (!response.ok) {
+      const errorResponse: ApiErrorResponse = await response.json();
+      const message = Array.isArray(errorResponse.message)
+        ? errorResponse.message.join(" ")
+        : errorResponse.message;
+
+      throw new Error(message ?? "Could not send a password reset link!");
     }
 
-    const data: ForgotPasswordResponse = await res.json();
+    const data: ForgotPasswordResponse = await response.json();
     return data;
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error(error);
+    throw error;
   }
 }

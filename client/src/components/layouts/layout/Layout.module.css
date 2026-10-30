@@ -4,9 +4,6 @@
 
 .brandPanel {
   flex: 1;
-}
-
-.brandPanel {
   background-color: var(--ld-accent-background);
 
   display: flex;
@@ -17,11 +14,9 @@
   margin-block-end: var(--space-m);
 }
 
-.logo {
+.logoWrapper {
+  inline-size: 100%;
   max-inline-size: 10rem;
-
-  pointer-events: none;
-  user-select: none;
 
   margin-block-end: var(--space-xl);
 }
@@ -47,7 +42,7 @@
 }
 
 .heroIllustration {
-  margin-block-end: var(--space-m)
+  margin-block-end: var(--space-m);
 }
 
 .captionText {

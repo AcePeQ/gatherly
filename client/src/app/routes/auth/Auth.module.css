@@ -12,11 +12,9 @@
   inline-size: 100%;
 }
 
-.logo {
+.logoWrapper {
+  inline-size: 100%;
   max-inline-size: 10rem;
-
-  pointer-events: none;
-  user-select: none;
 
   margin-block-end: var(--space-xl);
 }
@@ -91,7 +89,6 @@
   block-size: 100%;
 
   background-color: var(--ld-primary);
-
 
   pointer-events: none;
   inset-inline-start: 0;

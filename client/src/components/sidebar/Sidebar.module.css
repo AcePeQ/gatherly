@@ -8,14 +8,11 @@
   border-inline-end: 1px solid var(--ld-border);
 }
 
-.logo {
-  max-inline-size: 12rem;
-
-}
-
 .logoLink {
   display: inline-flex;
-  inline-size: fit-content;
+
+  inline-size: 100%;
+  max-inline-size: 12rem;
 }
 
 .logoLink:focus-visible {

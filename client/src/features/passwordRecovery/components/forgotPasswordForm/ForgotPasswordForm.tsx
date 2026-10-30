@@ -27,21 +27,28 @@ function ForgotPasswordForm() {
     },
   });
 
-  const handleSendResetLink: SubmitHandler<ForgotPasswordFormValues> = (data) => {
-    forgotPassword(data, {
-      onSettled: (response, error) => {
-        toast.info(
-          error?.message ?? response?.message ?? "Request completed",
-        );
-        navigate(
-          `/forgot-password/check-email?email=${encodeURIComponent(data.email)}`,
-        );
+  const handleSendResetLink: SubmitHandler<ForgotPasswordFormValues> = (
+    formValues,
+  ) => {
+    forgotPassword(formValues, {
+      onSuccess: (response) => {
+        toast.success(response.message);
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+      onSettled: () => {
+        navigate("/forgot-password/check-email");
       },
     });
   };
 
   return (
-    <form noValidate className={styles.form} onSubmit={handleSubmit(handleSendResetLink)}>
+    <form
+      noValidate
+      className={styles.form}
+      onSubmit={handleSubmit(handleSendResetLink)}
+    >
       <InputField
         id="email"
         label="Email"
@@ -53,7 +60,12 @@ function ForgotPasswordForm() {
         {...register("email")}
       />
 
-      <Button isLoading={isPending} type="submit" variant="primary">
+      <Button
+        className={styles.submitButton}
+        isLoading={isPending}
+        type="submit"
+        variant="primary"
+      >
         Send reset link
       </Button>
     </form>

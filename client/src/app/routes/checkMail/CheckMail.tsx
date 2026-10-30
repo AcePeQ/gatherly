@@ -1,25 +1,17 @@
-import AppLink from '../../../components/link/AppLink';
-import { motion, useReducedMotion } from "motion/react"
-import styles from './CheckMail.module.css';
-
+import { motion, useReducedMotion } from "motion/react";
 import { CiMail } from "react-icons/ci";
-import { authContainerVariants, authItemVariants } from '../../../utils/animationVariants';
-import { FaArrowLeftLong } from 'react-icons/fa6';
-import { useNavigate, useSearchParams } from 'react-router';
-import { useEffect } from 'react';
+import { FaArrowLeftLong } from "react-icons/fa6";
+
+import AppLink from "../../../components/link/AppLink";
+import {
+  authContainerVariants,
+  authItemVariants,
+} from "../../../utils/animationVariants";
+
+import styles from "./CheckMail.module.css";
 
 function CheckMail() {
-  const [searchParams] = useSearchParams()
-  const navigate = useNavigate()
   const shouldReduceMotion = useReducedMotion();
-
-  const email = searchParams.get("email");
-
-  useEffect(() => {
-    if (!email) {
-      navigate("/forgot-password", { replace: true })
-    }
-  }, [email, navigate])
 
   return (
     <section className={`${styles.wrapper} wrapper-padding`}>
@@ -30,27 +22,25 @@ function CheckMail() {
         animate="visible"
       >
         <motion.div variants={authItemVariants} className={styles.iconWrapper}>
-          <CiMail />
+          <CiMail aria-hidden="true" />
         </motion.div>
 
-        <motion.hgroup
-          variants={authItemVariants}
-          className={styles.hgroup}
-        >
+        <motion.hgroup variants={authItemVariants} className={styles.hgroup}>
           <h1 className={styles.title}>Check your email</h1>
-          <p className={styles.subTitle}>We sent a password reset link to {email}</p>
+          <p className={styles.subTitle}>
+            If an account with this email exists, you will receive a password
+            reset link.
+          </p>
         </motion.hgroup>
 
         <motion.div variants={authItemVariants}>
           <AppLink to="/">
-            <>
-              <FaArrowLeftLong /> Back to log in
-            </>
+            <FaArrowLeftLong aria-hidden="true" /> Back to log in
           </AppLink>
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }
 
-export default CheckMail
+export default CheckMail;
