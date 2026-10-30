@@ -1,8 +1,8 @@
 import { motion, useReducedMotion } from "motion/react";
-import { CiMail } from "react-icons/ci";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import AppLink from "../../../components/link/AppLink";
+import Logo from "../../../components/logo/Logo";
 import {
   authContainerVariants,
   authItemVariants,
@@ -14,24 +14,31 @@ function CheckMail() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className={`${styles.wrapper} wrapper-padding`}>
+    <section className={styles.infoPanel}>
       <motion.div
-        className={styles.resetWrapper}
+        className={styles.content}
         variants={authContainerVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         animate="visible"
       >
-        <motion.div variants={authItemVariants} className={styles.iconWrapper}>
-          <CiMail aria-hidden="true" />
+        <motion.div
+          className={styles.logoWrapper}
+          variants={authItemVariants}
+        >
+          <Logo />
         </motion.div>
 
         <motion.hgroup variants={authItemVariants} className={styles.hgroup}>
           <h1 className={styles.title}>Check your email</h1>
           <p className={styles.subTitle}>
-            If an account with this email exists, you will receive a password
-            reset link.
+            If an account exists for this address, you'll receive a reset link
+            shortly.
           </p>
         </motion.hgroup>
+
+        <motion.p variants={authItemVariants} className={styles.spamText}>
+          Check your spam folder too. The link is valid for 15 minutes.
+        </motion.p>
 
         <motion.div variants={authItemVariants}>
           <AppLink to="/">

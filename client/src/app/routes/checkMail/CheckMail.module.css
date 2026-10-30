@@ -1,37 +1,22 @@
-.wrapper {
+.infoPanel {
+  flex: 1;
   display: flex;
   justify-content: center;
+
+  padding: var(--space-xl);
+  padding-block-start: var(--space-3xl);
 }
 
-.resetWrapper {
-  max-inline-size: 22.5rem;
+.logoWrapper {
   inline-size: 100%;
+  max-inline-size: 10rem;
 
-  margin-block-start: 3rem;
+  margin-block-end: var(--space-xl);
 }
 
-.wrapper .resetWrapper a {
-  margin-inline: auto;
-}
-
-.iconWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 2px solid var(--ld-text-muted);
-  border-radius: 50%;
-
-  inline-size: 48px;
-  block-size: 48px;
-  font-size: 48px;
-
-  margin-inline: auto;
-}
-
-.iconWrapper svg {
-  inline-size: 0.5em;
-  block-size: 0.5em;
+.content {
+  max-inline-size: 26.25rem;
+  inline-size: 100%;
 }
 
 .hgroup {
@@ -39,33 +24,22 @@
   flex-direction: column;
   gap: var(--space-xs);
 
-  text-align: center;
-
   margin-block-start: var(--space-s);
   margin-block-end: var(--space-m);
 }
 
 .title {
-  font-size: var(--fs-2);
+  font-size: var(--fs-3);
   font-weight: 600;
   line-height: 32px;
 }
 
-.subTitle {
+.subTitle,
+.spamText {
   color: var(--ld-text-muted);
   letter-spacing: 0.25px;
 }
 
-.formWrapper {
-  margin-block-end: var(--space-m);
-}
-
-.resendText {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ld-text-muted);
-
-  gap: var(--space-3xs);
+.spamText {
   margin-block-end: var(--space-m);
 }
