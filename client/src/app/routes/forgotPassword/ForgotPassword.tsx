@@ -4,7 +4,8 @@ import { motion, useReducedMotion } from "motion/react"
 import styles from './ForgotPassword.module.css';
 
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { FaKey } from "react-icons/fa6";
+import logo from "../../../assets/images/icons/logo.png"
+
 import { authContainerVariants, authItemVariants } from '../../../utils/animationVariants';
 
 
@@ -12,23 +13,21 @@ function ForgotPassword() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className={`${styles.wrapper} wrapper-padding`}>
+    <section className={styles.formPanel}>
       <motion.div
         className={styles.resetWrapper}
         variants={authContainerVariants}
         initial={shouldReduceMotion ? false : "hidden"}
         animate="visible"
       >
-        <motion.div variants={authItemVariants} className={styles.iconWrapper}>
-          <FaKey />
-        </motion.div>
+        <motion.img variants={authItemVariants} className={styles.logo} src={logo} alt="" />
 
         <motion.hgroup
           variants={authItemVariants}
           className={styles.hgroup}
         >
-          <h1 className={styles.title}>Forgot password?</h1>
-          <p className={styles.subTitle}>No worries, we'll send you reset instructions.</p>
+          <h1 className={styles.title}>Forgot your password?</h1>
+          <p className={styles.subTitle}>Enter your email and we'll send you a reset link.</p>
         </motion.hgroup>
 
         <motion.div variants={authItemVariants} className={styles.formWrapper}>
@@ -38,7 +37,7 @@ function ForgotPassword() {
         <motion.div variants={authItemVariants}>
           <AppLink to="/">
             <>
-              <FaArrowLeftLong /> Back to log in
+              <FaArrowLeftLong aria-hidden /> Back to log in
             </>
           </AppLink>
         </motion.div>

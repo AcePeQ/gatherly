@@ -27,7 +27,7 @@ function ForgotPasswordForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<ForgotPasswordFormValues> = (data) => {
+  const handleSendResetLink: SubmitHandler<ForgotPasswordFormValues> = (data) => {
     forgotPassword(data, {
       onSettled: (response, error) => {
         toast.info(
@@ -41,7 +41,7 @@ function ForgotPasswordForm() {
   };
 
   return (
-    <form noValidate className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form noValidate className={styles.form} onSubmit={handleSubmit(handleSendResetLink)}>
       <InputField
         id="email"
         label="Email"
@@ -54,7 +54,7 @@ function ForgotPasswordForm() {
       />
 
       <Button isLoading={isPending} type="submit" variant="primary">
-        Send reset instructions
+        Send reset link
       </Button>
     </form>
   );
