@@ -2,17 +2,21 @@ import { useMutation } from "@tanstack/react-query";
 import { API_URL } from "../../../config/apiConfig";
 import type { ApiErrorResponse } from "../../../types/api";
 import type { ResetPasswordResponse } from "../../../types/auth";
-import type { ResetPasswordFormValues } from "../schemas/resetPasswordSchema";
+
+type ResetPasswordRequest = {
+  password: string;
+  token: string;
+}
 
 export function useResetPassword() {
-  const { isPending, isError, error, mutate: resetPassword } = useMutation({
+  const { isPending, mutate: resetPassword } = useMutation({
     mutationFn: resetPasswordApi,
   })
 
-  return { isPending, isError, error, resetPassword }
+  return { isPending, resetPassword }
 }
 
-async function resetPasswordApi(resetPasswordData: ResetPasswordFormValues & { token: string }): Promise<ResetPasswordResponse> {
+async function resetPasswordApi(resetPasswordData: ResetPasswordRequest): Promise<ResetPasswordResponse> {
   const { password, token } = resetPasswordData;
 
   try {

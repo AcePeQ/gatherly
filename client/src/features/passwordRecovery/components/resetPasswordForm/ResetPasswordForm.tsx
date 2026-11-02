@@ -45,7 +45,7 @@ function ResetPasswordForm({ token }: { token: string }) {
     formValues,
   ) => {
     resetPassword(
-      { ...formValues, token },
+      { password: formValues.password, token },
       {
         onSuccess: (response) => {
           toast.success(response.message);
@@ -94,9 +94,8 @@ function ResetPasswordForm({ token }: { token: string }) {
       <ul id="password-requirements" className={styles.passwordTestList}>
         <li className={styles.passwordTestItem}>
           <span
-            className={`${styles.passwordTestDot} ${
-              hasMinimumLength ? styles.pass : ""
-            }`}
+            className={`${styles.passwordTestDot} ${hasMinimumLength ? styles.pass : ""
+              }`}
             aria-hidden="true"
           />
           <span className="sr-only">
@@ -109,9 +108,8 @@ function ResetPasswordForm({ token }: { token: string }) {
 
         <li className={styles.passwordTestItem}>
           <span
-            className={`${styles.passwordTestDot} ${
-              hasSpecialCharacter ? styles.pass : ""
-            }`}
+            className={`${styles.passwordTestDot} ${hasSpecialCharacter ? styles.pass : ""
+              }`}
             aria-hidden="true"
           />
           <span className="sr-only">

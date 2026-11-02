@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { db } from '../../prisma/db.js';
+import { db, type Tx } from '../../prisma/db.js';
 
 type CreatePasswordResetTokenInput = {
   tokenHash: string;
@@ -15,16 +15,24 @@ type ConsumePasswordResetTokenInput = {
 
 @Injectable()
 export class PasswordResetService {
+  private deleteUnusedTokensForUser(tx: Tx, userId: number) {
+    return tx.orm.public.PasswordResetToken.where({ userId }).where((resetToken) => resetToken.usedAt.isNull()).deleteAndCount();
+  }
+
   createToken({
     tokenHash,
     expiresAt,
     userId,
   }: CreatePasswordResetTokenInput) {
-    return db.orm.public.PasswordResetToken.create({
-      tokenHash,
-      expiresAt,
-      userId,
-    });
+    return db.transaction(async tx => {
+      await this.deleteUnusedTokensForUser(tx, userId);
+
+      return tx.orm.public.PasswordResetToken.create({
+        tokenHash,
+        expiresAt,
+        userId,
+      });;
+    })
   }
 
   async consumeTokenAndUpdatePassword({
@@ -43,6 +51,8 @@ export class PasswordResetService {
       if (!consumedToken) {
         return false;
       }
+
+      await this.deleteUnusedTokensForUser(tx, consumedToken.userId)
 
       const updatedUser = await tx.orm.public.User
         .where({ id: consumedToken.userId })
