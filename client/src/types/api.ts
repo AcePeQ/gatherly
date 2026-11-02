@@ -1,5 +1,5 @@
 export type ApiErrorResponse = {
-  statusCode: number,
-  message: string | string[],
-  error?: string,
-}
+  statusCode: number;
+  message: string | string[];
+  error?: string;
+};

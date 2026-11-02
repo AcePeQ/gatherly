@@ -6,38 +6,39 @@ import type { ResetPasswordResponse } from "../../../types/auth";
 type ResetPasswordRequest = {
   password: string;
   token: string;
-}
+};
 
 export function useResetPassword() {
   const { isPending, mutate: resetPassword } = useMutation({
     mutationFn: resetPasswordApi,
-  })
+  });
 
-  return { isPending, resetPassword }
+  return { isPending, resetPassword };
 }
 
-async function resetPasswordApi(resetPasswordData: ResetPasswordRequest): Promise<ResetPasswordResponse> {
+async function resetPasswordApi(
+  resetPasswordData: ResetPasswordRequest,
+): Promise<ResetPasswordResponse> {
   const { password, token } = resetPasswordData;
 
-  try {
-    const res = await fetch(`${API_URL}/auth/reset-password`, {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify({ password, token }),
-    })
+  const response = await fetch(`${API_URL}/auth/reset-password`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({ password, token }),
+  });
 
-    if (!res.ok) {
-      const error: ApiErrorResponse = await res.json();
-      const message = Array.isArray(error.message) ? error.message.join(" ") : error.message;
-      throw new Error(message ?? "Could not reset your password!")
-    }
+  if (!response.ok) {
+    const errorResponse: ApiErrorResponse = await response.json();
+    const message = Array.isArray(errorResponse.message)
+      ? errorResponse.message.join(" ")
+      : errorResponse.message;
 
-    const data: ResetPasswordResponse = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error)
-    throw error
+    throw new Error(message ?? "Could not reset your password!");
   }
+
+  const data: ResetPasswordResponse = await response.json();
+
+  return data;
 }
