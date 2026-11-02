@@ -3,7 +3,15 @@
   align-items: center;
   justify-content: center;
 
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 
+  inline-size: 100dvi;
+  block-size: 100dvb;
+
+  background-color: var(--ld-background);
   color: var(--ld-primary);
+
+  flex: 1;
 }
