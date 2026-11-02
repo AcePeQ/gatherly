@@ -10,6 +10,7 @@ import {
 } from './dto/forgot-password.dto.js';
 import { type ResetPasswordDto, resetPasswordSchema } from './dto/reset-password.dto.js';
 import { type Response } from 'express';
+import { minutes, seconds, SkipThrottle, Throttle } from '@nestjs/throttler';
 
 @Controller("auth")
 export class AuthController {
@@ -31,6 +32,20 @@ export class AuthController {
     return this.authService.logout(response);
   }
 
+  @Throttle({
+    short: {
+      limit: 1,
+      ttl: seconds(5)
+    },
+    medium: {
+      limit: 3,
+      ttl: minutes(1),
+    },
+    long: {
+      limit: 5,
+      ttl: minutes(15)
+    }
+  })
   @Post('forgot-password')
   async forgotPassword(
     @Body({ schema: forgotPasswordSchema }) forgotPasswordData: ForgotPasswordDto,
@@ -38,6 +53,20 @@ export class AuthController {
     return this.authService.forgotPassword(forgotPasswordData);
   }
 
+  @Throttle({
+    short: {
+      limit: 3,
+      ttl: seconds(10),
+    },
+    medium: {
+      limit: 5,
+      ttl: minutes(1),
+    },
+    long: {
+      limit: 10,
+      ttl: minutes(15),
+    },
+  })
   @Post('reset-password')
   async resetPassword(@Body({ schema: resetPasswordSchema }) resetPasswordData: ResetPasswordDto) {
     return this.authService.resetPassword(resetPasswordData);

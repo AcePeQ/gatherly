@@ -49,7 +49,12 @@ function ResetPasswordForm({ token }: { token: string }) {
       {
         onSuccess: (response) => {
           toast.success(response.message);
-          navigate("/reset-password/success", { replace: true });
+          navigate("/reset-password/success",
+            {
+              replace: true,
+              state: { passwordResetSucceeded: true }
+            }
+          );
         },
         onError: (error) => {
           toast.error(error.message);
