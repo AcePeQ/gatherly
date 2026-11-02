@@ -16,7 +16,10 @@ type ConsumePasswordResetTokenInput = {
 @Injectable()
 export class PasswordResetService {
   private deleteUnusedTokensForUser(tx: Tx, userId: number) {
-    return tx.orm.public.PasswordResetToken.where({ userId }).where((resetToken) => resetToken.usedAt.isNull()).deleteAndCount();
+    return tx.orm.public.PasswordResetToken
+      .where({ userId })
+      .where((resetToken) => resetToken.usedAt.isNull())
+      .deleteAndCount();
   }
 
   createToken({
@@ -31,7 +34,7 @@ export class PasswordResetService {
         tokenHash,
         expiresAt,
         userId,
-      });;
+      });
     })
   }
 
@@ -52,14 +55,23 @@ export class PasswordResetService {
         return false;
       }
 
-      await this.deleteUnusedTokensForUser(tx, consumedToken.userId)
+      const user = await tx.orm.public.User
+        .where({ id: consumedToken.userId })
+        .select("sessionVersion")
+        .first();
+
+      if (!user) {
+        throw new Error("Password reset token references a missing user");
+      }
+
+      await this.deleteUnusedTokensForUser(tx, consumedToken.userId);
 
       const updatedUser = await tx.orm.public.User
         .where({ id: consumedToken.userId })
-        .update({ passwordHash });
+        .update({ passwordHash, sessionVersion: user.sessionVersion + 1 });
 
       if (!updatedUser) {
-        throw new Error('Password reset token references a missing user');
+        throw new Error('Password reset token references a missing user.');
       }
 
       return true;

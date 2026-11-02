@@ -61,7 +61,7 @@ export class AuthService {
     }
 
 
-    const payload = { sub: user.id, email: user.email, username: user.name }
+    const payload = { sub: user.id, email: user.email, username: user.name, sessionVersion: user.sessionVersion }
     const expiresIn = remember ? "30d" : "1h";
 
     const token = this.jwtService.sign(payload, {

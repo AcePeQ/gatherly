@@ -6,6 +6,7 @@ model User {
   passwordHash        String
   createdAt           TimestamptzString          @default(now())
   updatedAt           temporal.updatedAtString()
+  sessionVersion      Int                        @default(0)
 
   passwordResetTokens PasswordResetToken[]
   tripMemberships     TripMember[]

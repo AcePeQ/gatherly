@@ -372,6 +372,13 @@
                   "kind": "scalar"
                 }
               },
+              "sessionVersion": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
               "updatedAt": {
                 "nullable": false,
                 "type": {
@@ -428,6 +435,9 @@
                 },
                 "passwordHash": {
                   "column": "passwordHash"
+                },
+                "sessionVersion": {
+                  "column": "sessionVersion"
                 },
                 "updatedAt": {
                   "column": "updatedAt"
@@ -740,6 +750,15 @@
                   "nativeType": "text",
                   "nullable": false
                 },
+                "sessionVersion": {
+                  "codecId": "pg/int4@1",
+                  "default": {
+                    "kind": "literal",
+                    "value": 0
+                  },
+                  "nativeType": "int4",
+                  "nullable": false
+                },
                 "updatedAt": {
                   "codecId": "pg/timestamptz-string@1",
                   "nativeType": "timestamptz",
@@ -776,7 +795,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "258389babd6fd77f1d119057287bf3ef6695a5d3a85ae88071277d053c571b38"
+    "storageHash": "084d61d2e344e205297848d9b4c50c0f29bb4262cdf068bb6511f247c9c75687"
   },
   "execution": {
     "executionHash": "757a7b144bde2fbc592debfb857f5cf4f718389707ada37962f5dc2c94367cd5",
