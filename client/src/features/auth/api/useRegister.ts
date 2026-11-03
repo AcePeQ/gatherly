@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { API_URL } from "../../../config/apiConfig";
-import type { ApiErrorResponse } from "../../../types/api";
+import { throwApiError } from "../../../lib/api/throwApiError";
 import type { RegisterResponse } from "../../../types/auth";
 import type { RegisterFormValues } from "../schemas/registerSchema";
 
@@ -16,7 +16,7 @@ export function useRegister() {
 async function registerUserApi(
   registrationData: RegisterFormValues,
 ): Promise<RegisterResponse> {
-  const res = await fetch(`${API_URL}/auth/register`, {
+  const response = await fetch(`${API_URL}/auth/register`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -24,15 +24,11 @@ async function registerUserApi(
     body: JSON.stringify(registrationData),
   });
 
-  if (!res.ok) {
-    const error: ApiErrorResponse = await res.json();
-    const message = Array.isArray(error.message)
-      ? error.message.join(" ")
-      : error.message;
-
-    throw new Error(message ?? "Could not create your account");
+  if (!response.ok) {
+    await throwApiError(response, "Could not create your account.");
   }
 
-  const data: RegisterResponse = await res.json();
+  const data: RegisterResponse = await response.json();
+
   return data;
 }

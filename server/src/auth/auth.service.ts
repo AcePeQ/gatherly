@@ -1,20 +1,26 @@
-import bcrypt from 'bcrypt';
-import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from "@nestjs/common";
+import bcrypt from "bcrypt";
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from "@nestjs/common";
 import { RegisterDto } from "./dto/register.dto.js";
-import { UsersService } from '../users/users.service.js';
-import { LoginDto } from './dto/login.dto.js';
-import { JwtService } from '@nestjs/jwt';
-import { createHash, randomBytes } from 'node:crypto';
-import { ConfigService } from '@nestjs/config';
-import { NotificationService } from '../notification/notification.service.js';
-import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
-import { ResetPasswordDto } from './dto/reset-password.dto.js';
-import { PasswordResetService } from './password-reset/password-reset.service.js';
-import { Response } from 'express';
+import { UsersService } from "../users/users.service.js";
+import { LoginDto } from "./dto/login.dto.js";
+import { JwtService } from "@nestjs/jwt";
+import { createHash, randomBytes } from "node:crypto";
+import { ConfigService } from "@nestjs/config";
+import { NotificationService } from "../notification/notification.service.js";
+import type { ForgotPasswordDto } from "./dto/forgot-password.dto.js";
+import { ResetPasswordDto } from "./dto/reset-password.dto.js";
+import { PasswordResetService } from "./password-reset/password-reset.service.js";
+import { Response } from "express";
 
 const PASSWORD_RESET_TOKEN_TTL_MS = 15 * 60 * 1000;
 const FORGOT_PASSWORD_RESPONSE = {
-  message: 'If an account with this email exists, you will receive a password reset link.',
+  message:
+    "If an account with this email exists, you will receive a password reset link.",
 };
 
 @Injectable()
@@ -25,14 +31,14 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly notificationService: NotificationService,
     private readonly passwordResetService: PasswordResetService,
-  ) { }
+  ) {}
   async register(data: RegisterDto) {
     const { email, name, password } = data;
 
     const existingUser = await this.userService.findByEmail(email);
 
     if (existingUser) {
-      throw new ConflictException("Email is already in use")
+      throw new ConflictException("Email is already in use.");
     }
 
     const saltOrRounds = 10;
@@ -41,8 +47,8 @@ export class AuthService {
     await this.userService.createUser(name, email, passwordHash);
 
     return {
-      message: "Successfully created an account"
-    }
+      message: "Successfully created an account",
+    };
   }
 
   async login(data: LoginDto, res: Response) {
@@ -51,30 +57,36 @@ export class AuthService {
     const user = await this.userService.findByEmail(email);
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException("Invalid email or password", {
+        errorCode: "INVALID_CREDENTIALS",
+      });
     }
 
-    const isCorrectPassword = await bcrypt.compare(password, user.passwordHash)
+    const isCorrectPassword = await bcrypt.compare(password, user.passwordHash);
 
     if (!isCorrectPassword) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException("Invalid email or password", {
+        errorCode: "INVALID_CREDENTIALS",
+      });
     }
 
-
-    const payload = { sub: user.id, email: user.email, username: user.name, sessionVersion: user.sessionVersion }
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      username: user.name,
+      sessionVersion: user.sessionVersion,
+    };
     const expiresIn = remember ? "30d" : "1h";
 
     const token = this.jwtService.sign(payload, {
-      expiresIn
-    })
+      expiresIn,
+    });
 
-    res.cookie('token', token, {
+    res.cookie("token", token, {
       httpOnly: true,
-      secure: this.configService.get('NODE_ENV') === 'production',
-      sameSite: 'lax',
-      maxAge: remember
-        ? 30 * 24 * 60 * 60 * 1000
-        : 60 * 60 * 1000,
+      secure: this.configService.get("NODE_ENV") === "production",
+      sameSite: "lax",
+      maxAge: remember ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000,
     });
 
     return {
@@ -85,20 +97,20 @@ export class AuthService {
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },
-      message: "Successfully logged in."
-    }
+      message: "Successfully logged in.",
+    };
   }
 
   async logout(res: Response) {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: this.configService.get('NODE_ENV') === 'production',
-      sameSite: 'lax',
+      secure: this.configService.get("NODE_ENV") === "production",
+      sameSite: "lax",
     });
 
     return {
-      message: "Logout successful"
-    }
+      message: "Logout successful",
+    };
   }
 
   async forgotPassword({ email }: ForgotPasswordDto) {
@@ -108,16 +120,16 @@ export class AuthService {
       return FORGOT_PASSWORD_RESPONSE;
     }
 
-    const resetToken = randomBytes(32).toString('hex');
-    const tokenHash = createHash('sha256').update(resetToken).digest('hex');
+    const resetToken = randomBytes(32).toString("hex");
+    const tokenHash = createHash("sha256").update(resetToken).digest("hex");
     const expiresAt = new Date(
       Date.now() + PASSWORD_RESET_TOKEN_TTL_MS,
     ).toISOString();
     const resetPasswordUrl = new URL(
-      this.configService.getOrThrow<string>('EMAIL_RESET_PASSWORD_URL'),
+      this.configService.getOrThrow<string>("EMAIL_RESET_PASSWORD_URL"),
     );
 
-    resetPasswordUrl.searchParams.set('token', resetToken);
+    resetPasswordUrl.searchParams.set("token", resetToken);
 
     await this.passwordResetService.createToken({
       tokenHash,
@@ -135,7 +147,7 @@ export class AuthService {
   }
 
   async resetPassword({ password, token }: ResetPasswordDto) {
-    const tokenHash = createHash('sha256').update(token).digest('hex');
+    const tokenHash = createHash("sha256").update(token).digest("hex");
 
     const saltOrRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltOrRounds);
@@ -147,11 +159,13 @@ export class AuthService {
       });
 
     if (!wasPasswordUpdated) {
-      throw new BadRequestException('Link is invalid or expired');
+      throw new BadRequestException("Link is invalid or expired", {
+        errorCode: "RESET_TOKEN_INVALID_OR_EXPIRED",
+      });
     }
 
     return {
-      message: 'Password successfully changed.',
+      message: "Password successfully changed.",
     };
   }
 }

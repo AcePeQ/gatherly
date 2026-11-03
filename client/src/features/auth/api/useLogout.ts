@@ -1,28 +1,28 @@
 import { useMutation } from "@tanstack/react-query";
+
 import { API_URL } from "../../../config/apiConfig";
-import type { ApiErrorResponse } from "../../../types/api";
 import type { LogoutResponse } from "../../../types/auth";
+import { throwApiError } from "../../../lib/api/throwApiError";
 
 export function useLogout() {
   const { isPending, isError, error, mutate: logoutFn } = useMutation({
     mutationFn: logoutApi,
-  })
+  });
 
-  return { isPending, isError, error, logoutFn }
+  return { isPending, isError, error, logoutFn };
 }
 
 async function logoutApi(): Promise<LogoutResponse> {
-  const res = await fetch(`${API_URL}/auth/logout`, {
+  const response = await fetch(`${API_URL}/auth/logout`, {
     method: "POST",
-    credentials: "include"
-  })
+    credentials: "include",
+  });
 
-  if (!res.ok) {
-    const error: ApiErrorResponse = await res.json();
-    const message = Array.isArray(error.message) ? error.message.join(" ") : error.message;
-    throw new Error(message ?? "Could not logout the account")
+  if (!response.ok) {
+    await throwApiError(response, "Could not log out.");
   }
 
-  const data: LogoutResponse = await res.json();
+  const data: LogoutResponse = await response.json();
+
   return data;
 }

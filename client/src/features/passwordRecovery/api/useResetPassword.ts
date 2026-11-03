@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
+
 import { API_URL } from "../../../config/apiConfig";
-import type { ApiErrorResponse } from "../../../types/api";
+import { throwApiError } from "../../../lib/api/throwApiError";
 import type { ResetPasswordResponse } from "../../../types/auth";
 
 type ResetPasswordRequest = {
@@ -30,12 +31,7 @@ async function resetPasswordApi(
   });
 
   if (!response.ok) {
-    const errorResponse: ApiErrorResponse = await response.json();
-    const message = Array.isArray(errorResponse.message)
-      ? errorResponse.message.join(" ")
-      : errorResponse.message;
-
-    throw new Error(message ?? "Could not reset your password!");
+    await throwApiError(response, "Could not reset your password.");
   }
 
   const data: ResetPasswordResponse = await response.json();
