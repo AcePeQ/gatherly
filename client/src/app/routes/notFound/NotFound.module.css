@@ -18,6 +18,8 @@
   justify-content: center;
 
   isolation: isolate;
+
+  overflow: hidden;
 }
 
 .leftWrapper {

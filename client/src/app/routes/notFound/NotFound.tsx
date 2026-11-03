@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router";
 
-import background404 from "../../../assets/images/backgrounds/background404.png";
 import AnimatedOrb from "../../../components/animatedOrb/AnimatedOrb";
 import Button from "../../../components/button/Button";
 import ButtonLink from "../../../components/link/ButtonLink";
 
 import styles from "./NotFound.module.css";
+import BrandPanel from "../../../components/brandPanel/BrandPanel";
 
 function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <section className={styles.wrapper}>
+    <section className={`${styles.wrapper} container`}>
+      <BrandPanel />
       <div className={`${styles.left} wrapper-padding`}>
         <AnimatedOrb
           position="center-right"
@@ -51,7 +52,7 @@ function NotFound() {
           <p>Sorry, the page you are looking for doesn't exist or has been moved. Here are some helpful links:</p>
 
           <div className={styles.btnWrapper}>
-            <Button variant="ghost" onClick={() => navigate(-1)}>
+            <Button variant="secondary" onClick={() => navigate(-1)}>
               Go back
             </Button>
             <ButtonLink variant="primary" to="/dashboard">
@@ -59,9 +60,6 @@ function NotFound() {
             </ButtonLink>
           </div>
         </div>
-      </div>
-      <div className={styles.right}>
-        <img src={background404} alt="" />
       </div>
     </section>
   );

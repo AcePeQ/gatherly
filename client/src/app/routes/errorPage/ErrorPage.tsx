@@ -49,7 +49,7 @@ function ErrorPage() {
           </p>
 
           <div className={styles.actions}>
-            <Button variant="ghost" onClick={handleRetry}>
+            <Button variant="secondary" onClick={handleRetry}>
               Try again
             </Button>
             <ButtonLink variant="primary" to="/">
