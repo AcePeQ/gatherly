@@ -12,6 +12,7 @@ import { useLogin } from "../../api/useLogin";
 import { loginSchema, type LoginFormValues } from "../../schemas/loginSchema";
 
 import styles from "./LoginForm.module.css";
+import { ApiError } from "../../../../lib/errors/ApiError";
 
 function LoginForm() {
   const location = useLocation();
@@ -47,7 +48,11 @@ function LoginForm() {
         navigate(redirectTo, { replace: true });
       },
       onError: (error) => {
-        toast.error(error.message);
+        if (error instanceof ApiError && error.errorCode === "INVALID_CREDENTIALS") {
+          toast.error("Invalid email or password.")
+        } else {
+          toast.error("Something went wrong. Please try again")
+        }
         resetField("password");
         setFocus("password");
       },

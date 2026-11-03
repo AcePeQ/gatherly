@@ -104,9 +104,8 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
       <ul id="password-requirements" className={styles.passwordRequirements}>
         <li className={styles.passwordRequirement}>
           <span
-            className={`${styles.requirementIndicator} ${
-              meetsMinimumLength ? styles.requirementIndicatorPass : ""
-            }`}
+            className={`${styles.requirementIndicator} ${meetsMinimumLength ? styles.requirementIndicatorPass : ""
+              }`}
           />
           <span className="sr-only">
             {meetsMinimumLength ? "Requirement met: " : "Requirement not met: "}
@@ -116,11 +115,10 @@ function RegisterForm({ onRegistrationSuccess }: RegisterFormProps) {
 
         <li className={styles.passwordRequirement}>
           <span
-            className={`${styles.requirementIndicator} ${
-              containsSpecialCharacter
-                ? styles.requirementIndicatorPass
-                : ""
-            }`}
+            className={`${styles.requirementIndicator} ${containsSpecialCharacter
+              ? styles.requirementIndicatorPass
+              : ""
+              }`}
           />
           <span className="sr-only">
             {containsSpecialCharacter

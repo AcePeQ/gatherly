@@ -18,8 +18,8 @@ function Logout() {
         queryClient.invalidateQueries({ queryKey: AUTH_SESSION_QUERY_KEY })
         toast.success(data.message);
       },
-      onError: (error) => {
-        toast.error(error.message)
+      onError: () => {
+        toast.error("Failed to logout.")
       }
     })
   }

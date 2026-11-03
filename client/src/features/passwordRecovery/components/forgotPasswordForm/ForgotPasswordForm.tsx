@@ -31,13 +31,8 @@ function ForgotPasswordForm() {
     formValues,
   ) => {
     forgotPassword(formValues, {
-      onSuccess: (response) => {
-        toast.success(response.message);
-      },
-      onError: (error) => {
-        toast.error(error.message);
-      },
       onSettled: () => {
+        toast.info("If an account with this email exists, you will receive a password reset link.");
         navigate("/forgot-password/check-email");
       },
     });

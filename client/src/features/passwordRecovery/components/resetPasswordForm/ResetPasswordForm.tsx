@@ -16,6 +16,7 @@ import {
 } from "../../schemas/resetPasswordSchema";
 
 import styles from "./ResetPasswordForm.module.css";
+import { ApiError } from "../../../../lib/errors/ApiError";
 
 function ResetPasswordForm({ token }: { token: string }) {
   const { resetPassword, isPending } = useResetPassword();
@@ -26,7 +27,6 @@ function ResetPasswordForm({ token }: { token: string }) {
     handleSubmit,
     formState: { errors },
     control,
-    reset,
   } = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
@@ -55,8 +55,12 @@ function ResetPasswordForm({ token }: { token: string }) {
           });
         },
         onError: (error) => {
-          toast.error(error.message);
-          reset();
+          if (error instanceof ApiError && error.errorCode === "RESET_TOKEN_INVALID_OR_EXPIRED") {
+            toast.error("Reset token is invalid or expired.")
+            navigate("/forgot-password", { replace: true })
+          } else {
+            toast.error("Something went wrong. Please try again.")
+          }
         },
       },
     );
@@ -97,9 +101,8 @@ function ResetPasswordForm({ token }: { token: string }) {
       <ul id="password-requirements" className={styles.passwordTestList}>
         <li className={styles.passwordTestItem}>
           <span
-            className={`${styles.passwordTestDot} ${
-              hasMinimumLength ? styles.pass : ""
-            }`}
+            className={`${styles.passwordTestDot} ${hasMinimumLength ? styles.pass : ""
+              }`}
             aria-hidden="true"
           />
           <span className="sr-only">
@@ -112,9 +115,8 @@ function ResetPasswordForm({ token }: { token: string }) {
 
         <li className={styles.passwordTestItem}>
           <span
-            className={`${styles.passwordTestDot} ${
-              hasSpecialCharacter ? styles.pass : ""
-            }`}
+            className={`${styles.passwordTestDot} ${hasSpecialCharacter ? styles.pass : ""
+              }`}
             aria-hidden="true"
           />
           <span className="sr-only">
