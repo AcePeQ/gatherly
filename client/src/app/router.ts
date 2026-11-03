@@ -19,10 +19,10 @@ const router = createBrowserRouter([
     ErrorBoundary: ErrorPage,
     children: [
       {
-        Component: Layout,
+        Component: GuestOnly,
         children: [
           {
-            Component: GuestOnly,
+            Component: Layout,
             children: [{ index: true, Component: Auth }],
           },
           {
