@@ -25,3 +25,8 @@
 .additionalActions a {
   font-weight: 500;
 }
+
+.checkboxContainer {
+  font-size: 1rem;
+  font-weight: 500;
+}

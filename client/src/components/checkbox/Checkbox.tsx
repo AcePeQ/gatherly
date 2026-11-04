@@ -1,40 +1,50 @@
-import { useId, type ComponentPropsWithRef } from 'react';
-import styles from './Checkbox.module.css';
+import { useId, type ComponentPropsWithRef } from "react";
 
-// type CheckboxProps = {
-//   label?: string;
-//   ariaLabel?: string;
-//   isChecked: boolean;
-//   isDisabled?: boolean;
-//   onChange: (isChecked: boolean) => void;
-// }
+import styles from "./Checkbox.module.css";
 
-type CheckboxProps = ComponentPropsWithRef<"input"> & {
-  label: string;
-  fontSizeRem?: number;
-  fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-  type?: "checkbox";
-}
+type NativeCheckboxProps = Omit<
+  ComponentPropsWithRef<"input">,
+  "type" | "aria-label"
+>;
 
-function Checkbox({ label, type = "checkbox", fontSizeRem = 1, fontWeight = 400, ...props }: CheckboxProps) {
+type CheckboxLabelProps =
+  | {
+    label: string;
+    "aria-label"?: never;
+  }
+  | {
+    label?: never;
+    "aria-label": string;
+  };
+
+type CheckboxProps = NativeCheckboxProps &
+  CheckboxLabelProps & {
+    inputClassName?: string;
+  };
+
+function Checkbox({ label, inputClassName, ...props }: CheckboxProps) {
   const generatedId = useId();
-  const inputId = props.id ?? generatedId
-  const inputClassName = [
-    styles.checkboxInput,
-    props.className
-  ].filter(Boolean).join(" ")
+  const inputId = props.id ?? generatedId;
+
+  const inputClasses = [styles.checkboxInput, inputClassName]
+    .filter(Boolean)
+    .join(" ");
+
+  const labelClasses = [styles.checkboxContainer, props.className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <label style={{ fontSize: `${fontSizeRem}rem`, fontWeight }} className={styles.checkboxContainer} htmlFor={inputId}>
+    <label className={labelClasses} htmlFor={inputId}>
       <input
         {...props}
-        className={inputClassName}
+        className={inputClasses}
         id={inputId}
-        type={type}
+        type="checkbox"
       />
-      {label && label}
+      {label}
     </label>
-  )
+  );
 }
 
-export default Checkbox
+export default Checkbox;

@@ -91,10 +91,9 @@ function LoginForm() {
         <Checkbox
           label="Remember for 30 days"
           id="remember"
-          className={styles.checkbox}
+          className={styles.checkboxContainer}
+          inputClassName={styles.checkbox}
           disabled={isPending}
-          fontSizeRem={1}
-          fontWeight={500}
           {...register("remember")}
         />
 

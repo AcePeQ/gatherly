@@ -1,6 +1,4 @@
 .checkboxContainer {
-  font: inherit;
-
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
@@ -18,7 +16,6 @@
   block-size: 1.5em;
   margin: 0;
 
-  font: inherit;
   color: var(--ld-text);
   background-color: var(--ld-surface);
 
@@ -32,10 +29,6 @@
   transition:
     background-color var(--motion-duration-fast) var(--motion-ease-standard),
     border-color var(--motion-duration-fast) var(--motion-ease-standard);
-}
-
-.checkboxContainer+.checkboxContainer {
-  margin-top: 1em;
 }
 
 .checkboxInput::before {
