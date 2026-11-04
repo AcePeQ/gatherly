@@ -13,6 +13,7 @@ import { loginSchema, type LoginFormValues } from "../../schemas/loginSchema";
 
 import styles from "./LoginForm.module.css";
 import { ApiError } from "../../../../lib/errors/ApiError";
+import Checkbox from "../../../../components/checkbox/Checkbox";
 
 function LoginForm() {
   const location = useLocation();
@@ -87,19 +88,19 @@ function LoginForm() {
       />
 
       <div className={styles.additionalActions}>
-        <label className={styles.checkboxLabel} htmlFor="remember">
-          <input
-            id="remember"
-            className={styles.checkbox}
-            type="checkbox"
-            disabled={isPending}
-            {...register("remember")}
-          />
-          Remember for 30 days
-        </label>
+        <Checkbox
+          label="Remember for 30 days"
+          id="remember"
+          className={styles.checkbox}
+          disabled={isPending}
+          fontSizeRem={1}
+          fontWeight={500}
+          {...register("remember")}
+        />
 
         <AppLink to="/forgot-password">Forgot password?</AppLink>
       </div>
+
 
       <Button isLoading={isPending} type="submit" variant="primary">
         Log in

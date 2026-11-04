@@ -25,22 +25,3 @@
 .additionalActions a {
   font-weight: 500;
 }
-
-.checkboxLabel {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: var(--space-2xs);
-}
-
-.checkbox {
-  inline-size: 1.125rem;
-  block-size: 1.125rem;
-  accent-color: var(--ld-primary);
-  cursor: pointer;
-
-  position: relative;
-  top: -0.75px;
-}

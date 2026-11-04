@@ -1,23 +1,36 @@
+import { useId, type ComponentPropsWithRef } from 'react';
 import styles from './Checkbox.module.css';
 
-type CheckboxProps = {
-  label?: string;
-  ariaLabel?: string;
-  isChecked: boolean;
-  isDisabled?: boolean;
-  onChange: (isChecked: boolean) => void;
+// type CheckboxProps = {
+//   label?: string;
+//   ariaLabel?: string;
+//   isChecked: boolean;
+//   isDisabled?: boolean;
+//   onChange: (isChecked: boolean) => void;
+// }
+
+type CheckboxProps = ComponentPropsWithRef<"input"> & {
+  label: string;
+  fontSizeRem?: number;
+  fontWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+  type?: "checkbox";
 }
 
-function Checkbox({ label, ariaLabel, isChecked, isDisabled = false, onChange }: CheckboxProps) {
+function Checkbox({ label, type = "checkbox", fontSizeRem = 1, fontWeight = 400, ...props }: CheckboxProps) {
+  const generatedId = useId();
+  const inputId = props.id ?? generatedId
+  const inputClassName = [
+    styles.checkboxInput,
+    props.className
+  ].filter(Boolean).join(" ")
+
   return (
-    <label className={styles.checkboxContainer}>
+    <label style={{ fontSize: `${fontSizeRem}rem`, fontWeight }} className={styles.checkboxContainer} htmlFor={inputId}>
       <input
-        aria-label={ariaLabel}
-        disabled={isDisabled}
-        checked={isChecked}
-        onChange={(event) => onChange(event.currentTarget.checked)}
-        className={styles.checkboxInput}
-        type="checkbox"
+        {...props}
+        className={inputClassName}
+        id={inputId}
+        type={type}
       />
       {label && label}
     </label>
