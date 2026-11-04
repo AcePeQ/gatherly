@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router";
 
 import AnimatedOrb from "../../../components/animatedOrb/AnimatedOrb";
+import BrandPanel from "../../../components/brandPanel/BrandPanel";
 import Button from "../../../components/button/Button";
 import ButtonLink from "../../../components/link/ButtonLink";
 
 import styles from "./NotFound.module.css";
-import BrandPanel from "../../../components/brandPanel/BrandPanel";
 
 function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <section className={`${styles.wrapper} container`}>
+    <main className={`${styles.wrapper} container`}>
       <BrandPanel />
       <div className={`${styles.left} wrapper-padding`}>
         <AnimatedOrb
@@ -45,23 +45,26 @@ function NotFound() {
           speedY={3500}
           yMove={50}
           scaleSpeed={2200}
-          scaleRate={0.20}
+          scaleRate={0.2}
         />
         <div className={styles.leftWrapper}>
           <h1>Page not found</h1>
-          <p>Sorry, the page you are looking for doesn't exist or has been moved. Here are some helpful links:</p>
+          <p>
+            Sorry, the page you are looking for doesn't exist or has been
+            moved. Here are some helpful links:
+          </p>
 
           <div className={styles.btnWrapper}>
             <Button variant="secondary" onClick={() => navigate(-1)}>
               Go back
             </Button>
-            <ButtonLink variant="primary" to="/dashboard">
+            <ButtonLink variant="primary" to="/">
               Take me home
             </ButtonLink>
           </div>
         </div>
       </div>
-    </section>
+    </main>
   );
 }
 

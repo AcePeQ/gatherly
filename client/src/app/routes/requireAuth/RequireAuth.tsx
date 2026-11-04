@@ -2,18 +2,17 @@ import { Navigate, Outlet, useLocation } from 'react-router'
 import { useAuthorized } from '../../../features/auth/api/useAuthorized';
 import FullLoader from '../../../components/loaders/fullLoader/FullLoader';
 import type { AuthRedirectState } from '../../../types/auth';
-import ErrorPage from '../errorPage/ErrorPage';
 
 function RequireAuth() {
   const location = useLocation();
-  const { data, isPending, isError } = useAuthorized()
+  const { data, isPending, isError, error } = useAuthorized()
 
   if (isPending) {
     return <FullLoader />
   }
 
   if (isError) {
-    return <ErrorPage />
+    throw error
   }
 
   if (!data?.isAuthorized) {

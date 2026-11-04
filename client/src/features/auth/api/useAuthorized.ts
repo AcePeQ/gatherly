@@ -6,12 +6,12 @@ import type { AuthSessionResponse, User } from "../../../types/auth";
 import { AUTH_SESSION_QUERY_KEY } from "../constants/authQueryKeys";
 
 export function useAuthorized() {
-  const { isPending, data, isError } = useQuery({
+  const { isPending, data, isError, error } = useQuery({
     queryKey: AUTH_SESSION_QUERY_KEY,
     queryFn: getAuthorizeApi,
   });
 
-  return { isPending, data, isError };
+  return { isPending, data, isError, error };
 }
 
 async function getAuthorizeApi(): Promise<AuthSessionResponse> {

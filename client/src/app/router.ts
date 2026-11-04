@@ -34,7 +34,6 @@ const router = createBrowserRouter([
                 path: "/reset-password/success",
                 Component: SuccessResetPassword,
               },
-              { path: "*", Component: NotFound },
             ],
           },
         ],
@@ -49,6 +48,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      { path: "*", Component: NotFound },
     ],
   },
 ]);

@@ -1,6 +1,7 @@
-import AnimatedOrb from '../../animatedOrb/AnimatedOrb';
-import styles from './FullLoader.module.css';
-import ContainerLoader from '../containerLoader/ContainerLoader';
+import AnimatedOrb from "../../animatedOrb/AnimatedOrb";
+import ContainerLoader from "../containerLoader/ContainerLoader";
+
+import styles from "./FullLoader.module.css";
 
 function FullLoader() {
   return (
@@ -36,7 +37,7 @@ function FullLoader() {
         speedY={3500}
         yMove={50}
         scaleSpeed={2200}
-        scaleRate={0.20}
+        scaleRate={0.2}
       />
 
       <AnimatedOrb
@@ -48,12 +49,12 @@ function FullLoader() {
         speedY={3500}
         yMove={-200}
         scaleSpeed={2200}
-        scaleRate={0.20}
+        scaleRate={0.2}
       />
 
       <ContainerLoader label="Loading page" size={150} />
     </div>
-  )
+  );
 }
 
-export default FullLoader
+export default FullLoader;

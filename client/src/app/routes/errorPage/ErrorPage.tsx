@@ -5,10 +5,19 @@ import AnimatedOrb from '../../../components/animatedOrb/AnimatedOrb';
 import Button from '../../../components/button/Button';
 import ButtonLink from '../../../components/link/ButtonLink';
 import styles from './ErrorPage.module.css';
+import { ApiError } from '../../../lib/errors/ApiError';
 
 function ErrorPage() {
   const error = useRouteError();
-  const statusCode = isRouteErrorResponse(error) ? error.status : 500;
+  let statusCode: number;
+
+  if (isRouteErrorResponse(error)) {
+    statusCode = error.status;
+  } else if (error instanceof ApiError) {
+    statusCode = error.statusCode
+  } else {
+    statusCode = 500;
+  }
 
   function handleRetry() {
     window.location.reload();
