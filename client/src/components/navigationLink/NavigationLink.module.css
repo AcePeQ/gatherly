@@ -9,8 +9,8 @@
 .settingsLink {
   margin-block-start: auto;
 
-  padding-block-start: var(--space-2xs);
-  border-block-start: 1px solid var(--ld-border);
+  padding-block-end: var(--space-2xs);
+  border-block-end: 1px solid var(--ld-border);
 }
 
 .link:link,

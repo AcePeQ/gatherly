@@ -1,21 +1,17 @@
-.wrapper {
+.aside {
   padding: var(--space-m);
 
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
+  background-color: var(--ld-surface);
 
-  border-inline-end: 1px solid var(--ld-border);
+  border-inline-end: 1.5px solid var(--ld-border);
 }
 
 .logoLink {
   display: inline-flex;
+  inline-size: fit-content;
 
-  inline-size: 100%;
-  max-inline-size: 12rem;
-}
-
-.logoLink:focus-visible {
-  outline: 2px solid var(--ld-focus);
-  outline-offset: 3px;
+  margin-block-end: var(--space-m);
 }

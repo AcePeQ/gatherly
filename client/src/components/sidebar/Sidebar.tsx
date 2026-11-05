@@ -8,9 +8,9 @@ import styles from "./Sidebar.module.css";
 
 function Sidebar() {
   return (
-    <aside className={styles.wrapper}>
+    <aside className={styles.aside}>
       <Link className={styles.logoLink} to="/dashboard">
-        <Logo variant="light" />
+        <Logo />
       </Link>
 
       <MainNavigation />
