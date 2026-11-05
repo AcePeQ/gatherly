@@ -208,11 +208,6 @@ a {
   margin-inline: auto;
 }
 
-.container>* {
-  inline-size: 100%;
-  min-block-size: 100dvb;
-}
-
 .wrapper-padding {
   padding: var(--space-m-l);
 }

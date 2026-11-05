@@ -8,9 +8,9 @@ import styles from "./Sidebar.module.css";
 
 function Sidebar() {
   return (
-    <aside className={styles.aside}>
-      <Link className={styles.logoLink} to="/dashboard">
-        <Logo />
+    <aside className={styles.sidebar}>
+      <Link aria-label="Go to dashboard" className={styles.logoLink} to="/dashboard">
+        <Logo alt="" />
       </Link>
 
       <MainNavigation />

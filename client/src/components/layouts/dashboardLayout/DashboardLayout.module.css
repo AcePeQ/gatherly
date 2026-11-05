@@ -5,7 +5,7 @@
   overflow: hidden;
 }
 
-.wrapper> :last-child {
+.content {
   min-block-size: 0;
   overflow-y: auto;
 }
