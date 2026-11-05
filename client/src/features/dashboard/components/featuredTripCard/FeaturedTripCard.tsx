@@ -66,34 +66,35 @@ function FeaturedTripCard({ title, image, badge, cardTitle, startDate, endDate, 
 
   return (
     <article className={styles.card}>
-      {title &&
-        <h2 className={styles.title}>{title}</h2>
-      }
-
-      <div className={styles.previewImageWrapper}>
-        <img className={styles.previewImage} src={image} alt='' />
+      <div className={styles.imageWrapper}>
+        <img className={styles.image} src={image} alt='' />
         {badge &&
-          <span className={styles.previewImageBadge}>{badge}</span>
+          <span className={styles.badge}>{badge}</span>
         }
       </div>
 
-      <div className={styles.informationWrapper}>
-        <div className={styles.informationLeft}>
-          <h3 className={styles.cardTitle}>{cardTitle}</h3>
+      <div className={styles.content}>
+        <div className={styles.contentLeft}>
 
-          <div className={styles.moreInfo}>
+          <hgroup className={styles.cardTitleWrapper}>
+            <h2 className={styles.cardTitle}>{cardTitle}</h2>
+            <p className={styles.cardSubtitle}>Your next adventure</p>
+          </hgroup>
+
+          <div className={styles.details}>
             <TripDateRange startDate={startDate} endDate={endDate} />
-            <p className={styles.persons}>
+            <p className={styles.travelers}>
               <FiUsers aria-hidden="true" focusable="false" />
               {persons}
             </p>
           </div>
+
+          {isButton && path &&
+            <ButtonLink variant="secondary" to={path}>
+              View trip
+            </ButtonLink>
+          }
         </div>
-        {isButton && path &&
-          <ButtonLink variant="primary" to={path}>
-            View trip
-          </ButtonLink>
-        }
       </div>
     </article>
   )

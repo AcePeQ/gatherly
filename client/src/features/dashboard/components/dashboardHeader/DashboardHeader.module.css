@@ -7,6 +7,12 @@
   grid-area: header;
 }
 
+.title {
+  font-size: var(--fs-3);
+  line-height: 1.45;
+}
+
 .text {
+  margin-block-start: 0.3rem;
   color: var(--ld-text-muted);
 }

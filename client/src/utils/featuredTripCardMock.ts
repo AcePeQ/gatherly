@@ -13,7 +13,7 @@ export type FeaturedTripCardProps = {
 }
 
 export const PlaceholderCard1 = {
-  title: "Upcoming trip",
+  title: "Your next adventure",
   image: PlaceholderImg,
   badge: "In 9 days",
   cardTitle: "Weekend in Gdansk",

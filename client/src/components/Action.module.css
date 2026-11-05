@@ -6,6 +6,7 @@
   position: relative;
 
   max-inline-size: fit-content;
+  min-inline-size: 140px;
 
   color: inherit;
   font-size: var(--fs-0);
