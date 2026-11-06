@@ -11,7 +11,7 @@ function Dashboard() {
     <main id="main-content" className={`${styles.section} wrapper-padding`}>
       <DashboardHeader />
 
-      <FeaturedTripCard {...PlaceholderCard1} />
+      <FeaturedTripCard {...PlaceholderCard1} isFeaturedCard={true} />
       <MyTasksPreview />
       <UpcomingTrips />
     </main>

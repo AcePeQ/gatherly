@@ -13,6 +13,22 @@
   transition: border-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
+.card.upcomingCard {
+  padding: 0;
+}
+
+.card .cardLink {
+  padding: var(--space-s);
+}
+
+.card .cardLink:hover {
+  border-color: var(--ld-primary);
+}
+
+.card .cardLink:focus-visible {
+  border-color: var(--ld-focus);
+}
+
 .imageWrapper {
   position: relative;
 }
@@ -78,6 +94,11 @@
   font-size: var(--fs-3);
 }
 
+.card.upcomingCard .cardTitle {
+  font-size: var(--fs-2);
+  margin-block-start: 4px;
+}
+
 .cardSubtitle {
   font-size: var(--fs--1);
   text-transform: uppercase;
@@ -88,7 +109,8 @@
 }
 
 .date,
-.travelers {
+.travelers,
+.place {
   font-size: var(--fs-0);
   font-weight: 500;
 
@@ -98,7 +120,7 @@
   align-items: center;
   justify-content: center;
 
-  gap: var(--space-2xs);
+  gap: var(--space-3xs);
 
   svg {
     width: 1.3em;
@@ -106,31 +128,6 @@
   }
 }
 
-.chevronRight {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: 32px;
-    height: 32px;
-
-    transition: color var(--motion-duration-fast) var(--motion-ease-standard);
-  }
-}
-
-.cardLink:hover {
-  border-color: var(--ld-primary);
-}
-
-.cardLink:focus-visible {
-  border-color: var(--ld-focus);
-}
-
-.cardLink:hover .chevronRight {
-  color: var(--ld-primary);
-}
-
-.cardLink:focus-visible .chevronRight {
-  color: var(--ld-focus);
+.viewTripBtn {
+  margin-block-start: 6px;
 }

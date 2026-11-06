@@ -1,6 +1,6 @@
 import AppLink from '../../../../components/link/AppLink';
-import { PlaceholderCard2 } from '../../../../utils/featuredTripCardMock';
-import FeaturedTripCard from '../featuredTripCard/FeaturedTripCard';
+import { PlaceholderCard1 } from '../../../../utils/featuredTripCardMock';
+import FeaturedTripCardLink from '../featuredTripCard/FeaturedTripCardLink';
 import styles from './UpcomingTrips.module.css';
 
 function UpcomingTrips() {
@@ -13,10 +13,10 @@ function UpcomingTrips() {
 
       <ul className={styles.list}>
         <li className={styles.listItem}>
-          <FeaturedTripCard {...PlaceholderCard2} />
+          <FeaturedTripCardLink {...PlaceholderCard1} isFeaturedCard={false} />
         </li>
         <li className={styles.listItem}>
-          <FeaturedTripCard {...PlaceholderCard2} />
+          <FeaturedTripCardLink {...PlaceholderCard1} isFeaturedCard={false} />
         </li>
       </ul>
     </section>
