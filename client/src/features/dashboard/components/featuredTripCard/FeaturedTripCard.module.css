@@ -18,14 +18,16 @@
 }
 
 .card .cardLink {
+  display: block;
   padding: var(--space-s);
+  border-radius: inherit;
 }
 
-.card .cardLink:hover {
+.card:has(.cardLink:hover) {
   border-color: var(--ld-primary);
 }
 
-.card .cardLink:focus-visible {
+.card:has(.cardLink:focus-visible) {
   border-color: var(--ld-focus);
 }
 
@@ -34,6 +36,7 @@
 }
 
 .image {
+  display: block;
   inline-size: 100%;
   max-block-size: 14rem;
 

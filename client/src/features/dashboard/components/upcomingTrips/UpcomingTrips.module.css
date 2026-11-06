@@ -20,6 +20,6 @@
   gap: var(--space-s);
 }
 
-.list>* {
+.list > * {
   flex: 1;
 }

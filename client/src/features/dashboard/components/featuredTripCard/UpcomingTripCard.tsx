@@ -1,34 +1,47 @@
-import type { FeaturedTripCardProps } from '../../../../utils/featuredTripCardMock';
-import styles from './FeaturedTripCard.module.css';
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
+import { Link } from "react-router";
 
-import TripDateRange from '../../../../components/tripDateRange/TripDateRange';
-import { FaMapMarkerAlt } from 'react-icons/fa';
-import { Link } from 'react-router';
+import TripDateRange from "../../../../components/tripDateRange/TripDateRange";
+import type { TripPreview } from "../../types/tripPreview";
+import {
+  formatTravelersCount,
+  getTripTimingLabel,
+} from "../../utils/tripPreviewFormatters";
 
-function FeaturedTripCardLink({ image, badge, place, cardTitle, startDate, endDate, persons, path, isFeaturedCard }: FeaturedTripCardProps) {
+import styles from "./FeaturedTripCard.module.css";
+
+function UpcomingTripCard({
+  id,
+  imageUrl,
+  place,
+  title,
+  startDate,
+  endDate,
+  travelersCount,
+}: TripPreview) {
+  const timingLabel = getTripTimingLabel(startDate, endDate);
+
   return (
-    <article className={`${styles.card} ${isFeaturedCard ? styles.featuredCard : styles.upcomingCard}`}>
-      <Link className={styles.cardLink} to={path}>
+    <article className={`${styles.card} ${styles.upcomingCard}`}>
+      <Link className={styles.cardLink} to={`/trips/${id}`}>
         <div className={styles.imageWrapper}>
-          <img className={styles.image} src={image} alt='' />
-          <span className={styles.badge}>{badge || "upcoming"}</span>
+          <img className={styles.image} src={imageUrl} alt="" />
+          <span className={styles.badge}>{timingLabel}</span>
         </div>
 
         <div className={styles.content}>
           <div className={styles.contentLeft}>
-            <hgroup className={styles.cardTitleWrapper}>
-              <h2 className={styles.cardTitle}>{cardTitle}</h2>
-            </hgroup>
+            <h3 className={styles.cardTitle}>{title}</h3>
 
             <div className={styles.details}>
               <p className={styles.place}>
-                <FaMapMarkerAlt />
+                <FaMapMarkerAlt aria-hidden="true" focusable="false" />
                 {place}
               </p>
               <p className={styles.travelers}>
                 <FiUsers aria-hidden="true" focusable="false" />
-                {persons}
+                {formatTravelersCount(travelersCount)}
               </p>
               <TripDateRange startDate={startDate} endDate={endDate} />
             </div>
@@ -36,7 +49,7 @@ function FeaturedTripCardLink({ image, badge, place, cardTitle, startDate, endDa
         </div>
       </Link>
     </article>
-  )
+  );
 }
 
-export default FeaturedTripCardLink
+export default UpcomingTripCard;

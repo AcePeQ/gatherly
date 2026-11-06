@@ -1,49 +1,52 @@
-import styles from './Task.module.css';
 import { CiCalendar } from "react-icons/ci";
-import Checkbox from '../checkbox/Checkbox';
-import { useState } from 'react';
-import { formatDate } from '../../utils/dateFormatters';
 
-const TASK_DEADLINE = '2026-10-20';
+import { formatDate } from "../../utils/dateFormatters";
+import Checkbox from "../checkbox/Checkbox";
 
-function Task() {
-  const [isDone, setIsDone] = useState(false)
+import styles from "./Task.module.css";
 
-  const handleChange = (isChecked: boolean) => {
-    setIsDone(isChecked)
-  }
+type TaskProps = {
+  title: string;
+  tripName: string;
+  deadline: string;
+  isDone: boolean;
+  onStatusChange: (isDone: boolean) => void;
+};
 
-  const taskClassName = [
-    styles.task,
-    isDone ? styles.done : null,
-  ].filter(Boolean).join(" ")
+function Task({
+  title,
+  tripName,
+  deadline,
+  isDone,
+  onStatusChange,
+}: TaskProps) {
+  const taskClassName = [styles.task, isDone ? styles.done : null]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <article className={taskClassName}>
-      <Checkbox aria-label='' checked={isDone} onChange={(e) => handleChange(e.target.checked)} />
+      <Checkbox
+        aria-label={title}
+        checked={isDone}
+        onChange={(event) => onStatusChange(event.target.checked)}
+      />
 
       <div className={styles.content}>
-        <h3 className={styles.title}>Book the apartment</h3>
-        <p className={styles.tripName}>
-          Weekend in Gdansk
-        </p>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.tripName}>{tripName}</p>
       </div>
 
-      {isDone &&
-        <p className={styles.deadline}>
-          Done
-        </p>
-      }
+      {isDone && <p className={styles.deadline}>Done</p>}
 
-      {!isDone &&
-        <time className={styles.deadline} dateTime={TASK_DEADLINE}>
+      {!isDone && (
+        <time className={styles.deadline} dateTime={deadline}>
           <CiCalendar aria-hidden="true" focusable="false" />
-          {formatDate(TASK_DEADLINE)}
-          <span className="sr-only">, {formatDate(TASK_DEADLINE)}</span>
+          {formatDate(deadline)}
         </time>
-      }
+      )}
     </article>
-  )
+  );
 }
 
-export default Task
+export default Task;

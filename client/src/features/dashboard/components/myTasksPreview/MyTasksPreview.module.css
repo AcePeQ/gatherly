@@ -9,7 +9,6 @@
   justify-content: space-between;
   gap: var(--space-xs);
 
-
   grid-area: tasks;
 }
 

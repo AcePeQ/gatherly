@@ -1,7 +1,8 @@
-import AppLink from '../../../../components/link/AppLink';
-import { PlaceholderCard1 } from '../../../../utils/featuredTripCardMock';
-import FeaturedTripCardLink from '../featuredTripCard/FeaturedTripCardLink';
-import styles from './UpcomingTrips.module.css';
+import AppLink from "../../../../components/link/AppLink";
+import { upcomingTripsMock } from "../../mocks/tripPreviews";
+import UpcomingTripCard from "../featuredTripCard/UpcomingTripCard";
+
+import styles from "./UpcomingTrips.module.css";
 
 function UpcomingTrips() {
   return (
@@ -12,15 +13,14 @@ function UpcomingTrips() {
       </header>
 
       <ul className={styles.list}>
-        <li className={styles.listItem}>
-          <FeaturedTripCardLink {...PlaceholderCard1} isFeaturedCard={false} />
-        </li>
-        <li className={styles.listItem}>
-          <FeaturedTripCardLink {...PlaceholderCard1} isFeaturedCard={false} />
-        </li>
+        {upcomingTripsMock.map((trip) => (
+          <li className={styles.listItem} key={trip.id}>
+            <UpcomingTripCard {...trip} />
+          </li>
+        ))}
       </ul>
     </section>
-  )
+  );
 }
 
-export default UpcomingTrips
+export default UpcomingTrips;
