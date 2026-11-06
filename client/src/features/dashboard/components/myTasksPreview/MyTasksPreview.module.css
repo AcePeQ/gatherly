@@ -26,6 +26,10 @@
   color: var(--ld-text-muted);
 }
 
+.link {
+  text-align: center;
+}
+
 .list {
   display: flex;
   flex-direction: column;
