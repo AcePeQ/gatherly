@@ -1,9 +1,7 @@
 .card {
   padding: var(--space-s);
-
   border: 1.5px solid var(--ld-border);
   border-radius: 16px;
-
   background-color: var(--ld-surface);
 
   display: flex;

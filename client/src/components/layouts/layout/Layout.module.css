@@ -1,3 +1,4 @@
-.authPage {
+.wrapper {
   display: flex;
+  min-block-size: 100dvb;
 }

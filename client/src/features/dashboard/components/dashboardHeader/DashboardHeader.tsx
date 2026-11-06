@@ -10,7 +10,7 @@ function DashboardHeader() {
   return (
     <header className={styles.header}>
       <div>
-        <h1 className={styles.title}>Hi, {firstName ?? "there"}</h1>
+        <h1 className={styles.title}>Hi, {firstName || "there"}</h1>
         <p className={styles.text}>Your next adventure, all in one place.</p>
       </div>
 

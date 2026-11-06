@@ -6,7 +6,7 @@ import BrandPanel from "../../brandPanel/BrandPanel";
 function Layout() {
   return (
     <div className="container">
-      <div className={styles.authPage}>
+      <div className={styles.wrapper}>
         <BrandPanel />
         <Outlet />
       </div>

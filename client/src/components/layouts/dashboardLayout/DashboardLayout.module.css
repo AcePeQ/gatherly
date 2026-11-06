@@ -1,8 +1,6 @@
 .wrapper {
   display: grid;
   grid-template-columns: 22rem minmax(0, 1fr);
-  block-size: 100dvb;
-  overflow: hidden;
 }
 
 .content {

@@ -5,7 +5,10 @@ import styles from './MyTasksPreview.module.css';
 function MyTasksPreview() {
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.title}>My tasks</h2>
+      <hgroup className={styles.titleHeader}>
+        <h2 className={styles.title}>My tasks</h2>
+        <p className={styles.subtitle}>A few things before you go</p>
+      </hgroup>
 
       <ul className={styles.list}>
         <li className={styles.listItem}><Task /></li>
