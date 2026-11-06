@@ -6,7 +6,7 @@
     "featureCard featureCard featureCard tasks tasks"
     "upcomingTrips upcomingTrips upcomingTrips upcomingTrips upcomingTrips";
 
-  gap: var(--space-s);
+  gap: var(--space-l);
 
   align-content: start;
 }
