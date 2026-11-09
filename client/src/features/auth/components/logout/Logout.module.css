@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
 
-  padding-inline: var(--space-m);
+  padding-inline: var(--space-s);
   padding-block: var(--space-xs);
   gap: var(--space-xs);
 
@@ -23,14 +23,14 @@
 }
 
 .infoWrapper .name {
-  font-size: var(--fs-1);
-  font-weight: 600;
+  font-size: var(--fs-0);
+  font-weight: 500;
 
   color: var(--ld-text);
 }
 
 .infoWrapper .email {
-  font-size: var(--fs-0);
+  font-size: var(--fs--1);
   font-weight: 500;
 
   color: var(--ld-text-muted);
@@ -46,8 +46,8 @@
   justify-content: center;
 
   flex-shrink: 0;
-  inline-size: 44px;
-  block-size: 44px;
+  inline-size: 30px;
+  block-size: 30px;
 
   border-radius: 6px;
 
@@ -60,10 +60,10 @@
 
 
   svg {
-    width: 32px;
-    height: 32px;
-    inline-size: 32px;
-    block-size: 32px;
+    width: 28px;
+    height: 28px;
+    inline-size: 28px;
+    block-size: 28px;
   }
 }
 

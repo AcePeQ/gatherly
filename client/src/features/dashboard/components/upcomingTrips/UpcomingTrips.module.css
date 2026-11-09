@@ -17,7 +17,7 @@
 
 .list {
   display: flex;
-  gap: var(--space-s);
+  gap: var(--space-l);
 }
 
 .list>* {

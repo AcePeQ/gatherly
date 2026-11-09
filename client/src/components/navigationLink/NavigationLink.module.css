@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: flex-start;
 
-  font-size: var(--fs-1);
+  font-size: var(--fs-0);
+  font-weight: 500;
 }
 
 .settingsLink {
@@ -22,8 +23,8 @@
   inline-size: 100%;
 
   gap: var(--space-xs);
-  padding: var(--space-2xs);
-  padding-inline-start: var(--space-m);
+  padding: var(--space-xs);
+  padding-inline-start: var(--space-s);
   border-radius: 6px;
 
   color: var(--ld-text-muted);
@@ -66,7 +67,7 @@
 .link.activeLink:hover {
   color: var(--ld-on-highlight);
   background-color: var(--ld-highlight);
-  font-weight: 600;
+  font-weight: 500;
 
   position: relative;
   overflow: hidden;

@@ -1,6 +1,6 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 22rem minmax(0, 1fr);
+  grid-template-columns: 18.75rem minmax(0, 1fr);
 }
 
 .content {
