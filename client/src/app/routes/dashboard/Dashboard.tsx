@@ -8,7 +8,7 @@ import styles from "./Dashboard.module.css";
 
 function Dashboard() {
   return (
-    <main id="main-content" className={`${styles.section} wrapper-padding`}>
+    <main id="main-content" className={styles.section}>
       <DashboardHeader />
 
       <FeaturedTripCard {...featuredTripMock} />

@@ -58,7 +58,7 @@ function NavigationDropdown({ label, icon, children }: NavigationDropdownItem) {
         style={{ overflow: "hidden" }}>
         <ul className={styles.dropdownItems} >
           {children.map(navigationLink => <NavigationLink key={navigationLink.path} type={navigationLink.type}
-            label={navigationLink.label} icon={navigationLink.icon} path={navigationLink.path} />)}
+            label={navigationLink.label} icon={navigationLink.icon} path={navigationLink.path} end={navigationLink.end} />)}
         </ul>
       </motion.div>
 

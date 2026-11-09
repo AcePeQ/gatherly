@@ -12,6 +12,7 @@ import NotFound from "./routes/notFound/NotFound";
 import RequireAuth from "./routes/requireAuth/RequireAuth";
 import ResetPassword from "./routes/resetPassword/ResetPassword";
 import SuccessResetPassword from "./routes/successResetPassword/SuccessResetPassword";
+import Trips from "./routes/trips/Trips";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard",
             Component: DashboardLayout,
-            children: [{ index: true, Component: Dashboard }],
+            children: [
+              { index: true, Component: Dashboard },
+              { path: "trips", Component: Trips }
+            ],
           },
         ],
       },

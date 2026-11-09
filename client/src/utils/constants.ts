@@ -8,16 +8,16 @@ import { FaList } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 
 export const mainNavigation: MainNavigation = [
-  { type: "link", path: "/dashboard", label: "Dashboard", icon: MdSpaceDashboard },
+  { type: "link", path: "/dashboard", end: true, label: "Dashboard", icon: MdSpaceDashboard },
   {
     type: "dropdown", label: "Trips", children: [
-      { type: "link", path: "/trips", end: true, label: "All Trips", icon: FaList },
-      { type: "link", path: "/trips/create", label: "Create a trip", icon: FaPlus }
+      { type: "link", path: "trips", end: true, label: "My Trips", icon: FaList },
+      { type: "link", path: "trips/create", label: "Create a trip", icon: FaPlus }
     ],
     icon: GiJourney
   },
-  { type: "link", path: "/tasks", label: "Tasks", icon: FaTasks },
-  { type: "link", path: "/settings", label: "Settings", icon: IoMdSettings }
+  { type: "link", path: "tasks", label: "Tasks", icon: FaTasks },
+  { type: "link", path: "settings", label: "Settings", icon: IoMdSettings }
 ]
 
 export const PASSWORD_MIN_LENGTH = 8;

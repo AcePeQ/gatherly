@@ -6,4 +6,7 @@
 .content {
   min-block-size: 0;
   overflow-y: auto;
+
+  padding-block: var(--space-m);
+  padding-inline: var(--space-3xl);
 }
