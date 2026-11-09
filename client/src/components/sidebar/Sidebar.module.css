@@ -9,7 +9,11 @@
   border-inline-end: 1.5px solid var(--ld-border);
 
   min-block-size: 0;
+  max-block-size: 100dvb;
   overflow-y: auto;
+
+  position: sticky;
+  top: 0;
 }
 
 .logoLink {

@@ -122,12 +122,47 @@
 
   --ld-warning: light-dark(#92400e, #fcd34d);
   --ld-warning-background: light-dark(#fffbeb, #3a2c13);
+
+  --ld-scrollbar-track: transparent;
+  --ld-scrollbar-thumb: light-dark(#9aa7b5, #53677c);
+  --ld-scrollbar-thumb-hover: light-dark(#6f7f90, #7890a8);
+  --ld-scrollbar-thumb-active: var(--ld-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --motion-duration-fast: 0ms;
   }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ld-scrollbar-thumb) var(--ld-scrollbar-track);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--ld-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ld-scrollbar-thumb);
+  background-clip: padding-box;
+
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ld-scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--ld-scrollbar-thumb-active);
 }
 
 *:focus-visible {
