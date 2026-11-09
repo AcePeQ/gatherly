@@ -8,13 +8,13 @@ import styles from "./Dashboard.module.css";
 
 function Dashboard() {
   return (
-    <main id="main-content" className={styles.section}>
+    <div className={styles.wrapper}>
       <DashboardHeader />
 
       <FeaturedTripCard {...featuredTripMock} />
       <MyTasksPreview />
       <UpcomingTrips />
-    </main>
+    </div>
   );
 }
 
