@@ -10,6 +10,9 @@ function NavigationDropdown({ label, icon, children }: NavigationDropdownItem) {
   const location = useLocation();
   const shouldReduceMotion = useReducedMotion();
 
+  console.log(location.pathname)
+  console.log(children.map(link => link.path))
+
   const hasActiveChild = children.some(
     (link) =>
       location.pathname === link.path ||

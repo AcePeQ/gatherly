@@ -11,8 +11,8 @@ export const mainNavigation: MainNavigation = [
   { type: "link", path: "/dashboard", end: true, label: "Dashboard", icon: MdSpaceDashboard },
   {
     type: "dropdown", label: "Trips", children: [
-      { type: "link", path: "trips", end: true, label: "My Trips", icon: FaList },
-      { type: "link", path: "trips/create", label: "Create a trip", icon: FaPlus }
+      { type: "link", path: "/dashboard/trips", end: true, label: "My Trips", icon: FaList },
+      { type: "link", path: "dashboard/trips/create", label: "Create a trip", icon: FaPlus }
     ],
     icon: GiJourney
   },
