@@ -1,4 +1,5 @@
 import ButtonLink from '../../../components/link/ButtonLink';
+import TripsGallery from '../../../features/trips/components/tripsGallery/TripsGallery';
 import styles from './Trips.module.css';
 
 function Trips() {
@@ -14,6 +15,8 @@ function Trips() {
           Create trip
         </ButtonLink>
       </header>
+
+      <TripsGallery />
     </div>
   )
 }
