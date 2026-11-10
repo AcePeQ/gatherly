@@ -1,5 +1,5 @@
+import TripCard from "../../../../components/tripCard/TripCard";
 import { upcomingTripsMock } from "../../mocks/tripPreviews";
-import UpcomingTripCard from "../featuredTripCard/UpcomingTripCard";
 
 import styles from "./UpcomingTrips.module.css";
 
@@ -13,7 +13,7 @@ function UpcomingTrips() {
       <ul className={styles.list}>
         {upcomingTripsMock.map((trip) => (
           <li className={styles.listItem} key={trip.id}>
-            <UpcomingTripCard {...trip} />
+            <TripCard {...trip} />
           </li>
         ))}
       </ul>

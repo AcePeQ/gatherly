@@ -1,0 +1,90 @@
+.card {
+  border: 1.5px solid var(--ld-border);
+  border-radius: 16px;
+  background-color: var(--ld-surface);
+
+  transition: border-color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.cardLink {
+  display: block;
+  padding: var(--space-s);
+  border-radius: inherit;
+}
+
+.card:has(.cardLink:hover) {
+  border-color: var(--ld-primary);
+}
+
+.card:has(.cardLink:focus-visible) {
+  border-color: var(--ld-focus);
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.image {
+  display: block;
+  inline-size: 100%;
+  max-block-size: 14rem;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 6px;
+}
+
+.badge {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+
+  padding-inline: var(--space-xs);
+  padding-block: var(--space-2xs);
+  border-radius: 6px;
+
+  color: var(--ld-accent-text);
+  background-color: var(--ld-accent-background);
+
+  font-size: var(--fs--1);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.content {
+  margin-inline-start: var(--space-3xs);
+  margin-block-start: var(--space-2xs);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.cardTitle {
+  margin-block-start: 4px;
+  font-size: var(--fs-2);
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+.travelers,
+.place {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xs);
+
+  color: var(--ld-text-muted);
+  font-size: var(--fs-0);
+  font-weight: 500;
+
+  svg {
+    width: 1.3em;
+    height: 1.3em;
+  }
+}

@@ -3,11 +3,11 @@ import { FiUsers } from "react-icons/fi";
 
 import ButtonLink from "../../../../components/link/ButtonLink";
 import TripDateRange from "../../../../components/tripDateRange/TripDateRange";
-import type { TripPreview } from "../../types/tripPreview";
+import type { TripPreview } from "../../../../types/trip";
 import {
   formatTravelersCount,
   getTripTimingLabel,
-} from "../../utils/tripPreviewFormatters";
+} from "../../../../utils/tripFormatters";
 
 import styles from "./FeaturedTripCard.module.css";
 

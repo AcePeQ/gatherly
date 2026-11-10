@@ -1,5 +1,5 @@
 import placeholderImage from "../../../assets/images/featureCardPlaceholder.jpg";
-import type { TripPreview } from "../types/tripPreview";
+import type { TripPreview } from "../../../types/trip";
 
 export const featuredTripMock: TripPreview = {
   id: 1,

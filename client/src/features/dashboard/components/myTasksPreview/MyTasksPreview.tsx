@@ -17,6 +17,8 @@ function MyTasksPreview() {
     );
   }
 
+  console.log(tasks)
+
   return (
     <section className={styles.wrapper}>
       <hgroup>

@@ -13,24 +13,6 @@
   transition: border-color var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
-.card.upcomingCard {
-  padding: 0;
-}
-
-.card .cardLink {
-  display: block;
-  padding: var(--space-s);
-  border-radius: inherit;
-}
-
-.card:has(.cardLink:hover) {
-  border-color: var(--ld-primary);
-}
-
-.card:has(.cardLink:focus-visible) {
-  border-color: var(--ld-focus);
-}
-
 .imageWrapper {
   position: relative;
 }
@@ -97,11 +79,6 @@
   font-size: var(--fs-3);
 }
 
-.card.upcomingCard .cardTitle {
-  font-size: var(--fs-2);
-  margin-block-start: 4px;
-}
-
 .cardSubtitle {
   font-size: var(--fs--1);
   text-transform: uppercase;
@@ -111,7 +88,6 @@
   letter-spacing: 1px;
 }
 
-.date,
 .travelers,
 .place {
   font-size: var(--fs-0);
