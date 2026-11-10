@@ -11,6 +11,16 @@ export const featuredTripMock: TripPreview = {
   place: "Gdansk, Poland",
 };
 
+export const tripCardMock: TripPreview = {
+  id: 2,
+  imageUrl: placeholderImage,
+  title: "City break in Prague",
+  startDate: "2027-05-14",
+  endDate: "2027-05-17",
+  travelersCount: 2,
+  place: "Prague, Czechia",
+}
+
 export const upcomingTripsMock: TripPreview[] = [
   {
     id: 2,

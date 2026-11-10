@@ -1,3 +1,18 @@
+.tripsSection {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-l);
+}
+
 .searchWrapper {
   max-inline-size: 30rem;
+}
+
+.tripsList {
+  --min-col-size: 450px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--min-col-size), 100%), 1fr));
+  gap: var(--space-m);
 }

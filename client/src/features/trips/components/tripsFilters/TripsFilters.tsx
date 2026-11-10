@@ -32,7 +32,7 @@ const TRIPS_STATUS: TripStatusItem[] = [
 function TripsFilters({ upcoming, onGoing, past, activeFilter, onFilterClick }: TripsFiltersProps) {
   return (
     <div className={styles.wrapper}>
-      <ul>
+      <ul className={styles.list}>
         {TRIPS_STATUS.map(status => {
           const statusCount = status.id === "upcoming" ? upcoming : status.id === "onGoing" ? onGoing : past;
 

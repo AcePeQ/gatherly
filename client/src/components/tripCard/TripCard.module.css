@@ -68,8 +68,10 @@
 
 .details {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-l);
+  column-gap: var(--space-l);
+  row-gap: var(--space-xs);
 }
 
 .travelers,

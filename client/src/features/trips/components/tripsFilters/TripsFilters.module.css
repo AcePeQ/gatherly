@@ -1,0 +1,28 @@
+.list {
+  display: flex;
+  gap: var(--space-l);
+}
+
+.statusBtn {
+  display: inline-block;
+  color: var(--ld-text-muted);
+
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.statusBtn.activeFilter {
+  font-weight: 600;
+  color: var(--ld-primary);
+}
+
+.statusBtn:hover {
+  color: var(--ld-primary-hover);
+}
+
+.statusBtn:focus-visible {
+  color: var(--ld-primary-hover);
+}
+
+.statusBtn:active {
+  color: var(--ld-primary);
+}

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Search from '../../../../components/search/Search';
 import styles from './TripsGallery.module.css';
 import TripsFilters from '../tripsFilters/TripsFilters';
+import TripCard from '../../../../components/tripCard/TripCard';
+import { tripCardMock } from '../../../dashboard/mocks/tripPreviews';
 
 export type FilterStatus = "upcoming" | "onGoing" | "past"
 
@@ -20,6 +22,17 @@ function TripsGallery() {
       </div>
 
       <TripsFilters upcoming={0} onGoing={0} past={0} activeFilter={activeFilter} onFilterClick={handleFilterClick} />
+
+      <div className={styles.tripsWrapper}>
+        <ul className={styles.tripsList}>
+          <li className={styles.tripsItem}>
+            <TripCard {...tripCardMock} />
+          </li>
+          <li className={styles.tripsItem}>
+            <TripCard {...tripCardMock} />
+          </li>
+        </ul>
+      </div>
     </section>
   )
 }
