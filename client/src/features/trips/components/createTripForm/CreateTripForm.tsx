@@ -4,6 +4,7 @@ import type { CreateTripValues } from '../../schemas/createTripSchema';
 import InputField from '../../../../components/inputField/InputField';
 import Button from '../../../../components/button/Button';
 import ButtonLink from '../../../../components/link/ButtonLink';
+import TextareaField from '../../../../components/textareaField/TextareaField';
 
 
 function CreateTripForm() {
@@ -11,8 +12,8 @@ function CreateTripForm() {
     defaultValues: {
       tripName: "",
       destination: "",
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: "",
+      endDate: "",
       description: "",
       coverImageUrl: ""
     }
@@ -23,23 +24,33 @@ function CreateTripForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onCreateTripSubmit)}>
-      <InputField label='Trip name' placeholder='Name your trip, whether you want...' />
+      <div className={styles.formHeader}>
+        <h2>Trip details</h2>
+        <p>Basic information about your adventure.</p>
+      </div>
+
+      <InputField type='text' label='Trip name' placeholder='Name your trip, whether you want...' {...register("tripName")} />
       <InputField label='Destination' />
 
       <div className={styles.row}>
-        <InputField label='Start date' />
-        <InputField label='End date' />
+        <InputField type='date' label='Start date' error={errors.startDate?.message} {...register("startDate")} />
+        <InputField type='date' label='End date' error={errors.endDate?.message} {...register("endDate")} />
       </div>
 
-      <InputField label='Description (optional)' placeholder='A few words about your trip...' />
+      <TextareaField label='Description (optional)' placeholder='A few words about your trip...' {...register("description")} />
 
-      <InputField label='Cover image URL (optional)' type="url" placeholder='https://...' />
+      <InputField label='Cover image URL (optional)' type="url" placeholder='https://...' {...register("coverImageUrl")} />
 
       <p className={styles.formInformation}>You'll become the owner. Invite your friends after creating the trip.</p>
 
-      <div className={styles.ctaWrapper}>
-        <ButtonLink className={styles.ctaBtn} to="/dashboard" variant='secondary'>Return to dashboard</ButtonLink>
-        <Button className={styles.ctaBtn} variant='primary' type='submit'>Create trip</Button>
+      <div className={styles.actions}>
+        <ButtonLink variant="secondary" to="/dashboard/trips">
+          Cancel
+        </ButtonLink>
+
+        <Button variant="primary" type="submit">
+          Create trip
+        </Button>
       </div>
     </form>
   )
