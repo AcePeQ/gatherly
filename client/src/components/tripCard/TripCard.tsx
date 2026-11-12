@@ -24,7 +24,7 @@ function TripCard({
 
   return (
     <article className={styles.card}>
-      <Link className={styles.cardLink} to={`/trips/${id}`}>
+      <Link className={styles.cardLink} to={`/dashboard/trips/${id}`}>
         <div className={styles.imageWrapper}>
           <img className={styles.image} src={imageUrl} alt="" />
           <span className={styles.badge}>{timingLabel}</span>

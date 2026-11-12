@@ -12,7 +12,7 @@ export const mainNavigation: MainNavigation = [
   {
     type: "dropdown", label: "Trips", children: [
       { type: "link", path: "/dashboard/trips", end: true, label: "My Trips", icon: FaList },
-      { type: "link", path: "dashboard/trips/create", label: "Create a trip", icon: FaPlus }
+      { type: "link", path: "/dashboard/trips/create", label: "Create a trip", icon: FaPlus }
     ],
     icon: GiJourney
   },

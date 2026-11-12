@@ -6,6 +6,7 @@
 .statusBtn {
   display: inline-block;
   color: var(--ld-text-muted);
+  font-weight: 500;
 
   transition: color var(--motion-duration-fast) var(--motion-ease-standard);
 }

@@ -18,7 +18,7 @@ function Search({ ...props }: SearchProps) {
     </span>
     <input
       {...props}
-      type='text'
+      type="search"
       id={id}
       name={`search-${id}`}
       className={inputClassName}

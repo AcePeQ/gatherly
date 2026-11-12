@@ -14,7 +14,7 @@ function DashboardHeader() {
         <p className={styles.text}>Your next adventure, all in one place.</p>
       </div>
 
-      <ButtonLink variant="primary" to="/trips/create">
+      <ButtonLink variant="primary" to="/dashboard/trips/create">
         Create trip
       </ButtonLink>
     </header>

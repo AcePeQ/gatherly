@@ -1,27 +1,46 @@
-import { useState } from 'react';
-import Search from '../../../../components/search/Search';
-import styles from './TripsGallery.module.css';
-import TripsFilters from '../tripsFilters/TripsFilters';
-import TripCard from '../../../../components/tripCard/TripCard';
-import { tripCardMock } from '../../../dashboard/mocks/tripPreviews';
+import { useState } from "react";
 
-export type FilterStatus = "upcoming" | "onGoing" | "past"
+import Search from "../../../../components/search/Search";
+import TripCard from "../../../../components/tripCard/TripCard";
+import { tripCardMock } from "../../../dashboard/mocks/tripPreviews";
+import type { TripStatus } from "../../types/tripStatus";
+import TripsFilters from "../tripsFilters/TripsFilters";
+
+import styles from "./TripsGallery.module.css";
 
 function TripsGallery() {
   const [query, setQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState<FilterStatus>("upcoming")
+  const [activeFilter, setActiveFilter] =
+    useState<TripStatus>("upcoming");
 
-  function handleFilterClick(status: FilterStatus) {
-    setActiveFilter(status)
+  function handleFilterClick(status: TripStatus) {
+    setActiveFilter(status);
   }
 
   return (
-    <section className={styles.tripsSection}>
+    <section
+      aria-labelledby="trips-gallery-title"
+      className={styles.tripsSection}
+    >
+      <h2 id="trips-gallery-title" className="sr-only">
+        Trips
+      </h2>
+
       <div className={styles.searchWrapper}>
-        <Search value={query} onChange={(event) => setQuery(event.target.value)} placeholder='Search by trip name or place' />
+        <Search
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search by trip name or place"
+        />
       </div>
 
-      <TripsFilters upcoming={0} onGoing={0} past={0} activeFilter={activeFilter} onFilterClick={handleFilterClick} />
+      <TripsFilters
+        upcoming={0}
+        ongoing={0}
+        past={0}
+        activeFilter={activeFilter}
+        onFilterClick={handleFilterClick}
+      />
 
       <div className={styles.tripsWrapper}>
         <ul className={styles.tripsList}>
@@ -34,7 +53,7 @@ function TripsGallery() {
         </ul>
       </div>
     </section>
-  )
+  );
 }
 
-export default TripsGallery
+export default TripsGallery;

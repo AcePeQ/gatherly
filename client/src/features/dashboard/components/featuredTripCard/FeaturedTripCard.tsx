@@ -51,7 +51,7 @@ function FeaturedTripCard({
           <ButtonLink
             className={styles.viewTripBtn}
             variant="secondary"
-            to={`/trips/${id}`}
+            to={`/dashboard/trips/${id}`}
           >
             View trip
           </ButtonLink>
