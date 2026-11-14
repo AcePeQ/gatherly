@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import "./assets/styles/reset.css"
 import "./assets/styles/fonts.css"
+import "react-datepicker/dist/react-datepicker.css";
 import "./assets/styles/index.css"
 import App from './app/App'
 

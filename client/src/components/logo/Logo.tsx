@@ -16,12 +16,7 @@ const logoSources: Record<LogoVariant, string> = {
   light: lightLogo,
 };
 
-function Logo({
-  variant = "default",
-  alt = "Gatherly",
-  className,
-  ...imageProps
-}: LogoProps) {
+function Logo({ variant = "default", alt = "Gatherly", className, ...imageProps }: LogoProps) {
   const logoClassName = [styles.logo, className].filter(Boolean).join(" ");
 
   return (
