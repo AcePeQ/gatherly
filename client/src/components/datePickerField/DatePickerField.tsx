@@ -1,5 +1,7 @@
-import DatePicker from 'react-datepicker'
-import InputField from '../inputField/InputField'
+import DatePicker from "react-datepicker";
+import InputField from "../inputField/InputField";
+
+import styles from "./DatePickerField.module.css";
 
 type DatePickerFieldProps = {
   label: string;
@@ -9,12 +11,37 @@ type DatePickerFieldProps = {
   onChange: (date: Date | null) => void;
   onBlur?: () => void;
   minDate?: Date;
-}
+};
 
-function DatePickerField({ label, error, selected, onChange, onBlur, minDate }: DatePickerFieldProps) {
+function DatePickerField({
+  label,
+  error,
+  selected,
+  onChange,
+  onBlur,
+  minDate,
+}: DatePickerFieldProps) {
   return (
-    <DatePicker selected={selected} onChange={onChange} onBlur={onBlur} minDate={minDate} customInput={<InputField label={label} error={error} />} />
-  )
+    <div className={styles.field}>
+      <DatePicker
+        selected={selected}
+        onChange={onChange}
+        onBlur={onBlur}
+        minDate={minDate}
+        customInput={
+          <InputField
+            label={label}
+            error={error}
+          />
+        }
+        showPopperArrow={false}
+        dateFormat="dd.MM.yyyy"
+        wrapperClassName={styles.wrapper}
+        calendarClassName={styles.calendar}
+        popperClassName={styles.popper}
+      />
+    </div>
+  );
 }
 
-export default DatePickerField
+export default DatePickerField;
