@@ -1,4 +1,4 @@
-import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import { Controller, useForm, useWatch, type SubmitHandler } from "react-hook-form";
 import styles from "./CreateTripForm.module.css";
 import { createTripSchema, type CreateTripValues } from "../../schemas/createTripSchema";
 import InputField from "../../../../components/inputField/InputField";
@@ -27,6 +27,11 @@ function CreateTripForm() {
     },
   });
 
+  const startDate = useWatch({
+    control,
+    name: "startDate",
+  });
+
   const onCreateTripSubmit: SubmitHandler<CreateTripValues> = (data) => {
     console.log(data);
   };
@@ -48,7 +53,12 @@ function CreateTripForm() {
         placeholder="Name your trip, whether you want..."
         {...register("tripName")}
       />
-      <InputField label="Destination" />
+      <InputField
+        label="Destination"
+        placeholder="e.g. Rome, Italy"
+        error={errors.destination?.message}
+        {...register("destination")}
+      />
 
       <div className={styles.row}>
         <Controller
@@ -76,7 +86,7 @@ function CreateTripForm() {
               selected={value ? parseDateOnly(value) : null}
               onChange={(data) => onChange(data ? formatDateToString(data) : "")}
               onBlur={onBlur}
-              minDate={new Date()}
+              minDate={startDate ? parseDateOnly(startDate) : new Date()}
             />
           )}
         />

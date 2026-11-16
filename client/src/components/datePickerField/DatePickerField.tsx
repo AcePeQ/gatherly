@@ -1,4 +1,6 @@
 import DatePicker from "react-datepicker";
+import { CiCalendar } from "react-icons/ci";
+
 import InputField from "../inputField/InputField";
 
 import styles from "./DatePickerField.module.css";
@@ -39,6 +41,9 @@ function DatePickerField({
         wrapperClassName={styles.wrapper}
         calendarClassName={styles.calendar}
         popperClassName={styles.popper}
+        showIcon
+        icon={<CiCalendar aria-hidden="true" focusable="false" />}
+        calendarIconClassName={styles.inputIcon}
       />
     </div>
   );

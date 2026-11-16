@@ -8,6 +8,47 @@
   inline-size: 100%;
 }
 
+.field :global(.react-datepicker__view-calendar-icon) input {
+  padding-inline-start: var(--space-s);
+  padding-inline-end: calc(var(--space-l) + var(--space-xs));
+}
+
+.field :global(.react-datepicker__input-container) .inputIcon {
+  inset-block-start: calc(
+    1.5em + var(--space-3xs) + var(--space-xs) + var(--space-3xs)
+  );
+  inset-inline-end: var(--space-xs);
+  z-index: 1;
+
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  padding: 0;
+  box-sizing: border-box;
+
+  color: var(--ld-text-muted);
+  pointer-events: none;
+
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.field
+  :global(.react-datepicker__input-container):has(input:hover)
+  .inputIcon {
+  color: var(--ld-primary-hover);
+}
+
+.field
+  :global(.react-datepicker__input-container):has(input:focus-visible)
+  .inputIcon {
+  color: var(--ld-focus);
+}
+
+.field
+  :global(.react-datepicker__input-container):has(input[aria-invalid="true"])
+  .inputIcon {
+  color: var(--ld-error);
+}
+
 .popper {
   z-index: 20;
 }
@@ -105,3 +146,4 @@
 .calendar :global(.react-datepicker__navigation--next) {
   top: 8px;
 }
+
