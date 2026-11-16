@@ -1,15 +1,19 @@
-import AppLink from '../../../components/link/AppLink';
-import CreateTripForm from '../../../features/trips/components/createTripForm/CreateTripForm';
+import AppLink from "../../../components/link/AppLink";
+import CreateTripForm from "../../../features/trips/components/createTripForm/CreateTripForm";
 
 import { FaArrowLeftLong } from "react-icons/fa6";
-import styles from './CreateTrip.module.css';
+import styles from "./CreateTrip.module.css";
 
 function CreateTrip() {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <AppLink to="/dashboard/trips">
-          <FaArrowLeftLong focusable={false} aria-hidden={true} /> Back to trips
+          <FaArrowLeftLong
+            focusable={false}
+            aria-hidden={true}
+          />{" "}
+          Back to trips
         </AppLink>
 
         <h1 className={styles.title}>Create a trip</h1>
@@ -18,12 +22,11 @@ function CreateTrip() {
         </p>
       </header>
 
-
       <div className={styles.formWrapper}>
         <CreateTripForm />
       </div>
     </div>
-  )
+  );
 }
 
-export default CreateTrip
+export default CreateTrip;

@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.title {
+  font-size: var(--fs-3);
+  line-height: 1.45;
+
+  margin-block-start: var(--space-2xs);
+}
+
+.text {
+  margin-block-start: 0.3rem;
+  color: var(--ld-text-muted);
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+
+  gap: var(--space-3xs);
+  color: var(--ld-text-muted);
+
+  font-size: var(--fs--1);
+}

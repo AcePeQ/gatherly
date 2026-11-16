@@ -14,6 +14,7 @@ import ResetPassword from "./routes/resetPassword/ResetPassword";
 import SuccessResetPassword from "./routes/successResetPassword/SuccessResetPassword";
 import Trips from "./routes/trips/Trips";
 import CreateTrip from "./routes/createTrip/CreateTrip";
+import Trip from "./routes/trip/Trip";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,8 @@ const router = createBrowserRouter([
             children: [
               { index: true, Component: Dashboard },
               { path: "trips", Component: Trips },
-              { path: "trips/create", Component: CreateTrip }
+              { path: "trips/:id/:tripName", Component: Trip },
+              { path: "trips/create", Component: CreateTrip },
             ],
           },
         ],

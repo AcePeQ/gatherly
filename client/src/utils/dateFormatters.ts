@@ -1,6 +1,6 @@
-const dateFormatter = new Intl.DateTimeFormat('en-GB', {
-  dateStyle: 'medium',
-  timeZone: 'UTC',
+const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+  dateStyle: "medium",
+  timeZone: "UTC",
 });
 
 export function parseDateOnly(date: string) {
@@ -12,12 +12,8 @@ export function formatDate(date: string) {
 }
 
 export function formatDateRange(startDate: string, endDate: string) {
-  return dateFormatter.formatRange(
-    parseDateOnly(startDate),
-    parseDateOnly(endDate),
-  );
+  return dateFormatter.formatRange(parseDateOnly(startDate), parseDateOnly(endDate));
 }
-
 
 export function formatDateToString(date: Date) {
   const year = date.getFullYear();
@@ -25,4 +21,10 @@ export function formatDateToString(date: Date) {
   const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
+}
+
+export function parseDateOnlyDatePicker(value: string) {
+  const [year, month, day] = value.split("-").map(Number);
+
+  return new Date(year, month - 1, day);
 }

@@ -3,30 +3,26 @@ import { FiUsers } from "react-icons/fi";
 import { Link } from "react-router";
 
 import type { TripPreview } from "../../types/trip";
-import {
-  formatTravelersCount,
-  getTripTimingLabel,
-} from "../../utils/tripFormatters";
+import { formatTravelersCount, getTripTimingLabel } from "../../utils/tripFormatters";
 import TripDateRange from "../tripDateRange/TripDateRange";
 
 import styles from "./TripCard.module.css";
 
-function TripCard({
-  id,
-  imageUrl,
-  place,
-  title,
-  startDate,
-  endDate,
-  travelersCount,
-}: TripPreview) {
+function TripCard({ id, imageUrl, place, title, startDate, endDate, travelersCount }: TripPreview) {
   const timingLabel = getTripTimingLabel(startDate, endDate);
 
   return (
     <article className={styles.card}>
-      <Link className={styles.cardLink} to={`/dashboard/trips/${id}`}>
+      <Link
+        className={styles.cardLink}
+        to={`/dashboard/trips/${id}/weekend-in-gdansk`}
+      >
         <div className={styles.imageWrapper}>
-          <img className={styles.image} src={imageUrl} alt="" />
+          <img
+            className={styles.image}
+            src={imageUrl}
+            alt=""
+          />
           <span className={styles.badge}>{timingLabel}</span>
         </div>
 
@@ -35,14 +31,23 @@ function TripCard({
 
           <div className={styles.details}>
             <p className={styles.place}>
-              <FaMapMarkerAlt aria-hidden="true" focusable="false" />
+              <FaMapMarkerAlt
+                aria-hidden="true"
+                focusable="false"
+              />
               {place}
             </p>
             <p className={styles.travelers}>
-              <FiUsers aria-hidden="true" focusable="false" />
+              <FiUsers
+                aria-hidden="true"
+                focusable="false"
+              />
               {formatTravelersCount(travelersCount)}
             </p>
-            <TripDateRange startDate={startDate} endDate={endDate} />
+            <TripDateRange
+              startDate={startDate}
+              endDate={endDate}
+            />
           </div>
         </div>
       </Link>

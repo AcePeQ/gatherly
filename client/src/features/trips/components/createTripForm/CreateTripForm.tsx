@@ -6,7 +6,7 @@ import Button from "../../../../components/button/Button";
 import ButtonLink from "../../../../components/link/ButtonLink";
 import TextareaField from "../../../../components/textareaField/TextareaField";
 import DatePickerField from "../../../../components/datePickerField/DatePickerField";
-import { formatDateToString, parseDateOnly } from "../../../../utils/dateFormatters";
+import { formatDateToString, parseDateOnlyDatePicker } from "../../../../utils/dateFormatters";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 function CreateTripForm() {
@@ -22,8 +22,8 @@ function CreateTripForm() {
       destination: "",
       startDate: "",
       endDate: "",
-      description: undefined,
-      coverImageUrl: undefined,
+      description: "",
+      coverImageUrl: "",
     },
   });
 
@@ -38,6 +38,7 @@ function CreateTripForm() {
 
   return (
     <form
+      noValidate
       className={styles.form}
       onSubmit={handleSubmit(onCreateTripSubmit)}
     >
@@ -68,8 +69,8 @@ function CreateTripForm() {
             <DatePickerField
               label="Start Date"
               error={errors.startDate?.message}
-              selected={value ? parseDateOnly(value) : null}
-              onChange={(data) => onChange(data ? formatDateToString(data) : "")}
+              selected={value ? parseDateOnlyDatePicker(value) : new Date()}
+              onChange={(date) => onChange(date ? formatDateToString(date) : "")}
               onBlur={onBlur}
               minDate={new Date()}
             />
@@ -83,10 +84,10 @@ function CreateTripForm() {
             <DatePickerField
               label="End Date"
               error={errors.endDate?.message}
-              selected={value ? parseDateOnly(value) : null}
-              onChange={(data) => onChange(data ? formatDateToString(data) : "")}
+              selected={value ? parseDateOnlyDatePicker(value) : new Date()}
+              onChange={(date) => onChange(date ? formatDateToString(date) : "")}
               onBlur={onBlur}
-              minDate={startDate ? parseDateOnly(startDate) : new Date()}
+              minDate={startDate ? parseDateOnlyDatePicker(startDate) : new Date()}
             />
           )}
         />
