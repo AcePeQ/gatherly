@@ -1,4 +1,5 @@
 import AppLink from "../../../components/link/AppLink";
+import TripDashboard from "../../../features/trips/components/tripDashboard/TripDashboard";
 import styles from "./Trip.module.css";
 
 function Trip() {
@@ -14,6 +15,10 @@ function Trip() {
         <h1 className={styles.title}>Weekend in Gdańsk</h1>
         <p className={styles.text}>Gdańsk, Poland, 23 - 25 Oct 2026</p>
       </header>
+
+      <div className={styles.tripDashboardWrapper}>
+        <TripDashboard />
+      </div>
     </div>
   );
 }
