@@ -1,39 +1,54 @@
 import styles from "./TripDashboardMenu.module.css";
 import { motion } from "motion/react";
 
-const TRIP_DASHBOARD_MENU = ["Overview", "Itinerary", "Tasks", "Expenses", "Members"] as const;
+const TRIP_DASHBOARD_MENU = [
+  { value: "overview", label: "Overview" },
+  { value: "itinerary", label: "Itinerary" },
+  { value: "tasks", label: "Tasks" },
+  { value: "expenses", label: "Expenses" },
+  { value: "members", label: "Members" },
+] as const;
 
-export type DashboardMenuItem = Lowercase<(typeof TRIP_DASHBOARD_MENU)[number]>;
+export type DashboardMenuItem = (typeof TRIP_DASHBOARD_MENU)[number]["value"];
 
-type TripDashboardMenuTripProps = {
-  currentActiveTab: DashboardMenuItem;
-  onClick: (btnValue: DashboardMenuItem) => void;
+type TripDashboardMenuProps = {
+  activeTab: DashboardMenuItem;
+  onTabChange: (tab: DashboardMenuItem) => void;
 };
 
-function TripDashboardMenu({ currentActiveTab, onClick }: TripDashboardMenuTripProps) {
+function TripDashboardMenu({ activeTab, onTabChange }: TripDashboardMenuProps) {
   return (
     <div className={styles.menu}>
-      <ul className={styles.menuList}>
-        {TRIP_DASHBOARD_MENU.map((label) => {
-          const normalizedLabel = label.toLowerCase() as DashboardMenuItem;
+      <ul
+        role="tablist"
+        aria-label="Trip sections"
+        className={styles.menuList}
+      >
+        {TRIP_DASHBOARD_MENU.map((tab) => {
+          const isActive = tab.value === activeTab;
 
           return (
             <li
-              key={normalizedLabel}
-              className={`${styles.listItem} ${normalizedLabel === currentActiveTab ? styles.active : ""}`}
+              key={tab.value}
+              className={`${styles.listItem} ${isActive ? styles.active : ""}`}
             >
               <button
                 type="button"
-                onClick={() => onClick(normalizedLabel)}
+                onClick={() => onTabChange(tab.value)}
                 className={styles.menuBtn}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`${tab.value}-panel`}
+                id={`${tab.value}-tab`}
               >
-                {label}
+                {tab.label}
               </button>
 
-              {normalizedLabel === currentActiveTab && (
+              {isActive && (
                 <motion.div
+                  aria-hidden="true"
                   className={styles.underline}
-                  layoutId="underline-tripdashboard"
+                  layoutId="trip-dashboard-underline"
                 />
               )}
             </li>

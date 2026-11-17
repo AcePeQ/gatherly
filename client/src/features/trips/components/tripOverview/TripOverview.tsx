@@ -13,23 +13,30 @@ function TripOverview() {
         />
       </figure>
 
-      <div className={styles.tripDetails}>
+      <div className={styles.tripDetailsWrapper}>
         <h3 className="sr-only">Trip details</h3>
 
-        <p className={styles.tripDetail}>
-          <span className={styles.tripDetailValue}>3</span>
-          <span className={styles.tripDetailText}>Days away</span>
-        </p>
+        <dl className={styles.tripDetails}>
+          <div className={styles.tripDetail}>
+            <dt className={styles.tripDetailText}>Days until start</dt>
+            <dd className={styles.tripDetailValue}>3</dd>
+          </div>
 
-        <p className={styles.tripDetail}>
-          <span className={styles.tripDetailValue}>4</span>
-          <span className={styles.tripDetailText}>Travelers</span>
-        </p>
+          <div className={styles.tripDetail}>
+            <dt className={styles.tripDetailText}>Travelers</dt>
+            <dd className={styles.tripDetailValue}>4</dd>
+          </div>
 
-        <p className={styles.tripDetail}>
-          <span className={styles.tripDetailValue}>5 / 8</span>
-          <span className={styles.tripDetailText}>Tasks done</span>
-        </p>
+          <div className={styles.tripDetail}>
+            <dt className={styles.tripDetailText}>Tasks done</dt>
+            <dd
+              className={styles.tripDetailValue}
+              aria-label="5 of 8 tasks completed"
+            >
+              5 / 8
+            </dd>
+          </div>
+        </dl>
       </div>
 
       <div className={styles.tripDescriptionWrapper}>

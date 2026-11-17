@@ -11,13 +11,26 @@ function TripDashboard() {
   }
 
   return (
-    <section className={styles.section}>
+    <section aria-labelledby="trip-dashboard-title">
+      <h2
+        id="trip-dashboard-title"
+        className="sr-only"
+      >
+        Trip dashbaord
+      </h2>
+
       <TripDashboardMenu
-        currentActiveTab={activeTab}
-        onClick={handleChangeTab}
+        activeTab={activeTab}
+        onTabChange={handleChangeTab}
       />
 
-      <div className={styles.tripDashboardWrapper}>
+      <div
+        className={styles.tripDashboardWrapper}
+        role="tabpanel"
+        id={`${activeTab}-panel`}
+        aria-labelledby={`${activeTab}-tab`}
+        tabIndex={0}
+      >
         {activeTab === "overview" && <TripOverview />}
       </div>
     </section>

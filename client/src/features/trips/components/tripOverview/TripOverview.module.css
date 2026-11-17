@@ -7,7 +7,6 @@
 .tripImageWrapper {
   inline-size: 100%;
   block-size: 13.75rem;
-  max-block-size: 13.75rem;
 
   border-radius: 12px;
   overflow: hidden;
@@ -29,7 +28,7 @@
 
 .tripDetail {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: var(--space-3xs);
 
   flex: 1;
@@ -39,6 +38,8 @@
 
   padding: var(--space-m);
   border: 1.5px solid var(--ld-border);
+
+  min-inline-size: 0;
 }
 
 .tripDetailValue {
