@@ -1,0 +1,110 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.totalSharedCostsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+
+  padding: var(--space-m);
+  border-radius: 16px;
+
+  background-color: var(--ld-surface);
+  border: 1.5px solid var(--ld-border);
+}
+
+.totalSharedCostsTitle {
+  font-size: var(--fs--1);
+  font-weight: 600;
+
+  color: var(--ld-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.totalSharedCostsValue {
+  font-size: var(--fs-4);
+  font-weight: 600;
+
+  color: var(--ld-text);
+}
+
+.totalSharedCostsUserShare {
+  color: var(--ld-text-muted);
+}
+
+.expensesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.expenseWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--space-s);
+
+  border-radius: 16px;
+
+  padding: var(--space-m);
+  background-color: var(--ld-surface);
+  border: 1.5px solid var(--ld-border)
+}
+
+.expenseInformation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.expenseTitle {
+  font-size: var(--fs-1);
+  font-weight: 500;
+}
+
+.expenseDetails {
+  font-size: var(--fs--1);
+  font-weight: 500;
+
+  color: var(--ld-text-muted);
+}
+
+.expenseTotal {
+  font-size: var(--fs-0);
+  font-weight: 600;
+}
+
+.userBalanceWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  background-color: var(--ld-surface);
+  padding: var(--space-m);
+
+  border-radius: 16px;
+  border: 1.5px solid var(--ld-border);
+}
+
+.userBalanceTitle {
+  font-size: var(--fs-2);
+  font-weight: 600;
+}
+
+.userBalanceOwed {
+  font-size: var(--fs-1);
+  font-weight: 500;
+
+  color: var(--ld-success);
+}
+
+.userBalanceAdnotation {
+  font-size: var(--fs--1);
+  font-weight: 400;
+
+  color: var(--ld-text-muted);
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import TripDashboardMenu, { type DashboardMenuItem } from "../tripDashboardMenu/TripDashboardMenu";
 import styles from "./TripDashboard.module.css";
 import TripOverview from "../tripOverview/TripOverview";
+import TripExpenses from "../tripExpenses/TripExpenses";
 
 function TripDashboard() {
   const [activeTab, setActiveTab] = useState<DashboardMenuItem>("overview");
@@ -32,6 +33,7 @@ function TripDashboard() {
         tabIndex={0}
       >
         {activeTab === "overview" && <TripOverview />}
+        {activeTab === "expenses" && <TripExpenses />}
       </div>
     </section>
   );
