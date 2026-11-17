@@ -1,0 +1,78 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.tripImageWrapper {
+  inline-size: 100%;
+  block-size: 13.75rem;
+  max-block-size: 13.75rem;
+
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tripImage {
+  inline-size: 100%;
+  block-size: 100%;
+
+  object-position: center;
+  object-fit: cover;
+}
+
+.tripDetails {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-xs);
+}
+
+.tripDetail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+
+  flex: 1;
+  border-radius: 16px;
+
+  background-color: var(--ld-surface);
+
+  padding: var(--space-m);
+  border: 1.5px solid var(--ld-border);
+}
+
+.tripDetailValue {
+  font-size: var(--fs-3);
+  font-weight: 500;
+
+  color: var(--ld-text);
+}
+
+.tripDetailText {
+  font-size: var(--fs--1);
+  font-weight: 500;
+
+  color: var(--ld-text-muted);
+}
+
+.tripDescriptionWrapper {
+
+  padding: var(--space-m);
+
+  min-block-size: 11.875rem;
+  border-radius: 16px;
+
+  background-color: var(--ld-surface);
+  border: 1.5px solid var(--ld-border);
+}
+
+.tripDescriptionTitle {
+  font-size: var(--fs-2);
+  font-weight: 500;
+
+  margin-block-end: var(--space-xs);
+}
+
+.tripDescriptionText {
+  color: var(--ld-text-muted);
+}
